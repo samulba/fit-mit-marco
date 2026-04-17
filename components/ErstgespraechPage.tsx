@@ -17,7 +17,7 @@ import {
   ShieldCheck,
   Clock,
   Gift,
-  Sparkles,
+  Map,
   Check,
 } from "lucide-react";
 import { Footer } from "./Footer";
@@ -49,13 +49,13 @@ const whatHappens = [
     visual: "clipboard" as const,
   },
   {
-    icon: Sparkles,
+    icon: Map,
     keyword: "Plan",
     eyebrow: "Du nimmst etwas mit",
     title: "Dein",
     titleAccent: "persönlicher Plan.",
     text: "Du bekommst eine klare Einschätzung, was möglich ist – und drei konkrete Schritte. Egal ob mit mir oder ohne.",
-    visual: "door" as const,
+    visual: "route" as const,
   },
 ];
 
@@ -577,7 +577,7 @@ function VisualScene({
     >
       {step.visual === "phone" && <PhoneScene local={local} />}
       {step.visual === "clipboard" && <ClipboardScene local={local} />}
-      {step.visual === "door" && <DoorScene local={local} />}
+      {step.visual === "route" && <RouteScene local={local} />}
     </motion.div>
   );
 }
@@ -736,97 +736,188 @@ function ClipboardScene({ local }: { local: MotionValue<number> }) {
   );
 }
 
-/* ── Scene 3: Door opening into training space ── */
-function DoorScene({ local }: { local: MotionValue<number> }) {
+/* ── Scene 3: Route with 3 milestones being drawn in ── */
+function RouteScene({ local }: { local: MotionValue<number> }) {
+  // The S-shaped path we'll draw through
+  const pathD =
+    "M 40 240 C 40 180, 180 180, 180 140 C 180 100, 40 100, 40 60 L 180 60";
+
   return (
     <div className="relative w-full h-full flex items-center justify-center">
-      {/* Sun-ray rotation */}
-      <motion.svg
+      {/* Outer rotating ring */}
+      <motion.div
         animate={{ rotate: 360 }}
-        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-        viewBox="0 0 200 200"
-        className="absolute w-[400px] h-[400px] opacity-30"
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        className="absolute w-80 h-80 rounded-full border border-mint/20"
       >
-        {Array.from({ length: 12 }).map((_, i) => {
-          const angle = (i / 12) * 360;
-          return (
-            <line
-              key={i}
-              x1="100"
-              y1="100"
-              x2="100"
-              y2="20"
-              stroke="#55EFC4"
-              strokeWidth="0.5"
-              transform={`rotate(${angle} 100 100)`}
-            />
-          );
-        })}
-      </motion.svg>
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-mint" />
+      </motion.div>
 
-      {/* Door frame */}
-      <div className="relative w-52 h-72 rounded-t-[4rem] bg-gradient-to-b from-teal/30 to-mint/20 border-2 border-mint/40 shadow-2xl shadow-mint/20 overflow-hidden">
-        {/* Light ray behind */}
-        <motion.div
-          animate={{ opacity: [0.2, 0.9, 0.2] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute inset-0 bg-gradient-to-b from-mint/50 via-transparent to-transparent"
+      {/* Map card */}
+      <motion.div
+        animate={{ y: [0, -6, 0] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        className="relative w-60 h-72 rounded-[1.5rem] bg-cream text-forest shadow-2xl shadow-teal/20 overflow-hidden p-6"
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between mb-2">
+          <div className="font-mono text-[0.6rem] tracking-[0.2em] uppercase text-forest/50">
+            Dein Plan
+          </div>
+          <div className="flex gap-1">
+            <div className="w-1.5 h-1.5 rounded-full bg-teal" />
+            <div className="w-1.5 h-1.5 rounded-full bg-teal/40" />
+            <div className="w-1.5 h-1.5 rounded-full bg-teal/40" />
+          </div>
+        </div>
+
+        {/* Map subtle grid */}
+        <div
+          className="absolute inset-0 opacity-[0.06] pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, #1A3C34 1px, transparent 1px), linear-gradient(to bottom, #1A3C34 1px, transparent 1px)",
+            backgroundSize: "20px 20px",
+          }}
         />
 
-        {/* Door (opens repeatedly) */}
-        <motion.div
-          animate={{
-            rotateY: [0, -65, -65, 0],
-            opacity: [1, 0.8, 0.8, 1],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut",
-            times: [0, 0.25, 0.8, 1],
-          }}
-          style={{
-            transformOrigin: "left center",
-            transformStyle: "preserve-3d",
-          }}
-          className="absolute inset-0 rounded-t-[4rem] bg-gradient-to-br from-forest to-forest-mid border-r border-teal/40"
+        {/* Path SVG */}
+        <svg
+          viewBox="0 0 220 300"
+          className="absolute inset-0 w-full h-full pointer-events-none"
+          fill="none"
+          preserveAspectRatio="xMidYMid meet"
         >
-          {/* Door knob */}
-          <div className="absolute right-5 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-teal" />
-          {/* Wood grain lines */}
-          <div className="absolute inset-6 top-12 space-y-3 opacity-20">
-            {[0.7, 0.9, 0.6, 0.85, 0.75].map((w, i) => (
-              <div
-                key={i}
-                style={{ width: `${w * 100}%` }}
-                className="h-px bg-mint"
-              />
-            ))}
-          </div>
-        </motion.div>
+          {/* Base (faint) path */}
+          <path
+            d={pathD}
+            stroke="#1A3C34"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeDasharray="3 5"
+            strokeOpacity="0.15"
+          />
+          {/* Active (drawn) path */}
+          <motion.path
+            d={pathD}
+            stroke="#00B894"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: [0, 1, 1, 0] }}
+            transition={{
+              duration: 4.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+              times: [0, 0.55, 0.85, 1],
+            }}
+          />
 
-        {/* Inside silhouette appearing when door opens */}
-        <motion.div
-          animate={{
-            opacity: [0, 0, 1, 1, 0, 0],
-            scale: [0.9, 0.9, 1, 1, 0.9, 0.9],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeOut",
-            times: [0, 0.2, 0.35, 0.75, 0.85, 1],
-          }}
-          className="absolute inset-0 flex items-center justify-center"
-        >
-          <svg width="60" height="90" viewBox="0 0 60 90" fill="none">
-            <circle cx="30" cy="18" r="8" fill="#55EFC4" />
-            <rect x="22" y="28" width="16" height="30" rx="3" fill="#55EFC4" />
-            <rect x="22" y="58" width="7" height="26" rx="2" fill="#55EFC4" />
-            <rect x="31" y="58" width="7" height="26" rx="2" fill="#55EFC4" />
+          {/* 3 milestones that pop in sequentially */}
+          {[
+            { cx: 40, cy: 240, label: "A", delay: 0 },
+            { cx: 180, cy: 140, label: "B", delay: 1.2 },
+            { cx: 180, cy: 60, label: "C", delay: 2.4 },
+          ].map((m) => (
+            <g key={m.label}>
+              <motion.circle
+                cx={m.cx}
+                cy={m.cy}
+                r="10"
+                fill="#00B894"
+                initial={{ scale: 0 }}
+                animate={{ scale: [0, 1, 1, 0] }}
+                transition={{
+                  duration: 4.5,
+                  delay: 0,
+                  repeat: Infinity,
+                  ease: "easeOut",
+                  times: [
+                    m.delay / 4.5,
+                    Math.min(1, (m.delay + 0.2) / 4.5),
+                    0.85,
+                    1,
+                  ],
+                }}
+                style={{ transformOrigin: `${m.cx}px ${m.cy}px` }}
+              />
+              <motion.circle
+                cx={m.cx}
+                cy={m.cy}
+                r="10"
+                fill="none"
+                stroke="#00B894"
+                strokeWidth="1.5"
+                initial={{ scale: 1, opacity: 0 }}
+                animate={{
+                  scale: [1, 2.2, 2.2, 1],
+                  opacity: [0.8, 0, 0, 0],
+                }}
+                transition={{
+                  duration: 4.5,
+                  delay: 0,
+                  repeat: Infinity,
+                  ease: "easeOut",
+                  times: [
+                    m.delay / 4.5,
+                    Math.min(1, (m.delay + 0.6) / 4.5),
+                    0.85,
+                    1,
+                  ],
+                }}
+                style={{ transformOrigin: `${m.cx}px ${m.cy}px` }}
+              />
+              <text
+                x={m.cx}
+                y={m.cy + 1.5}
+                fontSize="8"
+                fontWeight="700"
+                fontFamily="ui-monospace, monospace"
+                fill="#F8F5F0"
+                textAnchor="middle"
+                dominantBaseline="middle"
+              >
+                {m.label}
+              </text>
+            </g>
+          ))}
+
+          {/* Moving pin that travels the route */}
+          <motion.g
+            initial={{ offsetDistance: "0%" }}
+            animate={{ offsetDistance: ["0%", "100%", "100%", "0%"] }}
+            transition={{
+              duration: 4.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+              times: [0, 0.55, 0.85, 1],
+            }}
+            style={{
+              offsetPath: `path("${pathD}")`,
+              offsetRotate: "0deg",
+            }}
+          >
+            <circle cx="0" cy="0" r="5" fill="#55EFC4" />
+            <circle cx="0" cy="0" r="2.5" fill="#1A3C34" />
+          </motion.g>
+        </svg>
+
+        {/* Footer pill */}
+        <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between px-3 py-2 rounded-full bg-forest text-cream">
+          <span className="font-mono text-[0.6rem] tracking-widest uppercase">
+            3 Schritte
+          </span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M5 12h14M13 6l6 6-6 6"
+              stroke="#55EFC4"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
-        </motion.div>
-      </div>
+        </div>
+      </motion.div>
     </div>
   );
 }
