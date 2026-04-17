@@ -2,7 +2,13 @@
 
 import Link from "next/link";
 import { useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  MotionValue,
+} from "framer-motion";
 import {
   ArrowLeft,
   ArrowRight,
@@ -108,7 +114,6 @@ const faqs = [
 export function AngehoerigePage() {
   return (
     <main className="bg-cream min-h-screen">
-      <MiniNav />
       <Hero />
       <Concerns />
       <Benefits />
@@ -121,10 +126,10 @@ export function AngehoerigePage() {
   );
 }
 
-function MiniNav() {
+function FloatingNav() {
   return (
-    <header className="relative z-20 bg-forest text-cream">
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 py-5 flex items-center justify-between">
+    <div className="absolute top-0 inset-x-0 z-30">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 py-5 flex items-center justify-between text-cream">
         <Link href="/" className="flex items-center gap-3">
           <LogoIcon size={36} variant="dark" />
           <div className="font-display font-bold leading-none">
@@ -139,7 +144,7 @@ function MiniNav() {
           <ArrowLeft size={14} /> Zur Startseite
         </Link>
       </div>
-    </header>
+    </div>
   );
 }
 
@@ -157,6 +162,7 @@ function Hero() {
       ref={ref}
       className="relative min-h-screen bg-forest text-cream overflow-hidden flex items-center"
     >
+      <FloatingNav />
       <div
         className="absolute inset-0 opacity-[0.04] pointer-events-none z-[1] mix-blend-overlay"
         style={{
@@ -252,16 +258,30 @@ function Hero() {
   );
 }
 
+/* Sticky scrollytelling concerns */
 function Concerns() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 30,
+    mass: 0.5,
+    restDelta: 0.001,
+  });
+
   return (
-    <section className="py-24 sm:py-28 lg:py-32 bg-cream">
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10">
+    <section className="bg-cream">
+      {/* Intro */}
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 pt-24 sm:pt-28 lg:pt-32 pb-16 lg:pb-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="max-w-3xl mb-14 lg:mb-20"
+          className="max-w-3xl"
         >
           <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-4">
             Kommt Ihnen bekannt vor?
@@ -271,29 +291,182 @@ function Concerns() {
             <span className="italic text-teal">jede Woche.</span>
           </h2>
         </motion.div>
+      </div>
 
-        <div className="grid md:grid-cols-2 gap-5 lg:gap-6">
-          {concerns.map((c, i) => (
-            <motion.div
-              key={c.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="bg-white border border-sand rounded-3xl p-7 sm:p-9 hover:border-teal/40 hover:shadow-md transition-all"
-            >
-              <div className="w-12 h-12 rounded-xl bg-coral/10 text-coral flex items-center justify-center mb-5">
-                <c.icon size={20} />
+      {/* Sticky Scrollytelling */}
+      <div
+        ref={containerRef}
+        style={{ height: `${concerns.length * 100}vh` }}
+        className="relative"
+      >
+        <div className="sticky top-0 h-screen overflow-hidden">
+          <ConcernBgIcon progress={smoothProgress} />
+          <ConcernRail progress={smoothProgress} />
+
+          <div className="relative z-10 h-full flex items-center">
+            <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-10 w-full grid lg:grid-cols-12 gap-10 items-center">
+              <div className="lg:col-span-8 lg:col-start-2 relative min-h-[380px]">
+                {concerns.map((c, i) => (
+                  <ConcernCopy
+                    key={i}
+                    concern={c}
+                    index={i}
+                    total={concerns.length}
+                    progress={smoothProgress}
+                  />
+                ))}
               </div>
-              <div className="font-display font-bold text-xl sm:text-2xl text-forest mb-3 leading-tight">
-                {c.title}
-              </div>
-              <p className="text-slate leading-relaxed">{c.text}</p>
-            </motion.div>
-          ))}
+            </div>
+          </div>
+
+          <ConcernIndicator progress={smoothProgress} />
         </div>
       </div>
     </section>
+  );
+}
+
+function ConcernBgIcon({ progress }: { progress: MotionValue<number> }) {
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {concerns.map((c, i) => {
+        const segment = 1 / concerns.length;
+        const start = i * segment;
+        const end = start + segment;
+        const opacity = useTransform(
+          progress,
+          [start - 0.05, start + 0.05, end - 0.05, end + 0.05],
+          [0, 0.07, 0.07, 0]
+        );
+        const rotate = useTransform(
+          progress,
+          [start, end],
+          [i % 2 === 0 ? -8 : 8, i % 2 === 0 ? 8 : -8]
+        );
+        const Icon = c.icon;
+        return (
+          <motion.div
+            key={i}
+            style={{ opacity, rotate, willChange: "transform, opacity" }}
+            className="absolute inset-0 flex items-center justify-end pr-4 lg:pr-24"
+          >
+            <Icon
+              strokeWidth={1}
+              className="text-forest select-none"
+              style={{ width: "clamp(20rem, 50vw, 40rem)", height: "clamp(20rem, 50vw, 40rem)" }}
+            />
+          </motion.div>
+        );
+      })}
+    </div>
+  );
+}
+
+function ConcernRail({ progress }: { progress: MotionValue<number> }) {
+  const height = useTransform(progress, [0, 1], ["0%", "100%"]);
+  const currentConcern = useTransform(progress, (v) => {
+    const idx = Math.min(concerns.length - 1, Math.floor(v * concerns.length));
+    return String(idx + 1).padStart(2, "0");
+  });
+
+  return (
+    <div className="hidden lg:flex absolute left-8 top-1/2 -translate-y-1/2 flex-col items-center gap-6 z-20">
+      <div className="relative w-px h-[50vh] bg-forest/10">
+        <motion.div
+          style={{ height, willChange: "height" }}
+          className="absolute inset-x-0 top-0 bg-coral"
+        />
+      </div>
+      <div className="font-mono text-xs text-slate flex items-center gap-2">
+        <motion.span className="text-forest font-semibold">
+          {currentConcern}
+        </motion.span>
+        <span className="text-forest/30">/</span>
+        <span className="text-forest/30">
+          {String(concerns.length).padStart(2, "0")}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function ConcernCopy({
+  concern,
+  index,
+  total,
+  progress,
+}: {
+  concern: (typeof concerns)[number];
+  index: number;
+  total: number;
+  progress: MotionValue<number>;
+}) {
+  const segment = 1 / total;
+  const start = index * segment;
+  const end = start + segment;
+
+  const opacity = useTransform(
+    progress,
+    [start - 0.05, start + 0.05, end - 0.05, end + 0.05],
+    [0, 1, 1, 0]
+  );
+  const y = useTransform(
+    progress,
+    [start - 0.05, start + 0.05, end - 0.05, end + 0.05],
+    [40, 0, 0, -40]
+  );
+
+  const Icon = concern.icon;
+
+  return (
+    <motion.div
+      style={{ opacity, y, willChange: "transform, opacity" }}
+      className="absolute inset-x-0"
+    >
+      <div className="flex items-center gap-3 mb-6">
+        <div className="w-12 h-12 rounded-xl bg-coral/10 text-coral flex items-center justify-center">
+          <Icon size={20} />
+        </div>
+        <div className="font-mono text-xs text-slate tracking-widest">
+          SORGE {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+        </div>
+      </div>
+      <h3
+        className="font-display font-bold text-forest leading-[0.95] mb-6 lg:mb-8"
+        style={{ fontSize: "clamp(2.25rem, 6vw, 5rem)" }}
+      >
+        {concern.title}
+      </h3>
+      <p className="text-lg lg:text-xl text-slate leading-relaxed max-w-2xl font-light">
+        {concern.text}
+      </p>
+    </motion.div>
+  );
+}
+
+function ConcernIndicator({ progress }: { progress: MotionValue<number> }) {
+  return (
+    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 lg:hidden">
+      {concerns.map((_, i) => {
+        const segment = 1 / concerns.length;
+        const start = i * segment;
+        const end = start + segment;
+        const active = useTransform(
+          progress,
+          [start, start + 0.1, end - 0.1, end],
+          [0, 1, 1, 0]
+        );
+        const width = useTransform(active, [0, 1], [24, 48]);
+        const bg = useTransform(active, [0, 1], ["#1A3C3430", "#E17055"]);
+        return (
+          <motion.div
+            key={i}
+            style={{ width, backgroundColor: bg as any, willChange: "width" }}
+            className="h-1 rounded-full"
+          />
+        );
+      })}
+    </div>
   );
 }
 

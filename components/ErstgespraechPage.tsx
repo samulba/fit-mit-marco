@@ -71,7 +71,6 @@ const faqs = [
 export function ErstgespraechPage() {
   return (
     <main className="bg-cream min-h-screen">
-      <MiniNav />
       <Hero />
       <WhatHappens />
       <BenefitsBar />
@@ -82,11 +81,11 @@ export function ErstgespraechPage() {
   );
 }
 
-/* ───────────────────────── Mini nav ───────────────────────── */
-function MiniNav() {
+/* ───────────────── Floating nav (overlays hero for full 100vh) ───────────────── */
+function FloatingNav() {
   return (
-    <header className="relative z-20 bg-forest text-cream">
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 py-5 flex items-center justify-between">
+    <div className="absolute top-0 inset-x-0 z-30">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 py-5 flex items-center justify-between text-cream">
         <Link
           href="/"
           className="flex items-center gap-3 group"
@@ -105,7 +104,7 @@ function MiniNav() {
           <ArrowLeft size={14} /> Zur Startseite
         </Link>
       </div>
-    </header>
+    </div>
   );
 }
 
@@ -127,6 +126,7 @@ function Hero() {
       ref={ref}
       className="relative min-h-screen bg-forest text-cream overflow-hidden flex items-center"
     >
+      <FloatingNav />
       {/* Noise */}
       <div
         className="absolute inset-0 opacity-[0.04] pointer-events-none z-[1] mix-blend-overlay"

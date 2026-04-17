@@ -2,7 +2,13 @@
 
 import Link from "next/link";
 import { useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  MotionValue,
+} from "framer-motion";
 import {
   ArrowLeft,
   ArrowRight,
@@ -106,8 +112,8 @@ const faqs = [
 export function PreisePage() {
   return (
     <main className="bg-cream min-h-screen">
-      <MiniNav />
       <Hero />
+      <StickyPricing />
       <Pricing />
       <IncludedBar />
       <GiftCallout />
@@ -118,10 +124,10 @@ export function PreisePage() {
   );
 }
 
-function MiniNav() {
+function FloatingNav() {
   return (
-    <header className="relative z-20 bg-forest text-cream">
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 py-5 flex items-center justify-between">
+    <div className="absolute top-0 inset-x-0 z-30">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 py-5 flex items-center justify-between text-cream">
         <Link href="/" className="flex items-center gap-3">
           <LogoIcon size={36} variant="dark" />
           <div className="font-display font-bold leading-none">
@@ -136,7 +142,7 @@ function MiniNav() {
           <ArrowLeft size={14} /> Zur Startseite
         </Link>
       </div>
-    </header>
+    </div>
   );
 }
 
@@ -155,6 +161,7 @@ function Hero() {
       ref={ref}
       className="relative min-h-screen bg-forest text-cream overflow-hidden flex items-center"
     >
+      <FloatingNav />
       <div
         className="absolute inset-0 opacity-[0.04] pointer-events-none z-[1] mix-blend-overlay"
         style={{
@@ -260,9 +267,227 @@ function Hero() {
   );
 }
 
+/* ── Sticky Pricing Scrollytelling ── */
+function StickyPricing() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 30,
+    mass: 0.5,
+    restDelta: 0.001,
+  });
+
+  return (
+    <section className="bg-cream">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 pt-24 sm:pt-28 lg:pt-32 pb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="text-center max-w-3xl mx-auto"
+        >
+          <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-4">
+            Deine Optionen
+          </div>
+          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-forest leading-[1]">
+            Drei Wege.
+            <br />
+            <span className="italic text-forest/40">Ein Ziel.</span>
+          </h2>
+        </motion.div>
+      </div>
+
+      <div
+        ref={containerRef}
+        style={{ height: `${packages.length * 100}vh` }}
+        className="relative"
+      >
+        <div className="sticky top-0 h-screen overflow-hidden">
+          <PackageBgPrice progress={smoothProgress} />
+          <PackageRail progress={smoothProgress} />
+
+          <div className="relative z-10 h-full flex items-center">
+            <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-10 w-full grid lg:grid-cols-12 gap-10 items-center">
+              <div className="lg:col-span-8 lg:col-start-2 relative min-h-[420px]">
+                {packages.map((pkg, i) => (
+                  <PackageCopy
+                    key={i}
+                    pkg={pkg}
+                    index={i}
+                    total={packages.length}
+                    progress={smoothProgress}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <PackageIndicator progress={smoothProgress} />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function PackageBgPrice({ progress }: { progress: MotionValue<number> }) {
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {packages.map((pkg, i) => {
+        const segment = 1 / packages.length;
+        const start = i * segment;
+        const end = start + segment;
+        const opacity = useTransform(
+          progress,
+          [start - 0.05, start + 0.05, end - 0.05, end + 0.05],
+          [0, 1, 1, 0]
+        );
+        const x = useTransform(
+          progress,
+          [start - 0.05, start + 0.05, end - 0.05, end + 0.05],
+          ["-5%", "0%", "0%", "5%"]
+        );
+        return (
+          <motion.div
+            key={i}
+            style={{ opacity, x, willChange: "transform, opacity" }}
+            className="absolute inset-0 flex items-center justify-end pr-4 lg:pr-24"
+          >
+            <span
+              className="font-display font-bold leading-none text-forest/[0.06] select-none"
+              style={{ fontSize: "clamp(16rem, 50vw, 50rem)" }}
+            >
+              {pkg.price}
+            </span>
+          </motion.div>
+        );
+      })}
+    </div>
+  );
+}
+
+function PackageRail({ progress }: { progress: MotionValue<number> }) {
+  const height = useTransform(progress, [0, 1], ["0%", "100%"]);
+  const current = useTransform(progress, (v) => {
+    const idx = Math.min(packages.length - 1, Math.floor(v * packages.length));
+    return String(idx + 1).padStart(2, "0");
+  });
+
+  return (
+    <div className="hidden lg:flex absolute left-8 top-1/2 -translate-y-1/2 flex-col items-center gap-6 z-20">
+      <div className="relative w-px h-[50vh] bg-forest/10">
+        <motion.div
+          style={{ height, willChange: "height" }}
+          className="absolute inset-x-0 top-0 bg-teal"
+        />
+      </div>
+      <div className="font-mono text-xs text-slate flex items-center gap-2">
+        <motion.span className="text-forest font-semibold">{current}</motion.span>
+        <span className="text-forest/30">/</span>
+        <span className="text-forest/30">
+          {String(packages.length).padStart(2, "0")}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function PackageCopy({
+  pkg,
+  index,
+  total,
+  progress,
+}: {
+  pkg: (typeof packages)[number];
+  index: number;
+  total: number;
+  progress: MotionValue<number>;
+}) {
+  const segment = 1 / total;
+  const start = index * segment;
+  const end = start + segment;
+
+  const opacity = useTransform(
+    progress,
+    [start - 0.05, start + 0.05, end - 0.05, end + 0.05],
+    [0, 1, 1, 0]
+  );
+  const y = useTransform(
+    progress,
+    [start - 0.05, start + 0.05, end - 0.05, end + 0.05],
+    [40, 0, 0, -40]
+  );
+
+  return (
+    <motion.div
+      style={{ opacity, y, willChange: "transform, opacity" }}
+      className="absolute inset-x-0"
+    >
+      <div className="flex items-center gap-3 mb-6">
+        <span className="px-3 py-1 rounded-full bg-teal/10 border border-teal/20 text-teal text-[0.65rem] tracking-[0.25em] uppercase font-semibold">
+          Paket {String(index + 1).padStart(2, "0")}
+        </span>
+        {pkg.highlight && (
+          <span className="font-mono text-xs text-teal font-semibold">
+            {pkg.badge}
+          </span>
+        )}
+      </div>
+      <h3
+        className="font-display font-bold text-forest leading-[0.95] mb-2"
+        style={{ fontSize: "clamp(2.5rem, 7vw, 5.5rem)" }}
+      >
+        {pkg.name}
+      </h3>
+      <div className="flex items-baseline gap-2 mb-6">
+        <span
+          className="font-display font-bold text-teal leading-none"
+          style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}
+        >
+          {pkg.price} {pkg.unit}
+        </span>
+        <span className="text-sm font-mono text-slate">{pkg.per}</span>
+      </div>
+      <p className="text-lg lg:text-xl text-slate leading-relaxed max-w-xl font-light">
+        {pkg.desc}
+      </p>
+    </motion.div>
+  );
+}
+
+function PackageIndicator({ progress }: { progress: MotionValue<number> }) {
+  return (
+    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 lg:hidden">
+      {packages.map((_, i) => {
+        const segment = 1 / packages.length;
+        const start = i * segment;
+        const end = start + segment;
+        const active = useTransform(
+          progress,
+          [start, start + 0.1, end - 0.1, end],
+          [0, 1, 1, 0]
+        );
+        const width = useTransform(active, [0, 1], [24, 48]);
+        const bg = useTransform(active, [0, 1], ["#1A3C3430", "#00B894"]);
+        return (
+          <motion.div
+            key={i}
+            style={{ width, backgroundColor: bg as any, willChange: "width" }}
+            className="h-1 rounded-full"
+          />
+        );
+      })}
+    </div>
+  );
+}
+
 function Pricing() {
   return (
-    <section id="pakete" className="py-24 sm:py-28 lg:py-32 bg-cream">
+    <section id="pakete" className="py-24 sm:py-28 lg:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -272,12 +497,10 @@ function Pricing() {
           className="text-center max-w-3xl mx-auto mb-14 lg:mb-20"
         >
           <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-4">
-            Deine Optionen
+            Alle Details im Überblick
           </div>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-forest leading-[1]">
-            Drei Wege.
-            <br />
-            <span className="italic text-forest/40">Ein Ziel.</span>
+            Was genau drin ist.
           </h2>
         </motion.div>
 

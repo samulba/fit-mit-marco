@@ -2,7 +2,13 @@
 
 import Link from "next/link";
 import { useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  MotionValue,
+} from "framer-motion";
 import {
   ArrowLeft,
   ArrowRight,
@@ -36,7 +42,6 @@ export function LeistungDetailPage({ leistung }: { leistung: Leistung }) {
 
   return (
     <main className="bg-cream min-h-screen">
-      <MiniNav />
       <Hero leistung={leistung} Icon={Icon} />
       <ForWhom leistung={leistung} />
       <Benefits leistung={leistung} />
@@ -50,11 +55,11 @@ export function LeistungDetailPage({ leistung }: { leistung: Leistung }) {
   );
 }
 
-/* ── Mini nav ── */
-function MiniNav() {
+/* ── Floating nav (overlays the hero so hero can be full 100vh) ── */
+function FloatingNav() {
   return (
-    <header className="relative z-20 bg-forest text-cream">
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 py-5 flex items-center justify-between">
+    <div className="absolute top-0 inset-x-0 z-30">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 py-5 flex items-center justify-between text-cream">
         <Link href="/" className="flex items-center gap-3">
           <LogoIcon size={36} variant="dark" />
           <div className="font-display font-bold leading-none">
@@ -69,7 +74,7 @@ function MiniNav() {
           <ArrowLeft size={14} /> Alle Leistungen
         </Link>
       </div>
-    </header>
+    </div>
   );
 }
 
@@ -95,6 +100,7 @@ function Hero({
       ref={ref}
       className="relative min-h-screen bg-forest text-cream overflow-hidden flex items-center"
     >
+      <FloatingNav />
       <div
         className="absolute inset-0 opacity-[0.04] pointer-events-none z-[1] mix-blend-overlay"
         style={{
@@ -309,54 +315,241 @@ function Benefits({ leistung }: { leistung: Leistung }) {
   );
 }
 
-/* ── Session flow ── */
+/* ── Session flow — Sticky Scrollytelling ── */
 function Session({ leistung }: { leistung: Leistung }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 30,
+    mass: 0.5,
+    restDelta: 0.001,
+  });
+
+  const steps = leistung.session.steps;
+
   return (
-    <section className="py-24 sm:py-28 lg:py-32 bg-cream">
-      <div className="max-w-5xl mx-auto px-5 sm:px-6 lg:px-10">
+    <section className="bg-cream">
+      {/* Intro */}
+      <div className="max-w-5xl mx-auto px-5 sm:px-6 lg:px-10 pt-24 sm:pt-28 lg:pt-32 pb-16 lg:pb-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="mb-14"
+          className="text-center max-w-3xl mx-auto"
         >
           <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-4">
             Ablauf
           </div>
-          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-forest leading-[1] mb-3">
+          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-forest leading-[1] mb-4">
             {leistung.session.title}
           </h2>
           <p className="text-lg text-slate font-mono">{leistung.session.sub}</p>
         </motion.div>
+      </div>
 
-        <div className="space-y-4">
-          {leistung.session.steps.map((step, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="group grid grid-cols-[auto_1fr_auto] gap-5 sm:gap-8 items-start bg-white border border-sand rounded-3xl p-6 sm:p-8 hover:border-teal/40 hover:shadow-md transition-all"
-            >
-              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-forest text-mint group-hover:bg-teal group-hover:text-forest flex items-center justify-center font-display font-bold text-lg transition-colors">
-                {String(i + 1).padStart(2, "0")}
+      {/* Scrollytelling */}
+      <div
+        ref={containerRef}
+        style={{ height: `${steps.length * 100}vh` }}
+        className="relative"
+      >
+        <div className="sticky top-0 h-screen overflow-hidden">
+          {/* Giant background number */}
+          <SessionBgNumber progress={smoothProgress} steps={steps} />
+
+          {/* Progress rail */}
+          <SessionRail progress={smoothProgress} steps={steps} />
+
+          {/* Step content */}
+          <div className="relative z-10 h-full flex items-center">
+            <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-10 w-full grid lg:grid-cols-12 gap-10 items-center">
+              <div className="lg:col-span-8 lg:col-start-2 relative min-h-[420px]">
+                {steps.map((step, i) => (
+                  <SessionStepCopy
+                    key={i}
+                    step={step}
+                    index={i}
+                    total={steps.length}
+                    progress={smoothProgress}
+                  />
+                ))}
               </div>
-              <div>
-                <div className="font-display font-bold text-xl sm:text-2xl text-forest leading-snug mb-1.5">
-                  {step.title}
-                </div>
-                <div className="text-slate leading-relaxed">{step.text}</div>
-              </div>
-              <div className="font-mono text-xs text-slate whitespace-nowrap pt-2 hidden sm:block">
-                {step.duration}
-              </div>
-            </motion.div>
-          ))}
+            </div>
+          </div>
+
+          {/* Mobile indicator */}
+          <SessionIndicator progress={smoothProgress} steps={steps} />
         </div>
       </div>
     </section>
+  );
+}
+
+function SessionBgNumber({
+  progress,
+  steps,
+}: {
+  progress: MotionValue<number>;
+  steps: Leistung["session"]["steps"];
+}) {
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {steps.map((_, i) => {
+        const segment = 1 / steps.length;
+        const start = i * segment;
+        const end = start + segment;
+        const opacity = useTransform(
+          progress,
+          [start - 0.05, start + 0.05, end - 0.05, end + 0.05],
+          [0, 1, 1, 0]
+        );
+        const x = useTransform(
+          progress,
+          [start - 0.05, start + 0.05, end - 0.05, end + 0.05],
+          ["-5%", "0%", "0%", "5%"]
+        );
+        return (
+          <motion.div
+            key={i}
+            style={{ opacity, x, willChange: "transform, opacity" }}
+            className="absolute inset-0 flex items-center justify-end pr-4 lg:pr-24"
+          >
+            <span
+              className="font-display font-bold leading-none text-forest/[0.06] select-none"
+              style={{ fontSize: "clamp(18rem, 55vw, 56rem)" }}
+            >
+              {String(i + 1).padStart(2, "0")}
+            </span>
+          </motion.div>
+        );
+      })}
+    </div>
+  );
+}
+
+function SessionRail({
+  progress,
+  steps,
+}: {
+  progress: MotionValue<number>;
+  steps: Leistung["session"]["steps"];
+}) {
+  const height = useTransform(progress, [0, 1], ["0%", "100%"]);
+  const currentStep = useTransform(progress, (v) => {
+    const idx = Math.min(steps.length - 1, Math.floor(v * steps.length));
+    return String(idx + 1).padStart(2, "0");
+  });
+
+  return (
+    <div className="hidden lg:flex absolute left-8 top-1/2 -translate-y-1/2 flex-col items-center gap-6 z-20">
+      <div className="relative w-px h-[50vh] bg-forest/10">
+        <motion.div
+          style={{ height, willChange: "height" }}
+          className="absolute inset-x-0 top-0 bg-teal"
+        />
+      </div>
+      <div className="font-mono text-xs text-slate flex items-center gap-2">
+        <motion.span className="text-forest font-semibold">
+          {currentStep}
+        </motion.span>
+        <span className="text-forest/30">/</span>
+        <span className="text-forest/30">
+          {String(steps.length).padStart(2, "0")}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function SessionStepCopy({
+  step,
+  index,
+  total,
+  progress,
+}: {
+  step: Leistung["session"]["steps"][number];
+  index: number;
+  total: number;
+  progress: MotionValue<number>;
+}) {
+  const segment = 1 / total;
+  const start = index * segment;
+  const end = start + segment;
+
+  const opacity = useTransform(
+    progress,
+    [start - 0.05, start + 0.05, end - 0.05, end + 0.05],
+    [0, 1, 1, 0]
+  );
+  const y = useTransform(
+    progress,
+    [start - 0.05, start + 0.05, end - 0.05, end + 0.05],
+    [40, 0, 0, -40]
+  );
+
+  return (
+    <motion.div
+      style={{ opacity, y, willChange: "transform, opacity" }}
+      className="absolute inset-x-0"
+    >
+      <div className="flex items-center gap-3 mb-6">
+        <div className="font-mono text-xs text-slate tracking-widest">
+          SCHRITT {String(index + 1).padStart(2, "0")}
+        </div>
+        <div className="h-px w-16 bg-teal/40" />
+        <div className="font-mono text-xs text-teal font-semibold">
+          {step.duration}
+        </div>
+      </div>
+
+      <h3
+        className="font-display font-bold text-forest leading-[0.95] mb-6 lg:mb-8"
+        style={{ fontSize: "clamp(2.25rem, 6vw, 5rem)" }}
+      >
+        {step.title}
+      </h3>
+
+      <p className="text-lg lg:text-xl text-slate leading-relaxed max-w-xl font-light">
+        {step.text}
+      </p>
+    </motion.div>
+  );
+}
+
+function SessionIndicator({
+  progress,
+  steps,
+}: {
+  progress: MotionValue<number>;
+  steps: Leistung["session"]["steps"];
+}) {
+  return (
+    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 lg:hidden">
+      {steps.map((_, i) => {
+        const segment = 1 / steps.length;
+        const start = i * segment;
+        const end = start + segment;
+        const active = useTransform(
+          progress,
+          [start, start + 0.1, end - 0.1, end],
+          [0, 1, 1, 0]
+        );
+        const width = useTransform(active, [0, 1], [24, 48]);
+        const bg = useTransform(active, [0, 1], ["#1A3C3430", "#00B894"]);
+        return (
+          <motion.div
+            key={i}
+            style={{ width, backgroundColor: bg as any, willChange: "width" }}
+            className="h-1 rounded-full"
+          />
+        );
+      })}
+    </div>
   );
 }
 
