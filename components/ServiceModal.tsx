@@ -33,18 +33,42 @@ type Props = {
 };
 
 export function ServiceModal({ leistung, onClose }: Props) {
-  // Close on ESC + lock body scroll while open
+  // Close on ESC + robust scroll lock that survives overscroll / fast scrolling
   useEffect(() => {
     if (!leistung) return;
+
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
     document.addEventListener("keydown", onKey);
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+
+    // Position-fixed scroll lock — prevents scroll chaining on mobile and
+    // fixes the issue of background scrolling when reaching top/bottom inside
+    // the modal. Also works in Safari where body.overflow:hidden alone fails.
+    const scrollY = window.scrollY;
+    const body = document.body;
+    const html = document.documentElement;
+    const prev = {
+      position: body.style.position,
+      top: body.style.top,
+      width: body.style.width,
+      overflow: body.style.overflow,
+      htmlOverflow: html.style.overflow,
+    };
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.width = "100%";
+    body.style.overflow = "hidden";
+    html.style.overflow = "hidden";
+
     return () => {
       document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prev;
+      body.style.position = prev.position;
+      body.style.top = prev.top;
+      body.style.width = prev.width;
+      body.style.overflow = prev.overflow;
+      html.style.overflow = prev.htmlOverflow;
+      window.scrollTo(0, scrollY);
     };
   }, [leistung, onClose]);
 
@@ -73,7 +97,9 @@ function Content({
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}
         onClick={onClose}
-        className="fixed inset-0 z-[80] bg-forest/70 backdrop-blur-md"
+        onWheel={(e) => e.preventDefault()}
+        onTouchMove={(e) => e.preventDefault()}
+        className="fixed inset-0 z-[80] bg-forest/70 backdrop-blur-md touch-none"
       />
 
       {/* Panel */}
@@ -137,8 +163,11 @@ function Content({
             </p>
           </div>
 
-          {/* Body (scrollable) */}
-          <div className="flex-1 overflow-y-auto p-7 sm:p-10 lg:p-12 space-y-10">
+          {/* Body (scrollable, with overscroll containment so we don't scroll the background) */}
+          <div
+            className="flex-1 overflow-y-auto p-7 sm:p-10 lg:p-12 space-y-10"
+            style={{ overscrollBehavior: "contain" }}
+          >
             {/* For whom */}
             <section>
               <SectionLabel>Für wen</SectionLabel>

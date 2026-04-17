@@ -1,8 +1,16 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useEffect } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionValue,
+  useSpring,
+  useMotionTemplate,
+} from "framer-motion";
 import { ArrowDown, Star, Play } from "lucide-react";
+import { MagneticButton } from "./MagneticButton";
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -19,6 +27,63 @@ export function Hero() {
   const glowY1 = useTransform(scrollYProgress, [0, 1], [0, 300]);
   const glowY2 = useTransform(scrollYProgress, [0, 1], [0, -150]);
 
+  // ─── Mouse-tracking for interactive spotlight + parallax ───
+  // Raw pointer position relative to the section
+  const pointerX = useMotionValue(0.5);
+  const pointerY = useMotionValue(0.5);
+  // Smoothed pointer for buttery motion
+  const smoothX = useSpring(pointerX, {
+    stiffness: 120,
+    damping: 22,
+    mass: 0.4,
+  });
+  const smoothY = useSpring(pointerY, {
+    stiffness: 120,
+    damping: 22,
+    mass: 0.4,
+  });
+
+  // Spotlight radial gradient that follows the cursor
+  const spotlightX = useTransform(smoothX, (v) => `${v * 100}%`);
+  const spotlightY = useTransform(smoothY, (v) => `${v * 100}%`);
+  const spotlight = useMotionTemplate`radial-gradient(600px circle at ${spotlightX} ${spotlightY}, rgba(85, 239, 196, 0.18), transparent 70%)`;
+
+  // Subtle parallax offsets for the glow orbs (move opposite to cursor)
+  const orbAx = useTransform(smoothX, [0, 1], [30, -30]);
+  const orbAyFromPointer = useTransform(smoothY, [0, 1], [30, -30]);
+  const orbAy = useTransform(
+    [glowY1, orbAyFromPointer] as any,
+    ([scroll, mouse]: number[]) => scroll + mouse
+  );
+  const orbBx = useTransform(smoothX, [0, 1], [-40, 40]);
+  const orbByFromPointer = useTransform(smoothY, [0, 1], [-30, 30]);
+  const orbBy = useTransform(
+    [glowY2, orbByFromPointer] as any,
+    ([scroll, mouse]: number[]) => scroll + mouse
+  );
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const onMove = (e: MouseEvent) => {
+      const rect = el.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = (e.clientY - rect.top) / rect.height;
+      pointerX.set(Math.max(0, Math.min(1, x)));
+      pointerY.set(Math.max(0, Math.min(1, y)));
+    };
+    const onLeave = () => {
+      pointerX.set(0.5);
+      pointerY.set(0.5);
+    };
+    el.addEventListener("mousemove", onMove);
+    el.addEventListener("mouseleave", onLeave);
+    return () => {
+      el.removeEventListener("mousemove", onMove);
+      el.removeEventListener("mouseleave", onLeave);
+    };
+  }, [pointerX, pointerY]);
+
   return (
     <section
       ref={ref}
@@ -32,6 +97,16 @@ export function Hero() {
           backgroundImage:
             "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E\")",
         }}
+      />
+
+      {/* Mouse-tracking spotlight */}
+      <motion.div
+        style={{
+          background: spotlight,
+          willChange: "background",
+        }}
+        className="absolute inset-0 pointer-events-none z-[2] hidden md:block"
+        aria-hidden="true"
       />
 
       {/* Grid */}
@@ -49,13 +124,13 @@ export function Hero() {
         />
       </motion.div>
 
-      {/* Glow orbs */}
+      {/* Glow orbs (with scroll + mouse parallax) */}
       <motion.div
-        style={{ y: glowY1 }}
+        style={{ x: orbAx, y: orbAy, willChange: "transform" }}
         className="absolute -top-48 -right-48 w-[500px] h-[500px] lg:w-[700px] lg:h-[700px] rounded-full bg-teal/25 blur-[90px]"
       />
       <motion.div
-        style={{ y: glowY2 }}
+        style={{ x: orbBx, y: orbBy, willChange: "transform" }}
         className="absolute -bottom-40 -left-40 w-[400px] h-[400px] lg:w-[600px] lg:h-[600px] rounded-full bg-mint/15 blur-[100px]"
       />
 
@@ -127,9 +202,10 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 1.5 }}
               className="mt-8 lg:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4"
             >
-              <a
+              <MagneticButton
                 href="/erstgespraech"
-                className="group relative inline-flex items-center gap-3 bg-teal hover:bg-mint text-forest pl-6 sm:pl-7 pr-2 py-2 rounded-full font-semibold transition-all hover:shadow-2xl hover:shadow-teal/30"
+                strength={14}
+                className="group relative inline-flex items-center gap-3 bg-teal hover:bg-mint text-forest pl-6 sm:pl-7 pr-2 py-2 rounded-full font-semibold transition-colors hover:shadow-2xl hover:shadow-teal/30 w-fit"
               >
                 <span className="relative z-10 text-sm sm:text-base">
                   Kostenloses Erstgespräch
@@ -137,7 +213,7 @@ export function Hero() {
                 <span className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-forest text-teal group-hover:text-forest group-hover:bg-cream flex items-center justify-center transition-colors">
                   <ArrowDown size={16} className="-rotate-45" />
                 </span>
-              </a>
+              </MagneticButton>
               <a
                 href="#about"
                 className="group inline-flex items-center gap-2 text-white/70 hover:text-mint text-sm font-medium transition-colors"
