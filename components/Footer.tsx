@@ -1,0 +1,140 @@
+import { Logo } from "./Logo";
+import { MapPin, Phone, Mail, Instagram, Facebook } from "lucide-react";
+
+const navLinks = [
+  { href: "#home", label: "Home" },
+  { href: "#about", label: "Über mich" },
+  { href: "#leistungen", label: "Leistungen" },
+  { href: "#stimmen", label: "Stimmen" },
+  { href: "#kontakt", label: "Kontakt" },
+];
+
+const legalLinks = [
+  { href: "#", label: "Impressum" },
+  { href: "#", label: "Datenschutz" },
+  { href: "#", label: "AGB" },
+];
+
+export function Footer() {
+  return (
+    <footer className="bg-forest text-white relative overflow-hidden">
+      <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-teal/10 blur-3xl" />
+
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 py-20">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
+          <div className="lg:col-span-2">
+            <Logo variant="dark" width={220} height={70} />
+            <p className="mt-6 text-white/60 leading-relaxed max-w-sm">
+              Individuelles Personal Training für Senioren in München und
+              Umgebung.
+            </p>
+
+            <div className="flex gap-3 mt-8">
+              <a
+                href="#"
+                aria-label="Instagram"
+                className="w-10 h-10 rounded-full bg-white/5 hover:bg-teal border border-white/10 hover:border-teal flex items-center justify-center transition-colors"
+              >
+                <Instagram size={16} />
+              </a>
+              <a
+                href="#"
+                aria-label="Facebook"
+                className="w-10 h-10 rounded-full bg-white/5 hover:bg-teal border border-white/10 hover:border-teal flex items-center justify-center transition-colors"
+              >
+                <Facebook size={16} />
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-mint mb-5">
+              Navigation
+            </div>
+            <ul className="space-y-3">
+              {navLinks.map((l) => (
+                <li key={l.href}>
+                  <a
+                    href={l.href}
+                    className="text-white/70 hover:text-teal transition-colors"
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-mint mb-5">
+              Rechtliches
+            </div>
+            <ul className="space-y-3">
+              {legalLinks.map((l) => (
+                <li key={l.label}>
+                  <a
+                    href={l.href}
+                    className="text-white/70 hover:text-teal transition-colors"
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-mint mb-5">
+              Kontakt
+            </div>
+            <ul className="space-y-4 text-white/70">
+              <li className="flex items-start gap-3">
+                <Phone
+                  size={16}
+                  className="text-teal mt-1 flex-shrink-0"
+                />
+                <a
+                  href="tel:+491762346578"
+                  className="hover:text-teal transition-colors font-mono text-sm"
+                >
+                  +49 176 2346578
+                </a>
+              </li>
+              <li className="flex items-start gap-3">
+                <Mail
+                  size={16}
+                  className="text-teal mt-1 flex-shrink-0"
+                />
+                <a
+                  href="mailto:marco@fit-mit-marco.de"
+                  className="hover:text-teal transition-colors font-mono text-sm"
+                >
+                  marco@fit-mit-marco.de
+                </a>
+              </li>
+              <li className="flex items-start gap-3">
+                <MapPin
+                  size={16}
+                  className="text-teal mt-1 flex-shrink-0"
+                />
+                <div>
+                  <div className="font-medium text-white">
+                    München & Umgebung
+                  </div>
+                  <div className="text-sm">Umkreis 30 km</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm text-white/40">
+          <div>© 2026 Fit mit Marco · Marco Degel</div>
+          <div className="font-mono text-xs">
+            Mit viel Herz gemacht in München.
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
