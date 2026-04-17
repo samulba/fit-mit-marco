@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
@@ -16,6 +17,7 @@ const services = [
   {
     icon: Dumbbell,
     num: "01",
+    slug: "kraft-muskelaufbau",
     title: "Kraft & Muskelaufbau",
     text: "Gezieltes Training zum Erhalt und Aufbau deiner Muskulatur – für mehr Stabilität im Alltag.",
     tag: "Fundament",
@@ -23,6 +25,7 @@ const services = [
   {
     icon: Footprints,
     num: "02",
+    slug: "balance-sturzpraevention",
     title: "Balance & Sturzprävention",
     text: "Übungen die deine Balance stärken und das Sturzrisiko deutlich senken.",
     tag: "Sicherheit",
@@ -30,6 +33,7 @@ const services = [
   {
     icon: Flower2,
     num: "03",
+    slug: "beweglichkeit-mobilitaet",
     title: "Beweglichkeit & Mobilität",
     text: "Sanfte Dehnungen und Mobilisierung für mehr Flexibilität und weniger Schmerzen.",
     tag: "Freiheit",
@@ -37,6 +41,7 @@ const services = [
   {
     icon: HeartPulse,
     num: "04",
+    slug: "herz-kreislauf",
     title: "Herz-Kreislauf",
     text: "Moderates Ausdauertraining, das dein Herz stärkt und deine Energie steigert.",
     tag: "Vitalität",
@@ -44,6 +49,7 @@ const services = [
   {
     icon: Stethoscope,
     num: "05",
+    slug: "reha-nachsorge",
     title: "Reha & Nachsorge",
     text: "Begleitendes Training nach Operationen oder Verletzungen – in Abstimmung mit deinem Arzt.",
     tag: "Heilung",
@@ -51,6 +57,7 @@ const services = [
   {
     icon: Apple,
     num: "06",
+    slug: "ernaehrungsberatung",
     title: "Ernährungsberatung",
     text: "Praktische Tipps für eine ausgewogene Ernährung, die dein Training optimal unterstützt.",
     tag: "Balance",
@@ -125,27 +132,38 @@ export function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: (i % 2) * 0.08 }}
-              className="relative bg-forest-mid border border-white/10 rounded-3xl p-6 overflow-hidden"
             >
-              <div className="absolute top-4 right-5 font-display text-5xl leading-none text-white/[0.05]">
-                {s.num}
-              </div>
-              <div className="relative">
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="w-11 h-11 rounded-xl bg-cream/5 border border-white/10 flex items-center justify-center text-mint">
-                    <s.icon size={19} />
-                  </div>
-                  <span className="px-2.5 py-1 rounded-full bg-teal/10 border border-teal/20 text-mint text-[0.6rem] tracking-[0.2em] uppercase font-semibold">
-                    {s.tag}
-                  </span>
+              <Link
+                href={`/leistungen/${s.slug}`}
+                className="group relative bg-forest-mid border border-white/10 rounded-3xl p-6 overflow-hidden hover:border-teal/40 transition-colors block h-full"
+              >
+                <div className="absolute top-4 right-5 font-display text-5xl leading-none text-white/[0.05] group-hover:text-teal/20 transition-colors">
+                  {s.num}
                 </div>
-                <h3 className="font-display text-2xl font-bold leading-tight mb-2.5">
-                  {s.title}
-                </h3>
-                <p className="text-white/60 leading-relaxed text-sm">
-                  {s.text}
-                </p>
-              </div>
+                <div className="relative">
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="w-11 h-11 rounded-xl bg-cream/5 border border-white/10 flex items-center justify-center text-mint">
+                      <s.icon size={19} />
+                    </div>
+                    <span className="px-2.5 py-1 rounded-full bg-teal/10 border border-teal/20 text-mint text-[0.6rem] tracking-[0.2em] uppercase font-semibold">
+                      {s.tag}
+                    </span>
+                  </div>
+                  <h3 className="font-display text-2xl font-bold leading-tight mb-2.5">
+                    {s.title}
+                  </h3>
+                  <p className="text-white/60 leading-relaxed text-sm mb-4">
+                    {s.text}
+                  </p>
+                  <div className="inline-flex items-center gap-1.5 text-mint text-xs font-semibold">
+                    Mehr erfahren
+                    <ArrowUpRight
+                      size={13}
+                      className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    />
+                  </div>
+                </div>
+              </Link>
             </motion.div>
           ))}
           <motion.a
@@ -236,34 +254,42 @@ function ServiceCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
-      className="group flex-shrink-0 w-[60vw] lg:w-[35vw] h-[60vh] rounded-3xl bg-forest-mid border border-white/10 p-10 flex flex-col justify-between relative overflow-hidden hover:border-teal/40 transition-all"
+      className="flex-shrink-0 w-[60vw] lg:w-[35vw] h-[60vh]"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-teal/0 via-teal/0 to-teal/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-      <div className="absolute top-8 right-10 font-display text-[8rem] leading-none text-white/[0.04] group-hover:text-teal/10 transition-colors">
-        {service.num}
-      </div>
-      <div className="relative">
-        <div className="flex items-center gap-3 mb-8">
-          <div className="w-14 h-14 rounded-2xl bg-cream/5 border border-white/10 backdrop-blur-sm flex items-center justify-center text-mint">
-            <service.icon size={24} />
+      <Link
+        href={`/leistungen/${service.slug}`}
+        className="group block h-full rounded-3xl bg-forest-mid border border-white/10 p-10 flex flex-col justify-between relative overflow-hidden hover:border-teal/40 transition-all"
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-teal/0 via-teal/0 to-teal/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+        <div className="absolute top-8 right-10 font-display text-[8rem] leading-none text-white/[0.04] group-hover:text-teal/10 transition-colors">
+          {service.num}
+        </div>
+        <div className="relative">
+          <div className="flex items-center gap-3 mb-8">
+            <div className="w-14 h-14 rounded-2xl bg-cream/5 border border-white/10 backdrop-blur-sm flex items-center justify-center text-mint">
+              <service.icon size={24} />
+            </div>
+            <span className="px-3 py-1 rounded-full bg-teal/10 border border-teal/20 text-mint text-[0.65rem] tracking-[0.25em] uppercase font-semibold">
+              {service.tag}
+            </span>
           </div>
-          <span className="px-3 py-1 rounded-full bg-teal/10 border border-teal/20 text-mint text-[0.65rem] tracking-[0.25em] uppercase font-semibold">
-            {service.tag}
-          </span>
         </div>
-      </div>
-      <div className="relative">
-        <h3 className="font-display text-4xl lg:text-5xl font-bold leading-[1.05] mb-5">
-          {service.title}
-        </h3>
-        <p className="text-white/60 leading-relaxed text-base lg:text-lg max-w-sm mb-8">
-          {service.text}
-        </p>
-        <div className="flex items-center gap-2 text-mint text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
-          Mehr erfahren
-          <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+        <div className="relative">
+          <h3 className="font-display text-4xl lg:text-5xl font-bold leading-[1.05] mb-5">
+            {service.title}
+          </h3>
+          <p className="text-white/60 leading-relaxed text-base lg:text-lg max-w-sm mb-8">
+            {service.text}
+          </p>
+          <div className="flex items-center gap-2 text-mint text-sm font-semibold">
+            Mehr erfahren
+            <ArrowUpRight
+              size={14}
+              className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
+            />
+          </div>
         </div>
-      </div>
+      </Link>
     </motion.div>
   );
 }

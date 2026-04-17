@@ -6,11 +6,11 @@ import { Menu, X, Phone, ArrowUpRight } from "lucide-react";
 import { LogoIcon } from "./Logo";
 
 const links = [
-  { href: "#home", label: "Home" },
-  { href: "#about", label: "Über mich" },
-  { href: "#leistungen", label: "Leistungen" },
-  { href: "#stimmen", label: "Stimmen" },
-  { href: "#kontakt", label: "Kontakt" },
+  { href: "/", label: "Home", type: "page" as const },
+  { href: "#leistungen", label: "Leistungen", type: "anchor" as const },
+  { href: "/preise", label: "Preise", type: "page" as const },
+  { href: "/fuer-angehoerige", label: "Angehörige", type: "page" as const },
+  { href: "#kontakt", label: "Kontakt", type: "anchor" as const },
 ];
 
 export function Navbar() {
@@ -24,7 +24,8 @@ export function Navbar() {
   });
 
   useEffect(() => {
-    const ids = links.map((l) => l.href.slice(1));
+    const anchorLinks = links.filter((l) => l.type === "anchor");
+    const ids = anchorLinks.map((l) => l.href.slice(1));
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {

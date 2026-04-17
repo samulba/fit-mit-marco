@@ -2,11 +2,12 @@ import { Logo } from "./Logo";
 import { MapPin, Phone, Mail } from "lucide-react";
 
 const navLinks = [
-  { href: "/#home", label: "Home" },
+  { href: "/", label: "Home" },
   { href: "/#about", label: "Über mich" },
   { href: "/#leistungen", label: "Leistungen" },
-  { href: "/#stimmen", label: "Stimmen" },
-  { href: "/#kontakt", label: "Kontakt" },
+  { href: "/preise", label: "Preise" },
+  { href: "/fuer-angehoerige", label: "Für Angehörige" },
+  { href: "/erstgespraech", label: "Erstgespräch" },
 ];
 
 const legalLinks = [
