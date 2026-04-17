@@ -409,7 +409,7 @@ function SessionBgNumber({
           >
             <span
               className="font-display font-bold leading-none text-forest/[0.06] select-none"
-              style={{ fontSize: "clamp(18rem, 55vw, 56rem)" }}
+              style={{ fontSize: "clamp(10rem, 45vw, 56rem)" }}
             >
               {String(i + 1).padStart(2, "0")}
             </span>

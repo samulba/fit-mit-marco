@@ -348,7 +348,7 @@ function PackageBgPrice({ progress }: { progress: MotionValue<number> }) {
           >
             <span
               className="font-display font-bold leading-none text-forest/[0.06] select-none"
-              style={{ fontSize: "clamp(16rem, 50vw, 50rem)" }}
+              style={{ fontSize: "clamp(10rem, 42vw, 50rem)" }}
             >
               {pkg.price}
             </span>

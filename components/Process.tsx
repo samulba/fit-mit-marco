@@ -251,7 +251,7 @@ function GiantWord({ progress }: { progress: MotionValue<number> }) {
             className="absolute font-display font-bold italic text-white/[0.045] select-none whitespace-nowrap"
             aria-hidden="true"
           >
-            <span style={{ fontSize: "clamp(16rem, 32vw, 32rem)" }}>
+            <span style={{ fontSize: "clamp(7rem, 26vw, 32rem)" }}>
               {step.keyword}
             </span>
           </motion.span>

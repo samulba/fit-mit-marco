@@ -337,7 +337,7 @@ function ConcernBgIcon({ progress }: { progress: MotionValue<number> }) {
             <Icon
               strokeWidth={1}
               className="text-forest select-none"
-              style={{ width: "clamp(20rem, 50vw, 40rem)", height: "clamp(20rem, 50vw, 40rem)" }}
+              style={{ width: "clamp(14rem, 40vw, 40rem)", height: "clamp(14rem, 40vw, 40rem)" }}
             />
           </motion.div>
         );
