@@ -2,17 +2,17 @@ import { Logo } from "./Logo";
 import { MapPin, Phone, Mail, Instagram, Facebook } from "lucide-react";
 
 const navLinks = [
-  { href: "#home", label: "Home" },
-  { href: "#about", label: "Über mich" },
-  { href: "#leistungen", label: "Leistungen" },
-  { href: "#stimmen", label: "Stimmen" },
-  { href: "#kontakt", label: "Kontakt" },
+  { href: "/#home", label: "Home" },
+  { href: "/#about", label: "Über mich" },
+  { href: "/#leistungen", label: "Leistungen" },
+  { href: "/#stimmen", label: "Stimmen" },
+  { href: "/#kontakt", label: "Kontakt" },
 ];
 
 const legalLinks = [
-  { href: "#", label: "Impressum" },
-  { href: "#", label: "Datenschutz" },
-  { href: "#", label: "AGB" },
+  { href: "/impressum", label: "Impressum" },
+  { href: "/datenschutz", label: "Datenschutz" },
+  { href: "/agb", label: "AGB" },
 ];
 
 export function Footer() {

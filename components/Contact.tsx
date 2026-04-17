@@ -196,7 +196,7 @@ export function Contact() {
             <p className="text-xs text-slate mb-5 sm:mb-6 leading-relaxed">
               Mit dem Absenden stimmst du zu, dass deine Angaben zur Bearbeitung
               deiner Anfrage verwendet werden. Mehr in der{" "}
-              <a href="#" className="text-teal underline">
+              <a href="/datenschutz" className="text-teal underline">
                 Datenschutzerklärung
               </a>
               .
