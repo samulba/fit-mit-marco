@@ -149,7 +149,7 @@ export function Services() {
             </motion.div>
           ))}
           <motion.a
-            href="#kontakt"
+            href="/erstgespraech"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -191,7 +191,7 @@ function HorizontalScroll() {
             <ServiceCard key={s.num} service={s} index={i} />
           ))}
           <motion.a
-            href="#kontakt"
+            href="/erstgespraech"
             whileHover={{ scale: 1.02 }}
             className="group flex-shrink-0 w-[60vw] lg:w-[35vw] h-[60vh] rounded-3xl bg-teal text-forest p-10 flex flex-col justify-between"
           >

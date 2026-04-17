@@ -1,5 +1,5 @@
 import { Logo } from "./Logo";
-import { MapPin, Phone, Mail, Instagram, Facebook } from "lucide-react";
+import { MapPin, Phone, Mail } from "lucide-react";
 
 const navLinks = [
   { href: "/#home", label: "Home" },
@@ -29,22 +29,12 @@ export function Footer() {
               Umgebung.
             </p>
 
-            <div className="flex gap-3 mt-8">
-              <a
-                href="#"
-                aria-label="Instagram"
-                className="w-10 h-10 rounded-full bg-white/5 hover:bg-teal border border-white/10 hover:border-teal flex items-center justify-center transition-colors"
-              >
-                <Instagram size={16} />
-              </a>
-              <a
-                href="#"
-                aria-label="Facebook"
-                className="w-10 h-10 rounded-full bg-white/5 hover:bg-teal border border-white/10 hover:border-teal flex items-center justify-center transition-colors"
-              >
-                <Facebook size={16} />
-              </a>
-            </div>
+            <a
+              href="/erstgespraech"
+              className="inline-flex items-center gap-2 mt-8 bg-teal hover:bg-mint text-forest px-5 py-3 rounded-full text-sm font-semibold transition-all"
+            >
+              Kostenloses Erstgespräch →
+            </a>
           </div>
 
           <div>

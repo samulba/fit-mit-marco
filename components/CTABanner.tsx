@@ -34,7 +34,7 @@ export function CTABanner() {
 
             <div className="flex flex-col gap-3 lg:gap-4 lg:items-end w-full lg:w-auto">
               <a
-                href="#kontakt"
+                href="/erstgespraech"
                 className="group inline-flex items-center justify-center gap-2 bg-teal hover:bg-mint text-forest px-6 sm:px-8 py-4 lg:py-5 rounded-full font-semibold text-base lg:text-lg transition-all hover:shadow-2xl hover:shadow-teal/40 whitespace-nowrap"
               >
                 Jetzt Kontakt aufnehmen

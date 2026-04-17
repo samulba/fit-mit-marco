@@ -128,7 +128,7 @@ export function Hero() {
               className="mt-8 lg:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4"
             >
               <a
-                href="#kontakt"
+                href="/erstgespraech"
                 className="group relative inline-flex items-center gap-3 bg-teal hover:bg-mint text-forest pl-6 sm:pl-7 pr-2 py-2 rounded-full font-semibold transition-all hover:shadow-2xl hover:shadow-teal/30"
               >
                 <span className="relative z-10 text-sm sm:text-base">

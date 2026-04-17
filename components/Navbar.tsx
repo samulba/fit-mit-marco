@@ -170,7 +170,7 @@ export function Navbar() {
               <span>+49 172 6223371</span>
             </a>
             <a
-              href="#kontakt"
+              href="/erstgespraech"
               className="group flex items-center gap-2 bg-teal hover:bg-forest text-forest hover:text-cream pl-5 pr-2 py-2 rounded-full text-sm font-semibold transition-all hover:shadow-xl hover:shadow-teal/30"
             >
               Erstgespräch
@@ -220,7 +220,7 @@ export function Navbar() {
                   <Phone size={16} /> +49 172 6223371
                 </a>
                 <a
-                  href="#kontakt"
+                  href="/erstgespraech"
                   onClick={() => setOpen(false)}
                   className="block text-center bg-teal text-forest py-4 rounded-full font-semibold"
                 >
