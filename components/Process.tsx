@@ -144,15 +144,27 @@ function BigNumber({ progress }: { progress: MotionValue<number> }) {
         const segment = 1 / steps.length;
         const start = i * segment;
         const end = start + segment;
+        const isFirst = i === 0;
+        const isLast = i === steps.length - 1;
         const opacity = useTransform(
           progress,
-          [start - 0.05, start + 0.05, end - 0.05, end + 0.05],
-          [0, 1, 1, 0]
+          [
+            isFirst ? -1 : start - 0.05,
+            isFirst ? -1 : start + 0.05,
+            isLast ? 2 : end - 0.05,
+            isLast ? 2 : end + 0.05,
+          ],
+          [isFirst ? 1 : 0, 1, 1, isLast ? 1 : 0]
         );
         const x = useTransform(
           progress,
-          [start - 0.05, start + 0.05, end - 0.05, end + 0.05],
-          ["-5%", "0%", "0%", "5%"]
+          [
+            isFirst ? -1 : start - 0.05,
+            isFirst ? -1 : start + 0.05,
+            isLast ? 2 : end - 0.05,
+            isLast ? 2 : end + 0.05,
+          ],
+          [isFirst ? "0%" : "-5%", "0%", "0%", isLast ? "0%" : "5%"]
         );
         return (
           <motion.div
@@ -225,17 +237,31 @@ function StepCopy({
   const segment = 1 / total;
   const start = index * segment;
   const end = start + segment;
+  const isFirst = index === 0;
+  const isLast = index === total - 1;
 
-  // Crossfade with overlap so there's never empty space
+  // Crossfade with overlap so there's never empty space.
+  // First step: fully visible at progress 0 (no fade-in).
+  // Last step: stay fully visible through end (no fade-out).
   const opacity = useTransform(
     progress,
-    [start - 0.05, start + 0.05, end - 0.05, end + 0.05],
-    [0, 1, 1, 0]
+    [
+      isFirst ? -1 : start - 0.05,
+      isFirst ? -1 : start + 0.05,
+      isLast ? 2 : end - 0.05,
+      isLast ? 2 : end + 0.05,
+    ],
+    [isFirst ? 1 : 0, 1, 1, isLast ? 1 : 0]
   );
   const y = useTransform(
     progress,
-    [start - 0.05, start + 0.05, end - 0.05, end + 0.05],
-    [40, 0, 0, -40]
+    [
+      isFirst ? -1 : start - 0.05,
+      isFirst ? -1 : start + 0.05,
+      isLast ? 2 : end - 0.05,
+      isLast ? 2 : end + 0.05,
+    ],
+    [isFirst ? 0 : 40, 0, 0, isLast ? 0 : -40]
   );
 
   return (
@@ -291,15 +317,27 @@ function StepVisual({
   const start = index * segment;
   const end = start + segment;
 
+  const isFirst = index === 0;
+  const isLast = index === total - 1;
   const opacity = useTransform(
     progress,
-    [start - 0.05, start + 0.05, end - 0.05, end + 0.05],
-    [0, 1, 1, 0]
+    [
+      isFirst ? -1 : start - 0.05,
+      isFirst ? -1 : start + 0.05,
+      isLast ? 2 : end - 0.05,
+      isLast ? 2 : end + 0.05,
+    ],
+    [isFirst ? 1 : 0, 1, 1, isLast ? 1 : 0]
   );
   const scale = useTransform(
     progress,
-    [start - 0.05, start + 0.05, end - 0.05, end + 0.05],
-    [0.8, 1, 1, 0.8]
+    [
+      isFirst ? -1 : start - 0.05,
+      isFirst ? -1 : start + 0.05,
+      isLast ? 2 : end - 0.05,
+      isLast ? 2 : end + 0.05,
+    ],
+    [isFirst ? 1 : 0.8, 1, 1, isLast ? 1 : 0.8]
   );
   const rotate = useTransform(
     progress,

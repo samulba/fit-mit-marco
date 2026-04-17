@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
   Dumbbell,
@@ -12,6 +11,8 @@ import {
   Apple,
   ArrowUpRight,
 } from "lucide-react";
+import { ServiceModal } from "./ServiceModal";
+import { getLeistungBySlug, type Leistung } from "@/lib/leistungen";
 
 const services = [
   {
@@ -65,6 +66,13 @@ const services = [
 ];
 
 export function Services() {
+  const [activeLeistung, setActiveLeistung] = useState<Leistung | null>(null);
+
+  const openService = (slug: string) => {
+    const l = getLeistungBySlug(slug);
+    if (l) setActiveLeistung(l);
+  };
+
   return (
     <section id="leistungen" className="bg-forest text-cream relative">
       {/* 100vh Intro */}
@@ -120,7 +128,7 @@ export function Services() {
       </div>
 
       {/* Desktop XL: horizontal scroll */}
-      <HorizontalScroll />
+      <HorizontalScroll onOpen={openService} />
 
       {/* Mobile/Tablet/Laptop: stacked grid */}
       <div className="xl:hidden pb-20 px-5 sm:px-6">
@@ -133,9 +141,10 @@ export function Services() {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: (i % 2) * 0.08 }}
             >
-              <Link
-                href={`/leistungen/${s.slug}`}
-                className="group relative bg-forest-mid border border-white/10 rounded-3xl p-6 overflow-hidden hover:border-teal/40 transition-colors block h-full"
+              <button
+                type="button"
+                onClick={() => openService(s.slug)}
+                className="group relative bg-forest-mid border border-white/10 rounded-3xl p-6 overflow-hidden hover:border-teal/40 transition-colors block h-full w-full text-left"
               >
                 <div className="absolute top-4 right-5 font-display text-5xl leading-none text-white/[0.05] group-hover:text-teal/20 transition-colors">
                   {s.num}
@@ -156,14 +165,14 @@ export function Services() {
                     {s.text}
                   </p>
                   <div className="inline-flex items-center gap-1.5 text-mint text-xs font-semibold">
-                    Mehr erfahren
+                    Details ansehen
                     <ArrowUpRight
                       size={13}
                       className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                     />
                   </div>
                 </div>
-              </Link>
+              </button>
             </motion.div>
           ))}
           <motion.a
@@ -186,11 +195,17 @@ export function Services() {
           </motion.a>
         </div>
       </div>
+
+      {/* Service Modal */}
+      <ServiceModal
+        leistung={activeLeistung}
+        onClose={() => setActiveLeistung(null)}
+      />
     </section>
   );
 }
 
-function HorizontalScroll() {
+function HorizontalScroll({ onOpen }: { onOpen: (slug: string) => void }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -206,7 +221,12 @@ function HorizontalScroll() {
           className="flex gap-6 xl:gap-8 pl-6 lg:pl-10 pr-10"
         >
           {services.map((s, i) => (
-            <ServiceCard key={s.num} service={s} index={i} />
+            <ServiceCard
+              key={s.num}
+              service={s}
+              index={i}
+              onOpen={onOpen}
+            />
           ))}
           <motion.a
             href="/erstgespraech"
@@ -244,9 +264,11 @@ function HorizontalScroll() {
 function ServiceCard({
   service,
   index,
+  onOpen,
 }: {
   service: (typeof services)[number];
   index: number;
+  onOpen: (slug: string) => void;
 }) {
   return (
     <motion.div
@@ -256,9 +278,10 @@ function ServiceCard({
       transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
       className="flex-shrink-0 w-[60vw] lg:w-[35vw] h-[60vh]"
     >
-      <Link
-        href={`/leistungen/${service.slug}`}
-        className="group block h-full rounded-3xl bg-forest-mid border border-white/10 p-10 flex flex-col justify-between relative overflow-hidden hover:border-teal/40 transition-all"
+      <button
+        type="button"
+        onClick={() => onOpen(service.slug)}
+        className="group block h-full w-full text-left rounded-3xl bg-forest-mid border border-white/10 p-10 flex flex-col justify-between relative overflow-hidden hover:border-teal/40 transition-all"
       >
         <div className="absolute inset-0 bg-gradient-to-br from-teal/0 via-teal/0 to-teal/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
         <div className="absolute top-8 right-10 font-display text-[8rem] leading-none text-white/[0.04] group-hover:text-teal/10 transition-colors">
@@ -282,14 +305,14 @@ function ServiceCard({
             {service.text}
           </p>
           <div className="flex items-center gap-2 text-mint text-sm font-semibold">
-            Mehr erfahren
+            Details ansehen
             <ArrowUpRight
               size={14}
               className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
             />
           </div>
         </div>
-      </Link>
+      </button>
     </motion.div>
   );
 }

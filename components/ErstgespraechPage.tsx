@@ -2,9 +2,14 @@
 
 import Link from "next/link";
 import { useRef, FormEvent, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
 import {
-  ArrowLeft,
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  MotionValue,
+} from "framer-motion";
+import {
   ArrowRight,
   Phone,
   MessageCircle,
@@ -15,8 +20,8 @@ import {
   Sparkles,
   Check,
 } from "lucide-react";
-import { LogoIcon } from "./Logo";
 import { Footer } from "./Footer";
+import { SubPageNav } from "./SubPageNav";
 
 const FORMSPREE_ENDPOINT =
   process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT ||
@@ -71,6 +76,7 @@ const faqs = [
 export function ErstgespraechPage() {
   return (
     <main className="bg-cream min-h-screen">
+      <SubPageNav />
       <Hero />
       <WhatHappens />
       <BenefitsBar />
@@ -78,33 +84,6 @@ export function ErstgespraechPage() {
       <FaqSection />
       <Footer />
     </main>
-  );
-}
-
-/* ───────────────── Floating nav (overlays hero for full 100vh) ───────────────── */
-function FloatingNav() {
-  return (
-    <div className="absolute top-0 inset-x-0 z-30">
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 py-5 flex items-center justify-between text-cream">
-        <Link
-          href="/"
-          className="flex items-center gap-3 group"
-          aria-label="Zurück zur Startseite"
-        >
-          <LogoIcon size={36} variant="dark" />
-          <div className="font-display font-bold leading-none">
-            <div className="text-base">fit mit</div>
-            <div className="text-base text-mint -mt-0.5">marco</div>
-          </div>
-        </Link>
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-xs font-medium tracking-widest uppercase text-white/60 hover:text-mint transition-colors"
-        >
-          <ArrowLeft size={14} /> Zur Startseite
-        </Link>
-      </div>
-    </div>
   );
 }
 
@@ -126,7 +105,6 @@ function Hero() {
       ref={ref}
       className="relative min-h-screen bg-forest text-cream overflow-hidden flex items-center"
     >
-      <FloatingNav />
       {/* Noise */}
       <div
         className="absolute inset-0 opacity-[0.04] pointer-events-none z-[1] mix-blend-overlay"
@@ -277,17 +255,30 @@ function SplitLine({
   );
 }
 
-/* ─────────────────── What happens ─────────────────── */
+/* ─────────────── What happens — Sticky Scrollytelling ─────────────── */
 function WhatHappens() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 30,
+    mass: 0.5,
+    restDelta: 0.001,
+  });
+
   return (
-    <section className="py-24 sm:py-32 lg:py-40 bg-cream">
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10">
+    <section className="bg-cream">
+      {/* Intro */}
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 pt-24 sm:pt-28 lg:pt-32 pb-12 lg:pb-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="text-center max-w-3xl mx-auto mb-16 lg:mb-24"
+          className="text-center max-w-3xl mx-auto"
         >
           <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-4">
             Was dich erwartet
@@ -298,32 +289,204 @@ function WhatHappens() {
             <span className="italic text-teal">Nur ein Gespräch.</span>
           </h2>
         </motion.div>
+      </div>
 
-        <div className="grid md:grid-cols-3 gap-5 lg:gap-7">
-          {whatHappens.map((step, i) => (
-            <motion.div
-              key={step.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, delay: i * 0.12 }}
-              className="group relative bg-white rounded-3xl p-8 lg:p-10 border border-sand hover:shadow-xl hover:-translate-y-1 transition-all"
-            >
-              <div className="absolute top-6 right-7 font-display text-5xl leading-none text-sand group-hover:text-teal/20 transition-colors">
-                0{i + 1}
+      {/* Sticky scrollytelling */}
+      <div
+        ref={containerRef}
+        style={{ height: `${whatHappens.length * 100}vh` }}
+        className="relative"
+      >
+        <div className="sticky top-0 h-screen overflow-hidden">
+          <WhatBgNumber progress={smoothProgress} />
+          <WhatRail progress={smoothProgress} />
+
+          <div className="relative z-10 h-full flex items-center">
+            <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-10 w-full grid lg:grid-cols-12 gap-10 items-center">
+              <div className="lg:col-span-8 lg:col-start-2 relative min-h-[420px]">
+                {whatHappens.map((step, i) => (
+                  <WhatCopy
+                    key={i}
+                    step={step}
+                    index={i}
+                    total={whatHappens.length}
+                    progress={smoothProgress}
+                  />
+                ))}
               </div>
-              <div className="w-14 h-14 rounded-2xl bg-forest text-mint group-hover:bg-teal group-hover:text-forest flex items-center justify-center mb-6 transition-colors">
-                <step.icon size={22} />
-              </div>
-              <h3 className="font-display text-2xl lg:text-3xl font-bold text-forest leading-tight mb-3 pr-10">
-                {step.title}
-              </h3>
-              <p className="text-slate leading-relaxed">{step.text}</p>
-            </motion.div>
-          ))}
+            </div>
+          </div>
+
+          <WhatIndicator progress={smoothProgress} />
         </div>
       </div>
     </section>
+  );
+}
+
+function WhatBgNumber({ progress }: { progress: MotionValue<number> }) {
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {whatHappens.map((_, i) => {
+        const segment = 1 / whatHappens.length;
+        const start = i * segment;
+        const end = start + segment;
+        const isFirst = i === 0;
+        const isLast = i === whatHappens.length - 1;
+        const opacity = useTransform(
+          progress,
+          [
+            isFirst ? -1 : start - 0.05,
+            isFirst ? -1 : start + 0.05,
+            isLast ? 2 : end - 0.05,
+            isLast ? 2 : end + 0.05,
+          ],
+          [isFirst ? 1 : 0, 1, 1, isLast ? 1 : 0]
+        );
+        const x = useTransform(
+          progress,
+          [
+            isFirst ? -1 : start - 0.05,
+            isFirst ? -1 : start + 0.05,
+            isLast ? 2 : end - 0.05,
+            isLast ? 2 : end + 0.05,
+          ],
+          [isFirst ? "0%" : "-5%", "0%", "0%", isLast ? "0%" : "5%"]
+        );
+        return (
+          <motion.div
+            key={i}
+            style={{ opacity, x, willChange: "transform, opacity" }}
+            className="absolute inset-0 flex items-center justify-end pr-4 lg:pr-24"
+          >
+            <span
+              className="font-display font-bold leading-none text-forest/[0.06] select-none"
+              style={{ fontSize: "clamp(18rem, 55vw, 56rem)" }}
+            >
+              0{i + 1}
+            </span>
+          </motion.div>
+        );
+      })}
+    </div>
+  );
+}
+
+function WhatRail({ progress }: { progress: MotionValue<number> }) {
+  const height = useTransform(progress, [0, 1], ["0%", "100%"]);
+  const current = useTransform(progress, (v) => {
+    const idx = Math.min(whatHappens.length - 1, Math.floor(v * whatHappens.length));
+    return String(idx + 1).padStart(2, "0");
+  });
+
+  return (
+    <div className="hidden lg:flex absolute left-8 top-1/2 -translate-y-1/2 flex-col items-center gap-6 z-20">
+      <div className="relative w-px h-[50vh] bg-forest/10">
+        <motion.div
+          style={{ height, willChange: "height" }}
+          className="absolute inset-x-0 top-0 bg-teal"
+        />
+      </div>
+      <div className="font-mono text-xs text-slate flex items-center gap-2">
+        <motion.span className="text-forest font-semibold">{current}</motion.span>
+        <span className="text-forest/30">/</span>
+        <span className="text-forest/30">
+          {String(whatHappens.length).padStart(2, "0")}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function WhatCopy({
+  step,
+  index,
+  total,
+  progress,
+}: {
+  step: (typeof whatHappens)[number];
+  index: number;
+  total: number;
+  progress: MotionValue<number>;
+}) {
+  const segment = 1 / total;
+  const start = index * segment;
+  const end = start + segment;
+  const isFirst = index === 0;
+  const isLast = index === total - 1;
+
+  const opacity = useTransform(
+    progress,
+    [
+      isFirst ? -1 : start - 0.05,
+      isFirst ? -1 : start + 0.05,
+      isLast ? 2 : end - 0.05,
+      isLast ? 2 : end + 0.05,
+    ],
+    [isFirst ? 1 : 0, 1, 1, isLast ? 1 : 0]
+  );
+  const y = useTransform(
+    progress,
+    [
+      isFirst ? -1 : start - 0.05,
+      isFirst ? -1 : start + 0.05,
+      isLast ? 2 : end - 0.05,
+      isLast ? 2 : end + 0.05,
+    ],
+    [isFirst ? 0 : 40, 0, 0, isLast ? 0 : -40]
+  );
+
+  const Icon = step.icon;
+
+  return (
+    <motion.div
+      style={{ opacity, y, willChange: "transform, opacity" }}
+      className="absolute inset-x-0"
+    >
+      <div className="flex items-center gap-3 mb-6">
+        <div className="w-12 h-12 rounded-xl bg-forest text-mint flex items-center justify-center">
+          <Icon size={20} />
+        </div>
+        <div className="font-mono text-xs text-slate tracking-widest">
+          SCHRITT {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+        </div>
+      </div>
+      <h3
+        className="font-display font-bold text-forest leading-[0.95] mb-6 lg:mb-8"
+        style={{ fontSize: "clamp(2.25rem, 6vw, 5rem)" }}
+      >
+        {step.title}
+      </h3>
+      <p className="text-lg lg:text-xl text-slate leading-relaxed max-w-2xl font-light">
+        {step.text}
+      </p>
+    </motion.div>
+  );
+}
+
+function WhatIndicator({ progress }: { progress: MotionValue<number> }) {
+  return (
+    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 lg:hidden">
+      {whatHappens.map((_, i) => {
+        const segment = 1 / whatHappens.length;
+        const start = i * segment;
+        const end = start + segment;
+        const active = useTransform(
+          progress,
+          [start, start + 0.1, end - 0.1, end],
+          [0, 1, 1, 0]
+        );
+        const width = useTransform(active, [0, 1], [24, 48]);
+        const bg = useTransform(active, [0, 1], ["#1A3C3430", "#00B894"]);
+        return (
+          <motion.div
+            key={i}
+            style={{ width, backgroundColor: bg as any, willChange: "width" }}
+            className="h-1 rounded-full"
+          />
+        );
+      })}
+    </div>
   );
 }
 

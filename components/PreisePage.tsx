@@ -10,15 +10,14 @@ import {
   MotionValue,
 } from "framer-motion";
 import {
-  ArrowLeft,
   ArrowRight,
   Check,
   Phone,
   Sparkles,
   Plus,
 } from "lucide-react";
-import { LogoIcon } from "./Logo";
 import { Footer } from "./Footer";
+import { SubPageNav } from "./SubPageNav";
 
 const packages = [
   {
@@ -112,6 +111,7 @@ const faqs = [
 export function PreisePage() {
   return (
     <main className="bg-cream min-h-screen">
+      <SubPageNav />
       <Hero />
       <StickyPricing />
       <Pricing />
@@ -121,28 +121,6 @@ export function PreisePage() {
       <FinalCTA />
       <Footer />
     </main>
-  );
-}
-
-function FloatingNav() {
-  return (
-    <div className="absolute top-0 inset-x-0 z-30">
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 py-5 flex items-center justify-between text-cream">
-        <Link href="/" className="flex items-center gap-3">
-          <LogoIcon size={36} variant="dark" />
-          <div className="font-display font-bold leading-none">
-            <div className="text-base">fit mit</div>
-            <div className="text-base text-mint -mt-0.5">marco</div>
-          </div>
-        </Link>
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-xs font-medium tracking-widest uppercase text-white/60 hover:text-mint transition-colors"
-        >
-          <ArrowLeft size={14} /> Zur Startseite
-        </Link>
-      </div>
-    </div>
   );
 }
 
@@ -161,7 +139,6 @@ function Hero() {
       ref={ref}
       className="relative min-h-screen bg-forest text-cream overflow-hidden flex items-center"
     >
-      <FloatingNav />
       <div
         className="absolute inset-0 opacity-[0.04] pointer-events-none z-[1] mix-blend-overlay"
         style={{
@@ -341,15 +318,27 @@ function PackageBgPrice({ progress }: { progress: MotionValue<number> }) {
         const segment = 1 / packages.length;
         const start = i * segment;
         const end = start + segment;
+        const isFirst = i === 0;
+        const isLast = i === packages.length - 1;
         const opacity = useTransform(
           progress,
-          [start - 0.05, start + 0.05, end - 0.05, end + 0.05],
-          [0, 1, 1, 0]
+          [
+            isFirst ? -1 : start - 0.05,
+            isFirst ? -1 : start + 0.05,
+            isLast ? 2 : end - 0.05,
+            isLast ? 2 : end + 0.05,
+          ],
+          [isFirst ? 1 : 0, 1, 1, isLast ? 1 : 0]
         );
         const x = useTransform(
           progress,
-          [start - 0.05, start + 0.05, end - 0.05, end + 0.05],
-          ["-5%", "0%", "0%", "5%"]
+          [
+            isFirst ? -1 : start - 0.05,
+            isFirst ? -1 : start + 0.05,
+            isLast ? 2 : end - 0.05,
+            isLast ? 2 : end + 0.05,
+          ],
+          [isFirst ? "0%" : "-5%", "0%", "0%", isLast ? "0%" : "5%"]
         );
         return (
           <motion.div
@@ -410,16 +399,28 @@ function PackageCopy({
   const segment = 1 / total;
   const start = index * segment;
   const end = start + segment;
+  const isFirst = index === 0;
+  const isLast = index === total - 1;
 
   const opacity = useTransform(
     progress,
-    [start - 0.05, start + 0.05, end - 0.05, end + 0.05],
-    [0, 1, 1, 0]
+    [
+      isFirst ? -1 : start - 0.05,
+      isFirst ? -1 : start + 0.05,
+      isLast ? 2 : end - 0.05,
+      isLast ? 2 : end + 0.05,
+    ],
+    [isFirst ? 1 : 0, 1, 1, isLast ? 1 : 0]
   );
   const y = useTransform(
     progress,
-    [start - 0.05, start + 0.05, end - 0.05, end + 0.05],
-    [40, 0, 0, -40]
+    [
+      isFirst ? -1 : start - 0.05,
+      isFirst ? -1 : start + 0.05,
+      isLast ? 2 : end - 0.05,
+      isLast ? 2 : end + 0.05,
+    ],
+    [isFirst ? 0 : 40, 0, 0, isLast ? 0 : -40]
   );
 
   return (
