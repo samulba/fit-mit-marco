@@ -32,18 +32,30 @@ type Status = "idle" | "sending" | "sent" | "error";
 const whatHappens = [
   {
     icon: MessageCircle,
-    title: "Wir reden – du entscheidest.",
-    text: "30 Minuten am Telefon oder bei dir vor Ort. Du erzählst mir von dir, deinen Zielen und Sorgen. Ich höre zu.",
+    keyword: "Anruf",
+    eyebrow: "Du greifst zum Hörer",
+    title: "Wir reden –",
+    titleAccent: "du entscheidest.",
+    text: "30 Minuten am Telefon oder bei dir vor Ort. Du erzählst mir von dir, deinen Zielen, deinen Sorgen. Ich höre zu.",
+    visual: "phone" as const,
   },
   {
     icon: ClipboardList,
-    title: "Gemeinsame Bestandsaufnahme.",
-    text: "Wir schauen ehrlich, wo du stehst – Beweglichkeit, Kraft, Balance. Ohne Leistungsdruck, ohne Fachjargon.",
+    keyword: "Analyse",
+    eyebrow: "Ich schaue hin",
+    title: "Gemeinsame",
+    titleAccent: "Bestandsaufnahme.",
+    text: "Wir schauen ehrlich, wo du stehst – Beweglichkeit, Kraft, Balance. Ohne Leistungsdruck. Ohne Fachjargon.",
+    visual: "clipboard" as const,
   },
   {
     icon: Sparkles,
-    title: "Dein persönlicher Plan.",
-    text: "Du bekommst eine klare Einschätzung, was möglich ist – und drei konkrete erste Schritte. Egal ob mit mir oder ohne.",
+    keyword: "Plan",
+    eyebrow: "Du nimmst etwas mit",
+    title: "Dein",
+    titleAccent: "persönlicher Plan.",
+    text: "Du bekommst eine klare Einschätzung, was möglich ist – und drei konkrete Schritte. Egal ob mit mir oder ohne.",
+    visual: "door" as const,
   },
 ];
 
@@ -255,7 +267,12 @@ function SplitLine({
   );
 }
 
-/* ─────────────── What happens — Sticky Scrollytelling ─────────────── */
+/* ═══════════════════════════════════════════════════════════════════
+   WHAT HAPPENS — Cinematic Sticky Scrollytelling
+   Full-stage with giant morphing word, animated SVG scenes,
+   layered parallax backgrounds, word-by-word reveal.
+   ═══════════════════════════════════════════════════════════════════ */
+
 function WhatHappens() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -263,49 +280,91 @@ function WhatHappens() {
     offset: ["start start", "end end"],
   });
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 120,
-    damping: 30,
-    mass: 0.5,
+    stiffness: 110,
+    damping: 28,
+    mass: 0.4,
     restDelta: 0.001,
   });
 
   return (
-    <section className="bg-cream">
+    <section className="bg-forest text-cream relative">
       {/* Intro */}
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 pt-24 sm:pt-28 lg:pt-32 pb-12 lg:pb-16">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-center max-w-3xl mx-auto"
-        >
-          <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-4">
-            Was dich erwartet
-          </div>
-          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-forest leading-[1]">
-            Keine Versprechen.
-            <br />
-            <span className="italic text-teal">Nur ein Gespräch.</span>
-          </h2>
-        </motion.div>
+      <div className="pt-24 sm:pt-28 lg:pt-32 pb-16 lg:pb-20 relative overflow-hidden">
+        <div className="absolute -top-10 -right-20 w-[400px] h-[400px] rounded-full bg-teal/15 blur-[120px] pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 relative">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="max-w-3xl"
+          >
+            <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-mint mb-4">
+              Was dich erwartet
+            </div>
+            <h2 className="font-display font-bold leading-[1]"
+              style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)" }}
+            >
+              Keine Versprechen.
+              <br />
+              <span className="italic text-teal">Nur ein Gespräch.</span>
+            </h2>
+            <div className="mt-8 inline-flex items-center gap-3 text-mint text-xs font-mono tracking-widest uppercase">
+              <span className="h-px w-8 bg-mint" />
+              In drei Akten
+            </div>
+          </motion.div>
+        </div>
       </div>
 
-      {/* Sticky scrollytelling */}
+      {/* Cinematic stage */}
       <div
         ref={containerRef}
-        style={{ height: `${whatHappens.length * 100}vh` }}
+        style={{ height: `${whatHappens.length * 130}vh` }}
         className="relative"
       >
-        <div className="sticky top-0 h-screen overflow-hidden">
-          <WhatBgNumber progress={smoothProgress} />
-          <WhatRail progress={smoothProgress} />
+        <div className="sticky top-0 h-screen overflow-hidden bg-forest">
+          {/* Layer: Noise */}
+          <div
+            className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-overlay z-0"
+            style={{
+              backgroundImage:
+                "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E\")",
+            }}
+          />
 
+          {/* Layer: Parallax grid */}
+          <ParallaxGrid progress={smoothProgress} />
+
+          {/* Layer: Giant morphing background word */}
+          <GiantWord progress={smoothProgress} />
+
+          {/* Layer: Color-shifting glow */}
+          <ShiftingGlow progress={smoothProgress} />
+
+          {/* Layer: Progress rail (desktop) */}
+          <CinematicRail progress={smoothProgress} />
+
+          {/* Stage content */}
           <div className="relative z-10 h-full flex items-center">
-            <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-10 w-full grid lg:grid-cols-12 gap-10 items-center">
-              <div className="lg:col-span-8 lg:col-start-2 relative min-h-[420px]">
+            <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 w-full grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+              {/* Left: Animated visual */}
+              <div className="hidden lg:block lg:col-span-5 relative aspect-square max-h-[70vh]">
                 {whatHappens.map((step, i) => (
-                  <WhatCopy
+                  <VisualScene
+                    key={i}
+                    step={step}
+                    index={i}
+                    total={whatHappens.length}
+                    progress={smoothProgress}
+                  />
+                ))}
+              </div>
+
+              {/* Right: Text stage */}
+              <div className="lg:col-span-7 relative min-h-[480px] lg:min-h-[500px]">
+                {whatHappens.map((step, i) => (
+                  <TextStage
                     key={i}
                     step={step}
                     index={i}
@@ -317,62 +376,120 @@ function WhatHappens() {
             </div>
           </div>
 
-          <WhatIndicator progress={smoothProgress} />
+          {/* Mobile progress ticker */}
+          <MobileTicker progress={smoothProgress} />
         </div>
       </div>
     </section>
   );
 }
 
-function WhatBgNumber({ progress }: { progress: MotionValue<number> }) {
+/* ── Layer: Parallax grid ── */
+function ParallaxGrid({ progress }: { progress: MotionValue<number> }) {
+  const y = useTransform(progress, [0, 1], ["0%", "-20%"]);
+  const opacity = useTransform(progress, [0, 0.5, 1], [0.06, 0.1, 0.06]);
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden">
-      {whatHappens.map((_, i) => {
+    <motion.div
+      style={{ y, opacity, willChange: "transform, opacity" }}
+      className="absolute inset-0 pointer-events-none z-0 hidden md:block"
+    >
+      <div
+        className="absolute inset-[-10%]"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, #55EFC4 1px, transparent 1px), linear-gradient(to bottom, #55EFC4 1px, transparent 1px)",
+          backgroundSize: "100px 100px",
+        }}
+      />
+    </motion.div>
+  );
+}
+
+/* ── Layer: Giant morphing background word ── */
+function GiantWord({ progress }: { progress: MotionValue<number> }) {
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 flex items-center justify-center">
+      {whatHappens.map((step, i) => {
         const segment = 1 / whatHappens.length;
         const start = i * segment;
         const end = start + segment;
         const isFirst = i === 0;
         const isLast = i === whatHappens.length - 1;
+
         const opacity = useTransform(
           progress,
           [
-            isFirst ? -1 : start - 0.05,
-            isFirst ? -1 : start + 0.05,
-            isLast ? 2 : end - 0.05,
-            isLast ? 2 : end + 0.05,
+            isFirst ? -1 : start - 0.04,
+            isFirst ? -1 : start + 0.06,
+            isLast ? 2 : end - 0.06,
+            isLast ? 2 : end + 0.04,
           ],
           [isFirst ? 1 : 0, 1, 1, isLast ? 1 : 0]
         );
-        const x = useTransform(
+        const scale = useTransform(
           progress,
           [
-            isFirst ? -1 : start - 0.05,
-            isFirst ? -1 : start + 0.05,
-            isLast ? 2 : end - 0.05,
-            isLast ? 2 : end + 0.05,
+            isFirst ? -1 : start - 0.04,
+            isFirst ? -1 : start + 0.06,
+            isLast ? 2 : end - 0.06,
+            isLast ? 2 : end + 0.04,
           ],
-          [isFirst ? "0%" : "-5%", "0%", "0%", isLast ? "0%" : "5%"]
+          [isFirst ? 1 : 1.15, 1, 1, isLast ? 1 : 0.85]
         );
+        const letterSpacing = useTransform(
+          progress,
+          [start, end],
+          ["-0.04em", "0.02em"]
+        );
+
         return (
-          <motion.div
+          <motion.span
             key={i}
-            style={{ opacity, x, willChange: "transform, opacity" }}
-            className="absolute inset-0 flex items-center justify-end pr-4 lg:pr-24"
+            style={{
+              opacity,
+              scale,
+              letterSpacing,
+              willChange: "transform, opacity",
+            }}
+            className="absolute font-display font-bold italic text-white/[0.045] select-none whitespace-nowrap"
+            aria-hidden="true"
           >
-            <span
-              className="font-display font-bold leading-none text-forest/[0.06] select-none"
-              style={{ fontSize: "clamp(18rem, 55vw, 56rem)" }}
-            >
-              0{i + 1}
+            <span style={{ fontSize: "clamp(16rem, 32vw, 32rem)" }}>
+              {step.keyword}
             </span>
-          </motion.div>
+          </motion.span>
         );
       })}
     </div>
   );
 }
 
-function WhatRail({ progress }: { progress: MotionValue<number> }) {
+/* ── Layer: Color-shifting glow orb ── */
+function ShiftingGlow({ progress }: { progress: MotionValue<number> }) {
+  // Glow moves across the viewport and changes hue per step
+  const x = useTransform(progress, [0, 0.5, 1], ["20%", "60%", "30%"]);
+  const y = useTransform(progress, [0, 0.5, 1], ["20%", "70%", "40%"]);
+  const hue = useTransform(
+    progress,
+    [0, 0.33, 0.66, 1],
+    ["#00B894", "#55EFC4", "#A8D5BA", "#00B894"]
+  );
+
+  return (
+    <motion.div
+      style={{
+        x,
+        y,
+        backgroundColor: hue as any,
+        willChange: "transform, background-color",
+      }}
+      className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full blur-[140px] opacity-30 pointer-events-none z-0 -translate-x-1/2 -translate-y-1/2"
+    />
+  );
+}
+
+/* ── Layer: Desktop progress rail ── */
+function CinematicRail({ progress }: { progress: MotionValue<number> }) {
   const height = useTransform(progress, [0, 1], ["0%", "100%"]);
   const current = useTransform(progress, (v) => {
     const idx = Math.min(whatHappens.length - 1, Math.floor(v * whatHappens.length));
@@ -380,17 +497,30 @@ function WhatRail({ progress }: { progress: MotionValue<number> }) {
   });
 
   return (
-    <div className="hidden lg:flex absolute left-8 top-1/2 -translate-y-1/2 flex-col items-center gap-6 z-20">
-      <div className="relative w-px h-[50vh] bg-forest/10">
+    <div className="hidden lg:flex absolute right-10 top-1/2 -translate-y-1/2 flex-col items-center gap-6 z-20">
+      <div className="font-mono text-[0.65rem] text-white/40 tracking-widest uppercase">
+        Akt
+      </div>
+      <div className="relative w-px h-[40vh] bg-white/10">
         <motion.div
           style={{ height, willChange: "height" }}
           className="absolute inset-x-0 top-0 bg-teal"
         />
+        {whatHappens.map((_, i) => {
+          const pos = ((i + 0.5) / whatHappens.length) * 100;
+          return (
+            <div
+              key={i}
+              style={{ top: `${pos}%` }}
+              className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-white/30"
+            />
+          );
+        })}
       </div>
-      <div className="font-mono text-xs text-slate flex items-center gap-2">
-        <motion.span className="text-forest font-semibold">{current}</motion.span>
-        <span className="text-forest/30">/</span>
-        <span className="text-forest/30">
+      <div className="flex items-center gap-1.5 font-mono text-xs">
+        <motion.span className="text-mint font-semibold">{current}</motion.span>
+        <span className="text-white/20">/</span>
+        <span className="text-white/40">
           {String(whatHappens.length).padStart(2, "0")}
         </span>
       </div>
@@ -398,7 +528,8 @@ function WhatRail({ progress }: { progress: MotionValue<number> }) {
   );
 }
 
-function WhatCopy({
+/* ── Stage: Animated SVG visual per step ── */
+function VisualScene({
   step,
   index,
   total,
@@ -418,55 +549,418 @@ function WhatCopy({
   const opacity = useTransform(
     progress,
     [
-      isFirst ? -1 : start - 0.05,
-      isFirst ? -1 : start + 0.05,
-      isLast ? 2 : end - 0.05,
-      isLast ? 2 : end + 0.05,
+      isFirst ? -1 : start - 0.04,
+      isFirst ? -1 : start + 0.06,
+      isLast ? 2 : end - 0.06,
+      isLast ? 2 : end + 0.04,
     ],
     [isFirst ? 1 : 0, 1, 1, isLast ? 1 : 0]
   );
-  const y = useTransform(
+  const scale = useTransform(
     progress,
     [
-      isFirst ? -1 : start - 0.05,
-      isFirst ? -1 : start + 0.05,
-      isLast ? 2 : end - 0.05,
-      isLast ? 2 : end + 0.05,
+      isFirst ? -1 : start - 0.04,
+      isFirst ? -1 : start + 0.06,
+      isLast ? 2 : end - 0.06,
+      isLast ? 2 : end + 0.04,
     ],
-    [isFirst ? 0 : 40, 0, 0, isLast ? 0 : -40]
+    [isFirst ? 1 : 0.85, 1, 1, isLast ? 1 : 0.85]
   );
+
+  // Local progress 0..1 inside this step
+  const local = useTransform(progress, [start, end], [0, 1]);
+
+  return (
+    <motion.div
+      style={{ opacity, scale, willChange: "transform, opacity" }}
+      className="absolute inset-0 flex items-center justify-center"
+    >
+      {step.visual === "phone" && <PhoneScene local={local} />}
+      {step.visual === "clipboard" && <ClipboardScene local={local} />}
+      {step.visual === "door" && <DoorScene local={local} />}
+    </motion.div>
+  );
+}
+
+/* ── Scene 1: Phone with pulsating ripples ── */
+function PhoneScene({ local }: { local: MotionValue<number> }) {
+  return (
+    <div className="relative w-full h-full flex items-center justify-center">
+      {/* Ripples */}
+      {[0, 1, 2].map((i) => (
+        <motion.div
+          key={i}
+          animate={{
+            scale: [1, 2.2, 2.2],
+            opacity: [0.6, 0, 0],
+          }}
+          transition={{
+            duration: 2.4,
+            delay: i * 0.7,
+            repeat: Infinity,
+            ease: "easeOut",
+          }}
+          className="absolute w-40 h-40 rounded-full border border-mint"
+        />
+      ))}
+
+      {/* Outer ring */}
+      <motion.div
+        animate={{ rotate: 360 }}
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        className="absolute w-80 h-80 rounded-full border border-teal/25"
+      >
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-teal" />
+      </motion.div>
+
+      {/* Central disk with phone icon */}
+      <motion.div
+        animate={{
+          rotate: [0, -12, 12, -10, 10, 0],
+        }}
+        transition={{
+          duration: 1.4,
+          repeat: Infinity,
+          repeatDelay: 2,
+          ease: "easeInOut",
+        }}
+        className="relative w-44 h-44 rounded-[2rem] bg-gradient-to-br from-teal to-mint text-forest shadow-2xl shadow-teal/30 flex items-center justify-center"
+      >
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </motion.div>
+
+      {/* Signal dots */}
+      {[-1, 0, 1].map((i) => (
+        <motion.div
+          key={i}
+          animate={{
+            opacity: [0, 1, 0],
+            scale: [0.5, 1, 0.5],
+          }}
+          transition={{
+            duration: 1.8,
+            delay: i * 0.2 + 1,
+            repeat: Infinity,
+          }}
+          style={{
+            left: `calc(50% + ${i * 28}px)`,
+            top: "calc(50% - 90px)",
+          }}
+          className="absolute w-2 h-2 rounded-full bg-mint"
+        />
+      ))}
+    </div>
+  );
+}
+
+/* ── Scene 2: Clipboard with writing lines ── */
+function ClipboardScene({ local }: { local: MotionValue<number> }) {
+  return (
+    <div className="relative w-full h-full flex items-center justify-center">
+      {/* Orbiting ring */}
+      <motion.div
+        animate={{ rotate: -360 }}
+        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+        className="absolute w-80 h-80 rounded-full border border-mint/20"
+      >
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-mint" />
+      </motion.div>
+
+      {/* Clipboard card */}
+      <motion.div
+        animate={{ y: [0, -6, 0] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        className="relative w-56 h-64 rounded-[1.5rem] bg-cream text-forest shadow-2xl shadow-teal/20 overflow-hidden"
+      >
+        {/* Top clip */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-3 w-24 h-6 bg-forest rounded-t-lg rounded-b-md flex items-center justify-center">
+          <div className="w-10 h-2 bg-teal rounded-full" />
+        </div>
+
+        {/* Writing lines (draw in repeatedly) */}
+        <div className="absolute inset-0 pt-12 px-6 space-y-4">
+          {[0.9, 0.7, 0.95, 0.6, 0.85].map((w, i) => (
+            <motion.div
+              key={i}
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: [0, 1, 1, 0] }}
+              transition={{
+                duration: 4,
+                delay: i * 0.3,
+                repeat: Infinity,
+                ease: "easeInOut",
+                times: [0, 0.3, 0.85, 1],
+              }}
+              style={{
+                originX: 0,
+                width: `${w * 100}%`,
+              }}
+              className="h-2 rounded-full bg-forest/20"
+            />
+          ))}
+          {/* Checkmark that pops */}
+          <motion.div
+            animate={{
+              scale: [0, 0, 1, 1, 0],
+              opacity: [0, 0, 1, 1, 0],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeOut",
+              times: [0, 0.6, 0.7, 0.9, 1],
+            }}
+            className="absolute bottom-5 right-5 w-10 h-10 rounded-full bg-teal text-forest flex items-center justify-center"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M20 6L9 17l-5-5"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </motion.div>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+/* ── Scene 3: Door opening into training space ── */
+function DoorScene({ local }: { local: MotionValue<number> }) {
+  return (
+    <div className="relative w-full h-full flex items-center justify-center">
+      {/* Sun-ray rotation */}
+      <motion.svg
+        animate={{ rotate: 360 }}
+        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+        viewBox="0 0 200 200"
+        className="absolute w-[400px] h-[400px] opacity-30"
+      >
+        {Array.from({ length: 12 }).map((_, i) => {
+          const angle = (i / 12) * 360;
+          return (
+            <line
+              key={i}
+              x1="100"
+              y1="100"
+              x2="100"
+              y2="20"
+              stroke="#55EFC4"
+              strokeWidth="0.5"
+              transform={`rotate(${angle} 100 100)`}
+            />
+          );
+        })}
+      </motion.svg>
+
+      {/* Door frame */}
+      <div className="relative w-52 h-72 rounded-t-[4rem] bg-gradient-to-b from-teal/30 to-mint/20 border-2 border-mint/40 shadow-2xl shadow-mint/20 overflow-hidden">
+        {/* Light ray behind */}
+        <motion.div
+          animate={{ opacity: [0.2, 0.9, 0.2] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute inset-0 bg-gradient-to-b from-mint/50 via-transparent to-transparent"
+        />
+
+        {/* Door (opens repeatedly) */}
+        <motion.div
+          animate={{
+            rotateY: [0, -65, -65, 0],
+            opacity: [1, 0.8, 0.8, 1],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            times: [0, 0.25, 0.8, 1],
+          }}
+          style={{
+            transformOrigin: "left center",
+            transformStyle: "preserve-3d",
+          }}
+          className="absolute inset-0 rounded-t-[4rem] bg-gradient-to-br from-forest to-forest-mid border-r border-teal/40"
+        >
+          {/* Door knob */}
+          <div className="absolute right-5 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-teal" />
+          {/* Wood grain lines */}
+          <div className="absolute inset-6 top-12 space-y-3 opacity-20">
+            {[0.7, 0.9, 0.6, 0.85, 0.75].map((w, i) => (
+              <div
+                key={i}
+                style={{ width: `${w * 100}%` }}
+                className="h-px bg-mint"
+              />
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Inside silhouette appearing when door opens */}
+        <motion.div
+          animate={{
+            opacity: [0, 0, 1, 1, 0, 0],
+            scale: [0.9, 0.9, 1, 1, 0.9, 0.9],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeOut",
+            times: [0, 0.2, 0.35, 0.75, 0.85, 1],
+          }}
+          className="absolute inset-0 flex items-center justify-center"
+        >
+          <svg width="60" height="90" viewBox="0 0 60 90" fill="none">
+            <circle cx="30" cy="18" r="8" fill="#55EFC4" />
+            <rect x="22" y="28" width="16" height="30" rx="3" fill="#55EFC4" />
+            <rect x="22" y="58" width="7" height="26" rx="2" fill="#55EFC4" />
+            <rect x="31" y="58" width="7" height="26" rx="2" fill="#55EFC4" />
+          </svg>
+        </motion.div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Stage: Text reveal with word-by-word animation ── */
+function TextStage({
+  step,
+  index,
+  total,
+  progress,
+}: {
+  step: (typeof whatHappens)[number];
+  index: number;
+  total: number;
+  progress: MotionValue<number>;
+}) {
+  const segment = 1 / total;
+  const start = index * segment;
+  const end = start + segment;
+  const isFirst = index === 0;
+  const isLast = index === total - 1;
+
+  const opacity = useTransform(
+    progress,
+    [
+      isFirst ? -1 : start - 0.04,
+      isFirst ? -1 : start + 0.06,
+      isLast ? 2 : end - 0.06,
+      isLast ? 2 : end + 0.04,
+    ],
+    [isFirst ? 1 : 0, 1, 1, isLast ? 1 : 0]
+  );
+
+  // Local progress for word reveal inside this step
+  const local = useTransform(progress, [start, end], [0, 1]);
+  const wordOpacity = useTransform(local, [0, 0.25], [0, 1]);
+  const wordOpacity2 = useTransform(local, [0.1, 0.4], [0, 1]);
+  const wordY = useTransform(local, [0, 0.25], [30, 0]);
+  const wordY2 = useTransform(local, [0.1, 0.4], [30, 0]);
+  const textOpacity = useTransform(local, [0.3, 0.55], [0, 1]);
+  const textY = useTransform(local, [0.3, 0.55], [20, 0]);
 
   const Icon = step.icon;
 
   return (
     <motion.div
-      style={{ opacity, y, willChange: "transform, opacity" }}
+      style={{ opacity, willChange: "opacity" }}
       className="absolute inset-x-0"
     >
-      <div className="flex items-center gap-3 mb-6">
-        <div className="w-12 h-12 rounded-xl bg-forest text-mint flex items-center justify-center">
-          <Icon size={20} />
-        </div>
-        <div className="font-mono text-xs text-slate tracking-widest">
-          SCHRITT {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
-        </div>
-      </div>
-      <h3
-        className="font-display font-bold text-forest leading-[0.95] mb-6 lg:mb-8"
-        style={{ fontSize: "clamp(2.25rem, 6vw, 5rem)" }}
+      {/* Eyebrow */}
+      <motion.div
+        style={{
+          opacity: useTransform(local, [0, 0.15], [0, 1]),
+          y: useTransform(local, [0, 0.15], [20, 0]),
+        }}
+        className="flex items-center gap-3 mb-8"
       >
-        {step.title}
+        <div className="w-11 h-11 rounded-xl bg-teal/15 border border-teal/30 text-mint flex items-center justify-center">
+          <Icon size={18} />
+        </div>
+        <div>
+          <div className="font-mono text-[0.65rem] text-mint tracking-[0.25em] uppercase font-semibold">
+            Akt {String(index + 1).padStart(2, "0")} · {step.keyword}
+          </div>
+          <div className="font-mono text-xs text-white/40 mt-0.5">
+            {step.eyebrow}
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Headline (word by word) */}
+      <h3
+        className="font-display font-bold leading-[0.95] mb-8 lg:mb-10"
+        style={{ fontSize: "clamp(2.5rem, 6.5vw, 5.5rem)" }}
+      >
+        <motion.span
+          style={{ opacity: wordOpacity, y: wordY, display: "block" }}
+        >
+          {step.title}
+        </motion.span>
+        <motion.span
+          style={{
+            opacity: wordOpacity2,
+            y: wordY2,
+            display: "block",
+          }}
+          className="italic text-teal"
+        >
+          {step.titleAccent}
+        </motion.span>
       </h3>
-      <p className="text-lg lg:text-xl text-slate leading-relaxed max-w-2xl font-light">
+
+      {/* Body */}
+      <motion.p
+        style={{ opacity: textOpacity, y: textY }}
+        className="text-lg lg:text-xl text-white/65 leading-relaxed max-w-xl font-light"
+      >
         {step.text}
-      </p>
+      </motion.p>
+
+      {/* Footer stats */}
+      <motion.div
+        style={{
+          opacity: useTransform(local, [0.5, 0.75], [0, 1]),
+          y: useTransform(local, [0.5, 0.75], [20, 0]),
+        }}
+        className="mt-10 flex items-center gap-6 pt-6 border-t border-white/10"
+      >
+        <div>
+          <div className="text-[0.6rem] tracking-[0.2em] uppercase text-white/40 mb-1">
+            Dauer
+          </div>
+          <div className="font-mono text-sm text-mint">
+            {index === 0 ? "~ 5 Min" : index === 1 ? "~ 30 Min" : "~ 10 Min"}
+          </div>
+        </div>
+        <div className="w-px h-8 bg-white/10" />
+        <div>
+          <div className="text-[0.6rem] tracking-[0.2em] uppercase text-white/40 mb-1">
+            Du brauchst
+          </div>
+          <div className="font-mono text-sm text-mint">
+            {index === 0 ? "Telefon" : index === 1 ? "Zeit für dich" : "Offenheit"}
+          </div>
+        </div>
+      </motion.div>
     </motion.div>
   );
 }
 
-function WhatIndicator({ progress }: { progress: MotionValue<number> }) {
+/* ── Mobile bottom ticker ── */
+function MobileTicker({ progress }: { progress: MotionValue<number> }) {
   return (
-    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 lg:hidden">
+    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 lg:hidden z-20">
       {whatHappens.map((_, i) => {
         const segment = 1 / whatHappens.length;
         const start = i * segment;
@@ -476,8 +970,8 @@ function WhatIndicator({ progress }: { progress: MotionValue<number> }) {
           [start, start + 0.1, end - 0.1, end],
           [0, 1, 1, 0]
         );
-        const width = useTransform(active, [0, 1], [24, 48]);
-        const bg = useTransform(active, [0, 1], ["#1A3C3430", "#00B894"]);
+        const width = useTransform(active, [0, 1], [20, 56]);
+        const bg = useTransform(active, [0, 1], ["#ffffff20", "#00B894"]);
         return (
           <motion.div
             key={i}
