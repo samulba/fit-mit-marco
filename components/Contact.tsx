@@ -2,10 +2,45 @@
 
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
+
+const FORMSPREE_ENDPOINT =
+  process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT ||
+  "https://formspree.io/f/REPLACE_ME";
+
+type Status = "idle" | "sending" | "sent" | "error";
 
 export function Contact() {
-  const [status, setStatus] = useState<"idle" | "sent">("idle");
+  const [status, setStatus] = useState<Status>("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("sending");
+    setErrorMsg("");
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      });
+      if (res.ok) {
+        setStatus("sent");
+        form.reset();
+      } else {
+        const json = await res.json().catch(() => ({}));
+        setErrorMsg(json?.errors?.[0]?.message || "Versand fehlgeschlagen.");
+        setStatus("error");
+      }
+    } catch {
+      setErrorMsg("Netzwerkfehler – bitte später erneut versuchen.");
+      setStatus("error");
+    }
+  }
 
   return (
     <section id="kontakt" className="py-20 sm:py-24 lg:py-32 bg-white">
@@ -41,7 +76,7 @@ export function Contact() {
 
               <div className="space-y-5 sm:space-y-6">
                 <a
-                  href="tel:+491762346578"
+                  href="tel:+491726223371"
                   className="flex items-start gap-4 group"
                 >
                   <div className="w-11 h-11 rounded-xl bg-teal/15 group-hover:bg-teal text-mint group-hover:text-forest flex items-center justify-center transition-colors flex-shrink-0">
@@ -52,13 +87,13 @@ export function Contact() {
                       Telefon
                     </div>
                     <div className="font-mono text-sm sm:text-base group-hover:text-mint transition-colors">
-                      +49 176 2346578
+                      +49 172 6223371
                     </div>
                   </div>
                 </a>
 
                 <a
-                  href="mailto:marco@fit-mit-marco.de"
+                  href="mailto:fitmitmarcomuc@gmail.com"
                   className="flex items-start gap-4 group"
                 >
                   <div className="w-11 h-11 rounded-xl bg-teal/15 group-hover:bg-teal text-mint group-hover:text-forest flex items-center justify-center transition-colors flex-shrink-0">
@@ -69,7 +104,7 @@ export function Contact() {
                       E-Mail
                     </div>
                     <div className="font-mono text-sm sm:text-base group-hover:text-mint transition-colors break-all">
-                      marco@fit-mit-marco.de
+                      fitmitmarcomuc@gmail.com
                     </div>
                   </div>
                 </a>
@@ -111,12 +146,24 @@ export function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            onSubmit={(e) => {
-              e.preventDefault();
-              setStatus("sent");
-            }}
+            onSubmit={handleSubmit}
             className="lg:col-span-3 bg-cream rounded-3xl p-7 sm:p-8 lg:p-10 border border-sand"
           >
+            {/* Honeypot spam protection */}
+            <input
+              type="text"
+              name="_gotcha"
+              tabIndex={-1}
+              autoComplete="off"
+              className="hidden"
+              aria-hidden="true"
+            />
+            {/* Hidden subject line for better mail display */}
+            <input
+              type="hidden"
+              name="_subject"
+              value="Neue Anfrage über fitmitmarco.de"
+            />
             <h3 className="font-display text-2xl font-bold text-forest mb-5 sm:mb-6">
               Kostenloses Erstgespräch anfragen
             </h3>
@@ -131,10 +178,15 @@ export function Contact() {
             </div>
 
             <div className="mb-5">
-              <label className="block text-[0.65rem] font-semibold uppercase tracking-[0.15em] text-teal mb-2">
+              <label
+                htmlFor="message"
+                className="block text-[0.65rem] font-semibold uppercase tracking-[0.15em] text-teal mb-2"
+              >
                 Worum geht&apos;s?
               </label>
               <textarea
+                id="message"
+                name="message"
                 rows={4}
                 placeholder="Erzähl mir kurz von deinen Zielen oder Fragen…"
                 className="w-full px-4 sm:px-5 py-3.5 sm:py-4 rounded-2xl border border-sand bg-white focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/20 transition-all resize-none text-charcoal text-base"
@@ -152,12 +204,20 @@ export function Contact() {
 
             <button
               type="submit"
-              className="w-full sm:w-auto bg-forest hover:bg-teal text-white hover:text-forest px-7 sm:px-8 py-4 rounded-full font-semibold transition-all hover:shadow-xl hover:shadow-teal/30"
+              disabled={status === "sending" || status === "sent"}
+              className="w-full sm:w-auto bg-forest hover:bg-teal text-white hover:text-forest px-7 sm:px-8 py-4 rounded-full font-semibold transition-all hover:shadow-xl hover:shadow-teal/30 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:bg-forest disabled:hover:text-white"
             >
-              {status === "sent"
-                ? "✓ Danke! Ich melde mich."
-                : "Anfrage senden"}
+              {status === "sending" && "Wird gesendet…"}
+              {status === "sent" && "✓ Danke! Ich melde mich bei dir."}
+              {status === "idle" && "Anfrage senden"}
+              {status === "error" && "Erneut versuchen"}
             </button>
+
+            {status === "error" && errorMsg && (
+              <p className="mt-3 text-sm text-coral" role="alert">
+                {errorMsg}
+              </p>
+            )}
           </motion.form>
         </div>
       </div>

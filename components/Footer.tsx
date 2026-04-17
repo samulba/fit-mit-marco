@@ -94,10 +94,10 @@ export function Footer() {
                   className="text-teal mt-1 flex-shrink-0"
                 />
                 <a
-                  href="tel:+491762346578"
+                  href="tel:+491726223371"
                   className="hover:text-teal transition-colors font-mono text-sm"
                 >
-                  +49 176 2346578
+                  +49 172 6223371
                 </a>
               </li>
               <li className="flex items-start gap-3">
@@ -106,10 +106,10 @@ export function Footer() {
                   className="text-teal mt-1 flex-shrink-0"
                 />
                 <a
-                  href="mailto:marco@fit-mit-marco.de"
+                  href="mailto:fitmitmarcomuc@gmail.com"
                   className="hover:text-teal transition-colors font-mono text-sm"
                 >
-                  marco@fit-mit-marco.de
+                  fitmitmarcomuc@gmail.com
                 </a>
               </li>
               <li className="flex items-start gap-3">

@@ -16,7 +16,7 @@ const steps = [
     num: "01",
     kicker: "Anruf",
     title: "Ruf mich an.",
-    subtitle: "+49 176 2346578",
+    subtitle: "+49 172 6223371",
     text: "Ich bin persönlich erreichbar. Erzähl mir von dir, deinen Zielen, deinen Sorgen – ich höre zu, ohne Druck.",
   },
   {

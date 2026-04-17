@@ -2,7 +2,7 @@ import { Phone } from "lucide-react";
 
 export function Marquee() {
   const text = "Jetzt Erstgespräch sichern";
-  const phone = "+49 176 2346578";
+  const phone = "+49 172 6223371";
   const item = (
     <div className="flex items-center gap-6 sm:gap-8 flex-shrink-0">
       <span className="font-display font-bold text-xl sm:text-2xl lg:text-3xl">

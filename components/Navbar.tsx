@@ -158,7 +158,7 @@ export function Navbar() {
           {/* Phone + CTA */}
           <div className="flex items-center gap-2">
             <a
-              href="tel:+491762346578"
+              href="tel:+491726223371"
               className={`flex items-center gap-2 px-4 py-3 rounded-full font-mono text-xs transition-all ${
                 scrolled
                   ? "bg-white/75 backdrop-blur-xl border border-white/60 text-forest hover:bg-white"
@@ -167,7 +167,7 @@ export function Navbar() {
               aria-label="Marco anrufen"
             >
               <Phone size={14} />
-              <span>+49 176 2346578</span>
+              <span>+49 172 6223371</span>
             </a>
             <a
               href="#kontakt"
@@ -214,10 +214,10 @@ export function Navbar() {
                 className="space-y-3 pt-8 border-t border-white/10"
               >
                 <a
-                  href="tel:+491762346578"
+                  href="tel:+491726223371"
                   className="flex items-center gap-3 text-white/70"
                 >
-                  <Phone size={16} /> +49 176 2346578
+                  <Phone size={16} /> +49 172 6223371
                 </a>
                 <a
                   href="#kontakt"

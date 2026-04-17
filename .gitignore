@@ -9,8 +9,9 @@ out
 build
 dist
 
-# portable node (local dev only, not for deployment)
+# portable binaries (local dev only, not for deployment)
 .node
+.gh
 
 # os
 .DS_Store

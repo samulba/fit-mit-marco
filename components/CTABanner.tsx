@@ -44,10 +44,10 @@ export function CTABanner() {
                 />
               </a>
               <a
-                href="tel:+491762346578"
+                href="tel:+491726223371"
                 className="text-white/60 hover:text-white transition-colors text-center lg:text-right font-mono text-xs lg:text-sm"
               >
-                oder direkt anrufen: +49 176 2346578
+                oder direkt anrufen: +49 172 6223371
               </a>
             </div>
           </div>
