@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   ArrowLeft,
@@ -32,7 +33,7 @@ export function RatgeberArticlePage({ article }: { article: Article }) {
     .slice(0, 2);
 
   return (
-    <main className="bg-cream min-h-screen">
+    <main id="main-content" className="bg-cream min-h-screen">
       <SubPageNav backLabel="Alle Artikel" backHref="/ratgeber" />
 
       {/* Hero */}
@@ -82,11 +83,15 @@ export function RatgeberArticlePage({ article }: { article: Article }) {
       <section className="py-12 bg-cream border-t border-sand">
         <div className="max-w-3xl mx-auto px-5 sm:px-6 lg:px-10">
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 p-6 sm:p-8 rounded-2xl bg-white border border-sand">
-            <div
-              className="flex-shrink-0 w-20 h-20 rounded-2xl bg-cover bg-center border border-sand"
-              style={{ backgroundImage: "url(/marco.jpg)" }}
-              aria-hidden="true"
-            />
+            <div className="flex-shrink-0 w-20 h-20 rounded-2xl overflow-hidden border border-sand">
+              <Image
+                src="/marco.jpg"
+                alt="Marco Degel – Personal Trainer für Senioren in München"
+                width={80}
+                height={80}
+                className="w-full h-full object-cover"
+              />
+            </div>
             <div className="flex-1">
               <div className="text-[0.65rem] tracking-[0.25em] uppercase text-teal font-semibold mb-1">
                 Geschrieben von

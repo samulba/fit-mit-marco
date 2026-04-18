@@ -156,7 +156,7 @@ const faqs = [
 
 export function PreisePage() {
   return (
-    <main className="bg-cream min-h-screen">
+    <main id="main-content" className="bg-cream min-h-screen">
       <SubPageNav />
       <Hero />
       <StickyPricing />

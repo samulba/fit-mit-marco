@@ -335,6 +335,64 @@ button {
   contain-intrinsic-size: 800px;
 }
 
+/* ── Print stylesheet — keep contact, prices and imprint clean on paper ── */
+@media print {
+  /* Neutralize forest backgrounds so printers don't burn ink */
+  html, body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+  /* Hide decorative elements */
+  nav,
+  header,
+  footer,
+  .anim-ripple,
+  .anim-ripple-2,
+  .anim-ripple-3,
+  .anim-spin-slow,
+  .anim-spin-slower,
+  .anim-spin-reverse-slow,
+  .anim-pulse-soft,
+  .anim-float-y,
+  [aria-hidden="true"],
+  button,
+  iframe,
+  video {
+    display: none !important;
+  }
+  /* Make forest sections neutral */
+  .bg-forest,
+  .bg-forest-mid,
+  [class*="bg-forest"] {
+    background: #FFFFFF !important;
+    color: #1A3C34 !important;
+  }
+  /* Links show their URL */
+  a[href^="http"]::after,
+  a[href^="mailto"]::after,
+  a[href^="tel"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    color: #444;
+  }
+  /* Cards get a subtle border */
+  .surface-card,
+  .rounded-2xl,
+  .rounded-3xl {
+    border: 1px solid #ccc !important;
+    background: #FFFFFF !important;
+    color: #000 !important;
+    page-break-inside: avoid;
+  }
+  /* Prevent headings from breaking */
+  h1, h2, h3 {
+    page-break-after: avoid;
+    color: #1A3C34 !important;
+  }
+}
+
 /* ── Reduced motion — respect user preference ──
    Disables framer-motion's infinite animations, scroll-linked
    parallax effects and all CSS transitions/animations. */

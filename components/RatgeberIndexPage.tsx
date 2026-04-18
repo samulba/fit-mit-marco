@@ -19,7 +19,7 @@ export function RatgeberIndexPage() {
   const [featured, ...rest] = articles;
 
   return (
-    <main className="bg-cream min-h-screen">
+    <main id="main-content" className="bg-cream min-h-screen">
       <SubPageNav />
 
       {/* Hero */}

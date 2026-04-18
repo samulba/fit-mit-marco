@@ -47,7 +47,7 @@ const homeFaq = [
 
 export default function HomePage() {
   return (
-    <main className="overflow-x-clip">
+    <main id="main-content" className="overflow-x-clip">
       <JsonLd data={localBusinessSchema} />
       <JsonLd data={personSchema} />
       <JsonLd data={websiteSchema} />

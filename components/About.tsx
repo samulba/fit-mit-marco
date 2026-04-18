@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Award, Package, Heart, ArrowUpRight } from "lucide-react";
 
@@ -55,9 +56,13 @@ export function About() {
               style={{ y: imageY, scale: imageScale }}
               className="absolute inset-[-5%]"
             >
-              <div
-                className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: "url(/marco.jpg)" }}
+              <Image
+                src="/marco.jpg"
+                alt="Marco Degel – Personal Trainer für Senioren in München und Umgebung"
+                fill
+                sizes="(max-width: 1280px) 90vw, 40vw"
+                className="object-cover"
+                priority={false}
               />
               {/* Fallback gradient */}
               <div className="absolute inset-0 bg-gradient-to-br from-forest via-forest-mid to-teal/30 -z-10" />

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { SkipLink } from "@/components/SkipLink";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -122,7 +123,10 @@ export default function RootLayout({
       lang="de"
       className={`${cormorant.variable} ${outfit.variable} ${jetbrains.variable}`}
     >
-      <body className="font-sans">{children}</body>
+      <body className="font-sans">
+        <SkipLink />
+        {children}
+      </body>
     </html>
   );
 }

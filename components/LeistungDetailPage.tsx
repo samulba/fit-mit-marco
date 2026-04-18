@@ -40,7 +40,7 @@ export function LeistungDetailPage({ leistung }: { leistung: Leistung }) {
   const Icon = iconMap[leistung.iconName];
 
   return (
-    <main className="bg-cream min-h-screen">
+    <main id="main-content" className="bg-cream min-h-screen">
       <SubPageNav backLabel="Alle Leistungen" backHref="/#leistungen" />
       <Hero leistung={leistung} Icon={Icon} />
       <ForWhom leistung={leistung} />

@@ -112,7 +112,7 @@ const faqs = [
 
 export function AngehoerigePage() {
   return (
-    <main className="bg-cream min-h-screen">
+    <main id="main-content" className="bg-cream min-h-screen">
       <SubPageNav />
       <Hero />
       <Concerns />

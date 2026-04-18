@@ -9,6 +9,7 @@ import {
   useSpring,
   useMotionTemplate,
 } from "framer-motion";
+import Image from "next/image";
 import { ArrowDown, Play } from "lucide-react";
 import { MagneticButton } from "./MagneticButton";
 
@@ -293,11 +294,13 @@ export function Hero() {
                 style={{ y: imageY, scale: imageScale }}
                 className="absolute inset-0"
               >
-                <div
-                  className="absolute inset-0 bg-cover bg-center"
-                  style={{
-                    backgroundImage: "url(/marco.jpg)",
-                  }}
+                <Image
+                  src="/marco.jpg"
+                  alt="Marco Degel – Personal Trainer für Senioren in München"
+                  fill
+                  sizes="(max-width: 1280px) 0px, 40vw"
+                  className="object-cover"
+                  priority
                 />
                 {/* Gradient overlay for text legibility */}
                 <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/20 to-transparent" />
