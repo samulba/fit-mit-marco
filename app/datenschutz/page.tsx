@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/LegalPage";
+import { CookieSettingsLink } from "@/components/CookieSettingsLink";
 import { JsonLd, makeWebPageSchema, makeBreadcrumb } from "@/components/StructuredData";
 
 export const metadata: Metadata = {
@@ -195,20 +196,7 @@ export default function DatenschutzPage() {
       <h3>Deine Einwilligung widerrufen oder ändern</h3>
       <p>
         Deine Auswahl kannst du jederzeit über den{" "}
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            if (
-              typeof window !== "undefined" &&
-              typeof (window as any).__openCookieSettings === "function"
-            ) {
-              (window as any).__openCookieSettings();
-            }
-          }}
-        >
-          Cookie-Einstellungen-Dialog
-        </a>{" "}
+        <CookieSettingsLink />{" "}
         neu treffen. Widerruf wirkt ab dem Moment der Einstellung — bereits
         verarbeitete Daten bleiben bis zur Löschung bestehen.
       </p>
