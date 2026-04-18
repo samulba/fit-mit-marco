@@ -78,8 +78,8 @@ export function Services() {
       {/* 100vh Intro */}
       <div className="min-h-screen flex items-center relative overflow-hidden">
         {/* Decorative orb */}
-        <div className="absolute -top-20 -right-40 w-[500px] h-[500px] rounded-full bg-teal/15 blur-[120px] pointer-events-none" />
-        <div className="absolute -bottom-40 -left-40 w-[400px] h-[400px] rounded-full bg-mint/10 blur-[120px] pointer-events-none" />
+        <div className="absolute -top-20 -right-40 w-[500px] h-[500px] rounded-full bg-teal/15 blur-[70px] pointer-events-none" />
+        <div className="absolute -bottom-40 -left-40 w-[400px] h-[400px] rounded-full bg-mint/10 blur-[70px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 w-full relative">
           <motion.div

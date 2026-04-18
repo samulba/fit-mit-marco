@@ -290,7 +290,7 @@ function WhatHappens() {
     <section className="bg-forest text-cream relative">
       {/* Intro */}
       <div className="pt-24 sm:pt-28 lg:pt-32 pb-16 lg:pb-20 relative overflow-hidden">
-        <div className="absolute -top-10 -right-20 w-[400px] h-[400px] rounded-full bg-teal/15 blur-[120px] pointer-events-none" />
+        <div className="absolute -top-10 -right-20 w-[400px] h-[400px] rounded-full bg-teal/15 blur-[70px] pointer-events-none" />
         <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 relative">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -483,7 +483,7 @@ function ShiftingGlow({ progress }: { progress: MotionValue<number> }) {
         backgroundColor: hue as any,
         willChange: "transform, background-color",
       }}
-      className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full blur-[140px] opacity-30 pointer-events-none z-0 -translate-x-1/2 -translate-y-1/2"
+      className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full blur-[80px] opacity-30 pointer-events-none z-0 -translate-x-1/2 -translate-y-1/2"
     />
   );
 }

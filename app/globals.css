@@ -9,8 +9,19 @@
   --cream: #F8F5F0;
 }
 
+/* ── Base sizing tuned for audience 60+ ──
+   Browsers default to 16px. We bump to 17px so body text and
+   form inputs are a touch more legible without breaking the
+   layout. rem-based utilities scale accordingly. */
 html {
+  font-size: 17px;
   scroll-behavior: smooth;
+  overflow-x: clip;
+}
+@media (max-width: 640px) {
+  html {
+    font-size: 16px; /* keep mobile at standard 16 so layouts are predictable */
+  }
 }
 
 body {
@@ -19,10 +30,16 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: clip;
+  /* Slightly looser line-height for comfortable reading */
+  line-height: 1.6;
 }
 
-html {
-  overflow-x: clip;
+/* Make form inputs never trigger zoom on iOS (16px min) */
+input,
+textarea,
+select,
+button {
+  font-size: 16px;
 }
 
 /* Selection */
@@ -47,11 +64,19 @@ html {
   background: #00B894;
 }
 
+/* Focus ring that's visible for keyboard users — important for
+   senior audience and screen-reader / low-vision users */
+*:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
 /* ── Legal pages prose ── */
 .legal-prose {
   color: #2D3436;
-  font-size: 1rem;
-  line-height: 1.75;
+  font-size: 1.05rem;
+  line-height: 1.8;
 }
 .legal-prose h2 {
   font-family: var(--font-cormorant), serif;
@@ -67,12 +92,12 @@ html {
 .legal-prose h3 {
   font-family: var(--font-cormorant), serif;
   font-weight: 700;
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   color: #1A3C34;
   margin-top: 2rem;
   margin-bottom: 0.75rem;
 }
-.legal-prose p { margin-bottom: 1.15rem; }
+.legal-prose p { margin-bottom: 1.25rem; }
 .legal-prose strong { color: #1A3C34; font-weight: 600; }
 .legal-prose a { color: #00B894; text-decoration: underline; text-underline-offset: 3px; }
 .legal-prose a:hover { color: #1A3C34; }
@@ -84,7 +109,7 @@ html {
 .legal-prose ul li {
   position: relative;
   padding-left: 1.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
 }
 .legal-prose ul li::before {
   content: "";
@@ -105,11 +130,14 @@ html {
 }
 .legal-prose .card p:last-child { margin-bottom: 0; }
 
-/* Accessibility - Respect reduced motion */
+/* ── Reduced motion — respect user preference ──
+   Disables framer-motion's infinite animations, scroll-linked
+   parallax effects and all CSS transitions/animations. */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
