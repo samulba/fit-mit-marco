@@ -101,9 +101,9 @@ export function Services() {
               <span className="text-white/30 italic">Ein Ziel.</span>
             </h2>
             <p className="text-lg lg:text-xl text-white/60 max-w-xl leading-relaxed font-light">
-              Jedes Training ist individuell auf dich zugeschnitten. Oft
-              kombinieren wir mehrere Bereiche – abhängig davon, was dein
-              Körper gerade braucht.
+              Als Personal Trainer für Senioren in München kombiniere ich
+              verschiedene Trainingsbereiche – individuell auf dich
+              zugeschnitten, abhängig davon, was dein Körper gerade braucht.
             </p>
             <div className="mt-10 inline-flex items-center gap-3 text-mint text-xs font-mono tracking-widest uppercase">
               <span className="h-px w-8 bg-mint" />

@@ -204,3 +204,124 @@ export const websiteSchema = {
   inLanguage: "de-DE",
   publisher: { "@id": `${SITE}/#business` },
 };
+
+/* ── WebPage helper (for legal + content pages) ── */
+export function makeWebPageSchema(opts: {
+  path: string;
+  title: string;
+  description: string;
+  type?: "WebPage" | "AboutPage" | "ContactPage" | "FAQPage";
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": opts.type || "WebPage",
+    "@id": `${SITE}${opts.path}#webpage`,
+    url: `${SITE}${opts.path}`,
+    name: opts.title,
+    description: opts.description,
+    inLanguage: "de-DE",
+    isPartOf: { "@id": `${SITE}/#website` },
+    about: { "@id": `${SITE}/#business` },
+  };
+}
+
+/* ── Free consultation offer (Erstgespräch) ── */
+export const erstgespraechOfferSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": `${SITE}/erstgespraech#service`,
+  name: "Kostenloses Erstgespräch — Personal Trainer Senioren München",
+  description:
+    "30 Minuten kostenloses und unverbindliches Erstgespräch — telefonisch oder persönlich vor Ort — mit Marco Degel, Personal Trainer für Senioren in München.",
+  serviceType: "Personal Training Consultation",
+  provider: { "@id": `${SITE}/#business` },
+  areaServed: {
+    "@type": "City",
+    name: "München",
+  },
+  audience: {
+    "@type": "PeopleAudience",
+    suggestedMinAge: 60,
+  },
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "EUR",
+    availability: "https://schema.org/InStock",
+    validFrom: new Date().toISOString().split("T")[0],
+  },
+  url: `${SITE}/erstgespraech`,
+};
+
+/* ── OfferCatalog for Preise page ── */
+export const offerCatalogSchema = {
+  "@context": "https://schema.org",
+  "@type": "OfferCatalog",
+  "@id": `${SITE}/preise#offers`,
+  name: "Personal Training Preise — Fit mit Marco",
+  url: `${SITE}/preise`,
+  provider: { "@id": `${SITE}/#business` },
+  itemListElement: [
+    {
+      "@type": "Offer",
+      name: "Einzelstunde Personal Training",
+      description: "60 Minuten Personal Training bei dir zuhause",
+      price: "70",
+      priceCurrency: "EUR",
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: "70",
+        priceCurrency: "EUR",
+        referenceQuantity: {
+          "@type": "QuantitativeValue",
+          value: "60",
+          unitCode: "MIN",
+        },
+      },
+    },
+    {
+      "@type": "Offer",
+      name: "10er-Karte Personal Training",
+      description:
+        "10 × 60 Minuten Personal Training, 6 Monate gültig",
+      price: "600",
+      priceCurrency: "EUR",
+    },
+    {
+      "@type": "Offer",
+      name: "Monats-Paket Personal Training",
+      description:
+        "4 × 60 Minuten pro Monat, Mindestlaufzeit 3 Monate, danach monatlich kündbar",
+      price: "260",
+      priceCurrency: "EUR",
+    },
+  ],
+};
+
+/* ── Service schema for "Für Angehörige" landing page ── */
+export const angehoerigeServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": `${SITE}/fuer-angehoerige#service`,
+  name: "Personal Training für Eltern und Großeltern — München",
+  description:
+    "Personal Training, das zu Ihren Eltern oder Großeltern nach Hause kommt. Individuelle Begleitung für Senioren im Umkreis München – geeignet, wenn Angehörige im Alter Kraft, Sicherheit und Mobilität erhalten möchten.",
+  serviceType: "Personal Training für Senioren",
+  provider: { "@id": `${SITE}/#business` },
+  areaServed: {
+    "@type": "City",
+    name: "München",
+  },
+  audience: [
+    {
+      "@type": "PeopleAudience",
+      suggestedMinAge: 60,
+      audienceType: "Senioren",
+    },
+    {
+      "@type": "PeopleAudience",
+      audienceType: "Angehörige (Kinder und Enkel)",
+    },
+  ],
+  url: `${SITE}/fuer-angehoerige`,
+};

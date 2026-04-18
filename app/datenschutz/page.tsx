@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/LegalPage";
+import { JsonLd, makeWebPageSchema, makeBreadcrumb } from "@/components/StructuredData";
 
 export const metadata: Metadata = {
-  title: "Datenschutzerklärung | Fit mit Marco",
-  description: "Informationen zur Verarbeitung personenbezogener Daten",
-  robots: { index: true, follow: false },
+  title: "Datenschutzerklärung",
+  description:
+    "Informationen zur Verarbeitung personenbezogener Daten nach DSGVO — Fit mit Marco, Personal Training in München.",
+  alternates: { canonical: "/datenschutz" },
+  robots: { index: true, follow: true },
 };
 
 export default function DatenschutzPage() {
@@ -14,6 +17,20 @@ export default function DatenschutzPage() {
       title="Datenschutz"
       lastUpdated="April 2026"
     >
+      <JsonLd
+        data={makeWebPageSchema({
+          path: "/datenschutz",
+          title: "Datenschutz — Fit mit Marco",
+          description:
+            "DSGVO-Datenschutzerklärung für Fit mit Marco, Personal Training in München.",
+        })}
+      />
+      <JsonLd
+        data={makeBreadcrumb([
+          { name: "Home", url: "/" },
+          { name: "Datenschutz", url: "/datenschutz" },
+        ])}
+      />
       <h2>1. Verantwortlicher</h2>
       <p>
         Verantwortlich für die Datenverarbeitung auf dieser Website ist:

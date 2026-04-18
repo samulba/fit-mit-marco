@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/LegalPage";
+import { JsonLd, makeWebPageSchema, makeBreadcrumb } from "@/components/StructuredData";
 
 export const metadata: Metadata = {
-  title: "AGB | Fit mit Marco",
-  description: "Allgemeine Geschäftsbedingungen für Personal Training",
-  robots: { index: true, follow: false },
+  title: "AGB",
+  description:
+    "Allgemeine Geschäftsbedingungen für Personal Training bei Fit mit Marco — Personal Trainer für Senioren in München.",
+  alternates: { canonical: "/agb" },
+  robots: { index: true, follow: true },
 };
 
 export default function AGBPage() {
@@ -14,6 +17,20 @@ export default function AGBPage() {
       title="AGB"
       lastUpdated="April 2026"
     >
+      <JsonLd
+        data={makeWebPageSchema({
+          path: "/agb",
+          title: "AGB — Fit mit Marco",
+          description:
+            "Allgemeine Geschäftsbedingungen für Personal Training bei Fit mit Marco.",
+        })}
+      />
+      <JsonLd
+        data={makeBreadcrumb([
+          { name: "Home", url: "/" },
+          { name: "AGB", url: "/agb" },
+        ])}
+      />
       <h2>§ 1 Geltungsbereich</h2>
       <p>
         (1) Diese Allgemeinen Geschäftsbedingungen (nachfolgend „AGB") gelten

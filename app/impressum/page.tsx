@@ -1,15 +1,32 @@
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/LegalPage";
+import { JsonLd, makeWebPageSchema, makeBreadcrumb } from "@/components/StructuredData";
 
 export const metadata: Metadata = {
-  title: "Impressum | Fit mit Marco",
-  description: "Anbieterkennzeichnung nach § 5 DDG",
-  robots: { index: true, follow: false },
+  title: "Impressum",
+  description:
+    "Anbieterkennzeichnung nach § 5 DDG — Marco Degel · Fit mit Marco · Beethovenstraße 3, 85622 Feldkirchen.",
+  alternates: { canonical: "/impressum" },
+  robots: { index: true, follow: true },
 };
 
 export default function ImpressumPage() {
   return (
     <LegalPage kicker="Rechtliches" title="Impressum" lastUpdated="April 2026">
+      <JsonLd
+        data={makeWebPageSchema({
+          path: "/impressum",
+          title: "Impressum — Fit mit Marco",
+          description:
+            "Anbieterkennzeichnung nach § 5 DDG für Marco Degel – Fit mit Marco.",
+        })}
+      />
+      <JsonLd
+        data={makeBreadcrumb([
+          { name: "Home", url: "/" },
+          { name: "Impressum", url: "/impressum" },
+        ])}
+      />
       <h2>Angaben gemäß § 5 DDG</h2>
       <div className="card">
         <p>

@@ -11,13 +11,59 @@ import {
 } from "framer-motion";
 import {
   ArrowRight,
+  ArrowUpRight,
   Check,
   Phone,
   Sparkles,
   Plus,
+  Dumbbell,
+  Footprints,
+  Flower2,
+  HeartPulse,
+  Stethoscope,
+  Apple,
 } from "lucide-react";
 import { Footer } from "./Footer";
 import { SubPageNav } from "./SubPageNav";
+
+const linkedServices = [
+  {
+    slug: "kraft-muskelaufbau",
+    icon: Dumbbell,
+    title: "Kraft & Muskelaufbau",
+    desc: "Gezieltes Training für mehr Stabilität im Alltag.",
+  },
+  {
+    slug: "balance-sturzpraevention",
+    icon: Footprints,
+    title: "Balance & Sturzprävention",
+    desc: "Standfestigkeit und Sicherheit beim Gehen.",
+  },
+  {
+    slug: "beweglichkeit-mobilitaet",
+    icon: Flower2,
+    title: "Beweglichkeit & Mobilität",
+    desc: "Gelenke, Haltung und Bewegungsfluss.",
+  },
+  {
+    slug: "herz-kreislauf",
+    icon: HeartPulse,
+    title: "Herz-Kreislauf",
+    desc: "Sanfte Ausdauer für mehr Energie.",
+  },
+  {
+    slug: "reha-nachsorge",
+    icon: Stethoscope,
+    title: "Reha & Nachsorge",
+    desc: "Begleitung nach Verletzungen und Pausen.",
+  },
+  {
+    slug: "ernaehrungsberatung",
+    icon: Apple,
+    title: "Ernährungsberatung",
+    desc: "Alltagstaugliche Tipps zur Unterstützung.",
+  },
+];
 
 const packages = [
   {
@@ -115,12 +161,76 @@ export function PreisePage() {
       <Hero />
       <StickyPricing />
       <Pricing />
+      <ServicesGrid />
       <IncludedBar />
       <GiftCallout />
       <FaqSection />
       <FinalCTA />
       <Footer />
     </main>
+  );
+}
+
+/* ── Internal linking: six services linking to detail pages ── */
+function ServicesGrid() {
+  return (
+    <section className="py-20 lg:py-24 bg-cream">
+      <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="max-w-2xl mb-10 lg:mb-14"
+        >
+          <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-4">
+            In allen Paketen enthalten
+          </div>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-forest leading-[1.05]">
+            Leistungen, aus denen wir wählen.
+          </h2>
+          <p className="mt-5 text-base sm:text-lg text-slate leading-relaxed">
+            Je nach deinem Ziel und Tagesform kombinieren wir aus diesen
+            sechs Bereichen. Klick rein, um mehr über jede Leistung zu erfahren.
+          </p>
+        </motion.div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
+          {linkedServices.map((s, i) => (
+            <motion.div
+              key={s.slug}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
+            >
+              <Link
+                href={`/leistungen/${s.slug}`}
+                className="group block h-full bg-white border border-sand rounded-2xl p-5 sm:p-6 hover:border-teal/40 hover:shadow-md transition-all"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-forest text-mint group-hover:bg-teal group-hover:text-forest flex items-center justify-center transition-colors">
+                    <s.icon size={18} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="font-display font-bold text-lg text-forest leading-tight mb-1">
+                      {s.title}
+                    </div>
+                    <div className="text-sm text-slate leading-snug">
+                      {s.desc}
+                    </div>
+                  </div>
+                  <ArrowUpRight
+                    size={16}
+                    className="text-forest/20 group-hover:text-teal group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all mt-1 flex-shrink-0"
+                  />
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
