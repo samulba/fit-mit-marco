@@ -35,12 +35,16 @@ export function CTABanner() {
             <div className="flex flex-col gap-3 lg:gap-4 lg:items-end w-full lg:w-auto">
               <a
                 href="/erstgespraech"
-                className="group inline-flex items-center justify-center gap-2 bg-teal hover:bg-mint text-forest px-6 sm:px-8 py-4 lg:py-5 rounded-full font-semibold text-base lg:text-lg transition-all hover:shadow-2xl hover:shadow-teal/40 whitespace-nowrap"
+                className="group relative overflow-hidden inline-flex items-center justify-center gap-2 bg-teal hover:bg-mint text-forest px-6 sm:px-8 py-4 lg:py-5 rounded-full font-semibold text-base lg:text-lg transition-all duration-400 ease-smooth hover:shadow-teal-glow whitespace-nowrap"
               >
-                Jetzt Kontakt aufnehmen
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-smooth"
+                />
+                <span className="relative z-10">Jetzt Kontakt aufnehmen</span>
                 <ArrowRight
                   size={18}
-                  className="transition-transform group-hover:translate-x-1"
+                  className="relative z-10 transition-transform duration-400 group-hover:translate-x-1"
                 />
               </a>
               <a

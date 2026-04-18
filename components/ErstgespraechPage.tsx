@@ -1230,7 +1230,7 @@ function FormSection() {
               </label>
               <select
                 name="preferredTime"
-                className="w-full px-4 sm:px-5 py-3.5 sm:py-4 rounded-2xl border border-sand bg-cream focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/20 transition-all text-charcoal text-base"
+                className="w-full px-4 sm:px-5 py-3.5 sm:py-4 rounded-2xl border border-sand bg-cream focus:border-teal focus:outline-none focus:ring-4 focus:ring-teal/15 focus:shadow-soft transition-all duration-400 text-charcoal text-base"
                 defaultValue=""
               >
                 <option value="" disabled>
@@ -1259,7 +1259,7 @@ function FormSection() {
                 name="message"
                 rows={4}
                 placeholder="z. B. Ich habe seit Monaten Rückenschmerzen und möchte wieder fit werden…"
-                className="w-full px-4 sm:px-5 py-3.5 sm:py-4 rounded-2xl border border-sand bg-cream focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/20 transition-all resize-none text-charcoal text-base"
+                className="w-full px-4 sm:px-5 py-3.5 sm:py-4 rounded-2xl border border-sand bg-cream focus:border-teal focus:outline-none focus:ring-4 focus:ring-teal/15 focus:shadow-soft transition-all duration-400 resize-none text-charcoal text-base"
               />
             </div>
 
@@ -1328,7 +1328,7 @@ function Field({
         name={name}
         type={type}
         required={required}
-        className="w-full px-4 sm:px-5 py-3.5 sm:py-4 rounded-2xl border border-sand bg-cream focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/20 transition-all text-charcoal text-base"
+        className="w-full px-4 sm:px-5 py-3.5 sm:py-4 rounded-2xl border border-sand bg-cream focus:border-teal focus:outline-none focus:ring-4 focus:ring-teal/15 focus:shadow-soft transition-all duration-400 text-charcoal text-base"
       />
     </div>
   );

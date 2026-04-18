@@ -254,8 +254,20 @@ function HorizontalScroll({ onOpen }: { onOpen: (slug: string) => void }) {
           </motion.a>
         </motion.div>
       </div>
-      <div className="absolute bottom-10 right-10 text-xs tracking-[0.25em] uppercase text-white/30">
-        ← scroll →
+      <div className="absolute bottom-10 right-10 flex items-center gap-3 text-[0.65rem] tracking-[0.25em] uppercase text-white/40 font-mono">
+        <motion.span
+          animate={{ x: [-3, 3, -3] }}
+          transition={{ duration: 2, repeat: Infinity, ease: [0.22, 1, 0.36, 1] }}
+        >
+          ←
+        </motion.span>
+        <span>Horizontal scrollen</span>
+        <motion.span
+          animate={{ x: [3, -3, 3] }}
+          transition={{ duration: 2, repeat: Infinity, ease: [0.22, 1, 0.36, 1] }}
+        >
+          →
+        </motion.span>
       </div>
     </div>
   );

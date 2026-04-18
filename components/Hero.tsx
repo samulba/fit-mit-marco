@@ -182,14 +182,14 @@ export function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full border border-white/15 bg-white/[0.03] backdrop-blur-sm mb-6 lg:mb-10"
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full border border-mint/25 bg-mint/[0.04] backdrop-blur-sm mb-6 lg:mb-10 shadow-soft-sm"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-mint opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-mint" />
               </span>
-              <span className="text-[0.6rem] sm:text-[0.7rem] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-white/70">
+              <span className="text-[0.6rem] sm:text-[0.7rem] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-mint/90 font-medium">
                 München · Hausbesuche im Umkreis 30 km
               </span>
             </motion.div>
@@ -240,23 +240,28 @@ export function Hero() {
               <MagneticButton
                 href="/erstgespraech"
                 strength={14}
-                className="group relative inline-flex items-center gap-3 bg-teal hover:bg-mint text-forest pl-6 sm:pl-7 pr-2 py-2 rounded-full font-semibold transition-colors hover:shadow-2xl hover:shadow-teal/30 w-fit"
+                className="group relative overflow-hidden inline-flex items-center gap-3 bg-teal hover:bg-mint text-forest pl-6 sm:pl-7 pr-2 py-2 rounded-full font-semibold transition-colors duration-400 hover:shadow-teal-glow w-fit"
               >
+                {/* sheen overlay */}
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-600 ease-smooth"
+                />
                 <span className="relative z-10 text-sm sm:text-base">
                   Kostenloses Erstgespräch
                 </span>
-                <span className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-forest text-teal group-hover:text-forest group-hover:bg-cream flex items-center justify-center transition-colors">
-                  <ArrowDown size={16} className="-rotate-45" />
+                <span className="relative z-10 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-forest text-teal group-hover:text-forest group-hover:bg-cream flex items-center justify-center transition-all duration-400">
+                  <ArrowDown size={16} className="-rotate-45 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-400" />
                 </span>
               </MagneticButton>
               <a
                 href="#about"
-                className="group inline-flex items-center gap-2 text-white/70 hover:text-mint text-sm font-medium transition-colors"
+                className="group inline-flex items-center gap-3 text-white/70 hover:text-mint text-sm font-medium transition-colors duration-400"
               >
-                <span className="w-10 h-10 rounded-full border border-white/20 group-hover:border-mint group-hover:bg-mint/10 flex items-center justify-center transition-all">
+                <span className="w-10 h-10 rounded-full border border-white/20 group-hover:border-mint group-hover:bg-mint/10 flex items-center justify-center transition-all duration-400 group-hover:scale-105">
                   <Play size={12} className="fill-current ml-0.5" />
                 </span>
-                So arbeite ich
+                <span className="link-underline">So arbeite ich</span>
               </a>
             </motion.div>
 
@@ -344,10 +349,20 @@ export function Hero() {
         </span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: [0.22, 1, 0.36, 1],
+          }}
           className="w-px h-10 bg-gradient-to-b from-white/40 to-transparent"
         />
       </motion.div>
+
+      {/* Bottom fade — smooth handoff to next section */}
+      <div
+        aria-hidden="true"
+        className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-b from-transparent to-forest/80 pointer-events-none z-[2]"
+      />
     </section>
   );
 }

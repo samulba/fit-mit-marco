@@ -189,7 +189,7 @@ export function Contact() {
                 name="message"
                 rows={4}
                 placeholder="Erzähl mir kurz von deinen Zielen oder Fragen…"
-                className="w-full px-4 sm:px-5 py-3.5 sm:py-4 rounded-2xl border border-sand bg-white focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/20 transition-all resize-none text-charcoal text-base"
+                className="w-full px-4 sm:px-5 py-3.5 sm:py-4 rounded-2xl border border-sand bg-white focus:border-teal focus:outline-none focus:ring-4 focus:ring-teal/15 focus:shadow-soft transition-all duration-400 resize-none text-charcoal text-base"
               />
             </div>
 
@@ -250,7 +250,7 @@ function Field({
         name={name}
         type={type}
         required={required}
-        className="w-full px-4 sm:px-5 py-3.5 sm:py-4 rounded-2xl border border-sand bg-white focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/20 transition-all text-charcoal text-base"
+        className="w-full px-4 sm:px-5 py-3.5 sm:py-4 rounded-2xl border border-sand bg-white focus:border-teal focus:outline-none focus:ring-4 focus:ring-teal/15 focus:shadow-soft transition-all duration-400 text-charcoal text-base"
       />
     </div>
   );

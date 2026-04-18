@@ -83,10 +83,10 @@ export function Testimonials() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.6, delay: i * 0.08 }}
-                className={`${layouts[i]} relative group rounded-3xl p-6 sm:p-8 lg:p-10 overflow-hidden transition-all ${
+                className={`${layouts[i]} relative group rounded-3xl p-6 sm:p-8 lg:p-10 overflow-hidden transition-all duration-500 ease-smooth hover:-translate-y-1 ${
                   isFeatured
-                    ? "bg-forest text-cream"
-                    : "bg-white border border-sand"
+                    ? "bg-forest text-cream hover:shadow-soft-xl hover:shadow-forest/20"
+                    : "bg-white border border-sand hover:border-teal/30 hover:shadow-soft-lg"
                 }`}
               >
                 <Quote

@@ -47,10 +47,10 @@ export function Navbar() {
       <motion.header
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        className={`xl:hidden fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className={`xl:hidden fixed top-0 inset-x-0 z-50 transition-all duration-500 ease-smooth ${
           scrolled
-            ? "bg-cream/85 backdrop-blur-xl border-b border-forest/5"
+            ? "bg-cream/90 backdrop-blur-2xl border-b border-forest/5 shadow-soft"
             : "bg-transparent"
         }`}
       >
@@ -106,10 +106,11 @@ export function Navbar() {
           <motion.a
             href="#home"
             whileHover={{ scale: 1.02 }}
-            className={`group flex items-center gap-3 pl-2 pr-5 py-2 rounded-full transition-all ${
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            className={`group flex items-center gap-3 pl-2 pr-5 py-2 rounded-full transition-all duration-500 ease-smooth ${
               scrolled
-                ? "bg-forest/90 backdrop-blur-xl shadow-lg shadow-forest/10"
-                : "bg-forest"
+                ? "bg-forest/90 backdrop-blur-2xl shadow-soft-md"
+                : "bg-forest shadow-soft-sm"
             }`}
           >
             <div className="w-10 h-10 rounded-full bg-teal/15 flex items-center justify-center">
@@ -123,10 +124,10 @@ export function Navbar() {
 
           {/* Main pill nav */}
           <nav
-            className={`flex items-center gap-1 p-1.5 rounded-full transition-all ${
+            className={`flex items-center gap-1 p-1.5 rounded-full transition-all duration-500 ease-smooth ${
               scrolled
-                ? "bg-white/75 backdrop-blur-xl shadow-lg shadow-forest/5 border border-white/60"
-                : "bg-white/50 backdrop-blur-lg border border-white/40"
+                ? "bg-white/80 backdrop-blur-2xl shadow-soft-md border border-white/60"
+                : "bg-white/55 backdrop-blur-xl border border-white/40"
             }`}
           >
             {links.map((l) => {
@@ -160,10 +161,10 @@ export function Navbar() {
           <div className="flex items-center gap-2">
             <a
               href="tel:+491726223371"
-              className={`flex items-center gap-2 px-4 py-3 rounded-full font-mono text-xs transition-all ${
+              className={`flex items-center gap-2 px-4 py-3 rounded-full font-mono text-xs transition-all duration-500 ease-smooth ${
                 scrolled
-                  ? "bg-white/75 backdrop-blur-xl border border-white/60 text-forest hover:bg-white"
-                  : "bg-white/50 backdrop-blur-lg border border-white/40 text-forest/80 hover:bg-white/80"
+                  ? "bg-white/80 backdrop-blur-2xl border border-white/60 text-forest hover:bg-white hover:shadow-soft"
+                  : "bg-white/55 backdrop-blur-xl border border-white/40 text-forest/80 hover:bg-white/80"
               }`}
               aria-label="Marco anrufen"
             >
@@ -172,10 +173,10 @@ export function Navbar() {
             </a>
             <a
               href="/erstgespraech"
-              className="group flex items-center gap-2 bg-teal hover:bg-forest text-forest hover:text-cream pl-5 pr-2 py-2 rounded-full text-sm font-semibold transition-all hover:shadow-xl hover:shadow-teal/30"
+              className="group relative overflow-hidden flex items-center gap-2 bg-teal hover:bg-mint text-forest pl-5 pr-2 py-2 rounded-full text-sm font-semibold transition-all duration-400 ease-smooth hover:shadow-teal-glow"
             >
-              Erstgespräch
-              <span className="w-8 h-8 rounded-full bg-forest group-hover:bg-teal flex items-center justify-center text-cream group-hover:text-forest transition-colors">
+              <span className="relative z-10">Erstgespräch</span>
+              <span className="relative z-10 w-8 h-8 rounded-full bg-forest group-hover:bg-forest flex items-center justify-center text-cream transition-all duration-500 group-hover:rotate-45">
                 <ArrowUpRight size={14} />
               </span>
             </a>
