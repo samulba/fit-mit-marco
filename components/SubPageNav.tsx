@@ -35,13 +35,16 @@ export function SubPageNav({
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 py-4 flex items-center justify-between text-cream">
-        <Link href="/" className="flex items-center gap-3 group">
-          <LogoIcon size={36} variant="dark" />
-          <div className="font-display font-bold leading-none">
-            <div className="text-base">fit mit</div>
-            <div className="text-base text-mint -mt-0.5">marco</div>
-          </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-4 flex items-center justify-between text-cream">
+        <Link
+          href="/"
+          className="flex items-center gap-2.5 group"
+          aria-label="Fit mit Marco – Zur Startseite"
+        >
+          <LogoIcon size={34} variant="dark" />
+          <span className="font-display font-bold text-[1.05rem] leading-none whitespace-nowrap">
+            fit mit <span className="italic text-mint">marco</span>
+          </span>
         </Link>
         <Link
           href={backHref}

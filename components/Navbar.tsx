@@ -54,13 +54,17 @@ export function Navbar() {
             : "bg-transparent"
         }`}
       >
-        <div className="flex items-center justify-between h-16 px-5">
-          <a href="#home" className="flex items-center gap-2 group">
-            <LogoIcon size={36} variant="dark" />
-            <div className="font-display font-bold leading-none text-forest">
-              <div className="text-base">fit mit</div>
-              <div className="text-base text-teal -mt-0.5">marco</div>
-            </div>
+        <div className="flex items-center justify-between h-16 px-4 sm:px-5">
+          <a
+            href="#home"
+            className="flex items-center gap-2.5 group"
+            aria-label="Fit mit Marco – Zur Startseite"
+          >
+            <LogoIcon size={34} variant="dark" />
+            <span className="font-display font-bold text-[1.05rem] leading-none text-forest whitespace-nowrap">
+              fit mit{" "}
+              <span className="italic text-teal">marco</span>
+            </span>
           </a>
           <button
             onClick={() => setOpen(!open)}

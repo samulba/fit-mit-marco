@@ -201,17 +201,17 @@ export function Hero() {
               className="font-display font-bold leading-[0.95] tracking-tight"
             >
               <SplitLine delay={0.3}>
-                <span className="block text-[clamp(2.25rem,8vw,7rem)]">
+                <span className="block text-[clamp(3rem,11vw,7.5rem)]">
                   Dein Körper
                 </span>
               </SplitLine>
               <SplitLine delay={0.45}>
-                <span className="block text-[clamp(2.25rem,8vw,7rem)] text-white/40 italic">
+                <span className="block text-[clamp(3rem,11vw,7.5rem)] text-white/40 italic">
                   kann mehr
                 </span>
               </SplitLine>
               <SplitLine delay={0.6}>
-                <span className="block text-[clamp(2.25rem,8vw,7rem)]">
+                <span className="block text-[clamp(3rem,11vw,7.5rem)]">
                   als du <span className="text-teal italic">denkst.</span>
                 </span>
               </SplitLine>
