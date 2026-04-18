@@ -115,6 +115,30 @@ export default function ImpressumPage() {
         Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des
         jeweiligen Autors bzw. Erstellers.
       </p>
+
+      <h2>Konzept, Design &amp; Entwicklung</h2>
+      <div className="card">
+        <p>
+          Diese Website wurde gestaltet und umgesetzt von:
+        </p>
+        <p>
+          <strong>VicinusMedia</strong> – Webdesign &amp; Entwicklung aus
+          München
+          <br />
+          <a
+            href="https://www.vicinusmedia.com"
+            target="_blank"
+            rel="noopener"
+          >
+            www.vicinusmedia.com
+          </a>
+        </p>
+        <p>
+          Die Bildrechte an allen eigens erstellten Grafiken, Layouts und
+          Designelementen verbleiben bei VicinusMedia bzw. beim Auftraggeber
+          Marco Degel.
+        </p>
+      </div>
     </LegalPage>
   );
 }

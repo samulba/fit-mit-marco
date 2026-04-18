@@ -1,5 +1,5 @@
 import { Logo } from "./Logo";
-import { MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Phone, Mail, ArrowUpRight, Sparkles } from "lucide-react";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -119,7 +119,44 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm text-white/40">
+        {/* Credit bar — legible, classy, dofollow backlink for VicinusMedia */}
+        <div className="pt-8 border-t border-white/10">
+          <a
+            href="https://www.vicinusmedia.com"
+            target="_blank"
+            rel="noopener"
+            className="group block"
+            aria-label="Webdesign und Entwicklung von VicinusMedia"
+          >
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-white/[0.04] to-white/[0.01] border border-white/10 hover:border-teal/40 hover:bg-white/[0.06] transition-colors">
+              <div className="flex items-center gap-4">
+                <div className="w-11 h-11 rounded-xl bg-teal/15 border border-teal/30 text-mint flex items-center justify-center flex-shrink-0 group-hover:bg-teal group-hover:text-forest transition-colors">
+                  <Sparkles size={18} />
+                </div>
+                <div>
+                  <div className="text-[0.65rem] font-mono tracking-[0.25em] uppercase text-mint mb-1">
+                    Design &amp; Entwicklung
+                  </div>
+                  <div className="font-display font-bold text-lg text-white leading-tight">
+                    VicinusMedia{" "}
+                    <span className="italic text-white/50 font-normal">
+                      — Webdesign aus München
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 text-mint text-sm font-semibold">
+                <span>vicinusmedia.com</span>
+                <span className="w-8 h-8 rounded-full bg-teal/15 group-hover:bg-teal group-hover:text-forest text-mint flex items-center justify-center transition-all group-hover:rotate-45">
+                  <ArrowUpRight size={14} />
+                </span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        {/* Tiny copyright row */}
+        <div className="mt-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 text-sm text-white/40">
           <div>© 2026 Fit mit Marco · Marco Degel</div>
           <div className="font-mono text-xs">
             Mit viel Herz gemacht in München.
