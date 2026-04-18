@@ -65,22 +65,58 @@ export function Hero() {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const onMove = (e: MouseEvent) => {
+
+    // Listen at window level and recompute the position relative to the hero's
+    // bounding box. This way the fixed header (and any other overlay) does not
+    // trigger a false mouseleave on the hero itself. The spotlight keeps
+    // tracking smoothly as long as the cursor is visually within hero bounds.
+    let rafId = 0;
+    let lastEvent: MouseEvent | null = null;
+
+    const update = () => {
+      rafId = 0;
+      if (!lastEvent || !el) return;
       const rect = el.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width;
-      const y = (e.clientY - rect.top) / rect.height;
-      pointerX.set(Math.max(0, Math.min(1, x)));
-      pointerY.set(Math.max(0, Math.min(1, y)));
+      const x = (lastEvent.clientX - rect.left) / rect.width;
+      const y = (lastEvent.clientY - rect.top) / rect.height;
+      // Only update while the pointer is visually inside the hero viewport
+      if (
+        lastEvent.clientX >= rect.left &&
+        lastEvent.clientX <= rect.right &&
+        lastEvent.clientY >= rect.top &&
+        lastEvent.clientY <= rect.bottom
+      ) {
+        pointerX.set(Math.max(0, Math.min(1, x)));
+        pointerY.set(Math.max(0, Math.min(1, y)));
+      }
     };
-    const onLeave = () => {
-      pointerX.set(0.5);
-      pointerY.set(0.5);
+
+    const onMove = (e: MouseEvent) => {
+      lastEvent = e;
+      // Throttle to the next frame so spring smoothing has clean samples
+      if (!rafId) rafId = requestAnimationFrame(update);
     };
-    el.addEventListener("mousemove", onMove);
-    el.addEventListener("mouseleave", onLeave);
+
+    const onPageLeave = (e: MouseEvent) => {
+      // Only reset when the cursor truly leaves the document (e.g. leaving
+      // the window), not when it hops onto the fixed nav overlay.
+      if (
+        e.clientY <= 0 ||
+        e.clientX <= 0 ||
+        e.clientX >= window.innerWidth ||
+        e.clientY >= window.innerHeight
+      ) {
+        pointerX.set(0.5);
+        pointerY.set(0.5);
+      }
+    };
+
+    window.addEventListener("mousemove", onMove, { passive: true });
+    document.addEventListener("mouseleave", onPageLeave);
     return () => {
-      el.removeEventListener("mousemove", onMove);
-      el.removeEventListener("mouseleave", onLeave);
+      window.removeEventListener("mousemove", onMove);
+      document.removeEventListener("mouseleave", onPageLeave);
+      if (rafId) cancelAnimationFrame(rafId);
     };
   }, [pointerX, pointerY]);
 
