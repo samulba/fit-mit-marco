@@ -378,26 +378,15 @@ function VisualScene({
 function PhoneScene() {
   return (
     <div className="relative w-full h-full flex items-center justify-center">
-      {[0, 1, 2].map((i) => (
-        <motion.div
-          key={i}
-          animate={{ scale: [1, 2.2, 2.2], opacity: [0.6, 0, 0] }}
-          transition={{
-            duration: 2.4,
-            delay: i * 0.7,
-            repeat: Infinity,
-            ease: "easeOut",
-          }}
-          className="absolute w-40 h-40 rounded-full border border-mint"
-        />
-      ))}
-      <motion.div
-        animate={{ rotate: 360 }}
-        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-        className="absolute w-80 h-80 rounded-full border border-teal/25"
-      >
+      {/* CSS-only ripples — 3× lighter than framer-motion loops */}
+      <div className="absolute w-40 h-40 rounded-full border border-mint anim-ripple" />
+      <div className="absolute w-40 h-40 rounded-full border border-mint anim-ripple-2" />
+      <div className="absolute w-40 h-40 rounded-full border border-mint anim-ripple-3" />
+
+      {/* CSS-only rotating ring */}
+      <div className="absolute w-80 h-80 rounded-full border border-teal/25 anim-spin-slow">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-teal" />
-      </motion.div>
+      </div>
       <motion.div
         animate={{ rotate: [0, -12, 12, -10, 10, 0] }}
         transition={{
@@ -442,18 +431,12 @@ function PhoneScene() {
 function ClipboardScene() {
   return (
     <div className="relative w-full h-full flex items-center justify-center">
-      <motion.div
-        animate={{ rotate: -360 }}
-        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        className="absolute w-80 h-80 rounded-full border border-mint/20"
-      >
+      {/* CSS-only orbiting ring (reversed) */}
+      <div className="absolute w-80 h-80 rounded-full border border-mint/20 anim-spin-reverse-slow">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-mint" />
-      </motion.div>
-      <motion.div
-        animate={{ y: [0, -6, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="relative w-56 h-64 rounded-[1.5rem] bg-cream text-forest shadow-2xl shadow-teal/20 overflow-hidden"
-      >
+      </div>
+      {/* Subtle float on the card (CSS animation) */}
+      <div className="relative w-56 h-64 rounded-[1.5rem] bg-cream text-forest shadow-2xl shadow-teal/20 overflow-hidden anim-float-y">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-3 w-24 h-6 bg-forest rounded-t-lg rounded-b-md flex items-center justify-center">
           <div className="w-10 h-2 bg-teal rounded-full" />
         </div>
@@ -498,7 +481,7 @@ function ClipboardScene() {
             </svg>
           </motion.div>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }
@@ -507,21 +490,13 @@ function ClipboardScene() {
 function TrainingScene() {
   return (
     <div className="relative w-full h-full flex items-center justify-center">
-      {/* Rotating outer ring */}
-      <motion.div
-        animate={{ rotate: 360 }}
-        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-        className="absolute w-80 h-80 rounded-full border border-teal/20"
-      >
+      {/* CSS-only rotating outer ring */}
+      <div className="absolute w-80 h-80 rounded-full border border-teal/20 anim-spin-slower">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-teal" />
-      </motion.div>
+      </div>
 
-      {/* Breathing aura around the house */}
-      <motion.div
-        animate={{ scale: [1, 1.08, 1], opacity: [0.35, 0.55, 0.35] }}
-        transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute w-64 h-64 rounded-full bg-teal/15 blur-2xl"
-      />
+      {/* CSS-only breathing aura */}
+      <div className="absolute w-64 h-64 rounded-full bg-teal/15 blur-2xl anim-pulse-soft" />
 
       {/* House with figure inside */}
       <div className="relative">

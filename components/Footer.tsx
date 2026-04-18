@@ -6,6 +6,7 @@ const navLinks = [
   { href: "/#about", label: "Über mich" },
   { href: "/#leistungen", label: "Leistungen" },
   { href: "/preise", label: "Preise" },
+  { href: "/ratgeber", label: "Ratgeber" },
   { href: "/fuer-angehoerige", label: "Für Angehörige" },
   { href: "/erstgespraech", label: "Erstgespräch" },
 ];

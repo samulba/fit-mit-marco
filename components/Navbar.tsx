@@ -9,8 +9,8 @@ const links = [
   { href: "/", label: "Home", type: "page" as const },
   { href: "#leistungen", label: "Leistungen", type: "anchor" as const },
   { href: "/preise", label: "Preise", type: "page" as const },
+  { href: "/ratgeber", label: "Ratgeber", type: "page" as const },
   { href: "/fuer-angehoerige", label: "Angehörige", type: "page" as const },
-  { href: "#kontakt", label: "Kontakt", type: "anchor" as const },
 ];
 
 export function Navbar() {

@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 
 export function CTABanner() {
   return (
-    <section className="py-16 sm:py-20 lg:py-28 bg-white">
+    <section className="deferred-section py-16 sm:py-20 lg:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

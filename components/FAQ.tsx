@@ -42,7 +42,7 @@ export function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="py-20 sm:py-24 lg:py-32 bg-white">
+    <section className="deferred-section py-20 sm:py-24 lg:py-32 bg-white">
       <div className="max-w-4xl mx-auto px-5 sm:px-6 lg:px-10">
         <div className="mb-12 sm:mb-16 text-center">
           <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-4">

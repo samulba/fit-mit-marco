@@ -586,32 +586,15 @@ function VisualScene({
 function PhoneScene({ local }: { local: MotionValue<number> }) {
   return (
     <div className="relative w-full h-full flex items-center justify-center">
-      {/* Ripples */}
-      {[0, 1, 2].map((i) => (
-        <motion.div
-          key={i}
-          animate={{
-            scale: [1, 2.2, 2.2],
-            opacity: [0.6, 0, 0],
-          }}
-          transition={{
-            duration: 2.4,
-            delay: i * 0.7,
-            repeat: Infinity,
-            ease: "easeOut",
-          }}
-          className="absolute w-40 h-40 rounded-full border border-mint"
-        />
-      ))}
+      {/* CSS-only ripples */}
+      <div className="absolute w-40 h-40 rounded-full border border-mint anim-ripple" />
+      <div className="absolute w-40 h-40 rounded-full border border-mint anim-ripple-2" />
+      <div className="absolute w-40 h-40 rounded-full border border-mint anim-ripple-3" />
 
-      {/* Outer ring */}
-      <motion.div
-        animate={{ rotate: 360 }}
-        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-        className="absolute w-80 h-80 rounded-full border border-teal/25"
-      >
+      {/* CSS-only outer ring */}
+      <div className="absolute w-80 h-80 rounded-full border border-teal/25 anim-spin-slow">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-teal" />
-      </motion.div>
+      </div>
 
       {/* Central disk with phone icon */}
       <motion.div
@@ -665,21 +648,13 @@ function PhoneScene({ local }: { local: MotionValue<number> }) {
 function ClipboardScene({ local }: { local: MotionValue<number> }) {
   return (
     <div className="relative w-full h-full flex items-center justify-center">
-      {/* Orbiting ring */}
-      <motion.div
-        animate={{ rotate: -360 }}
-        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        className="absolute w-80 h-80 rounded-full border border-mint/20"
-      >
+      {/* CSS-only orbiting ring */}
+      <div className="absolute w-80 h-80 rounded-full border border-mint/20 anim-spin-reverse-slow">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-mint" />
-      </motion.div>
+      </div>
 
-      {/* Clipboard card */}
-      <motion.div
-        animate={{ y: [0, -6, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="relative w-56 h-64 rounded-[1.5rem] bg-cream text-forest shadow-2xl shadow-teal/20 overflow-hidden"
-      >
+      {/* CSS-only floating clipboard */}
+      <div className="relative w-56 h-64 rounded-[1.5rem] bg-cream text-forest shadow-2xl shadow-teal/20 overflow-hidden anim-float-y">
         {/* Top clip */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-3 w-24 h-6 bg-forest rounded-t-lg rounded-b-md flex items-center justify-center">
           <div className="w-10 h-2 bg-teal rounded-full" />
@@ -731,7 +706,7 @@ function ClipboardScene({ local }: { local: MotionValue<number> }) {
             </svg>
           </motion.div>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }
@@ -744,21 +719,13 @@ function RouteScene({ local }: { local: MotionValue<number> }) {
 
   return (
     <div className="relative w-full h-full flex items-center justify-center">
-      {/* Outer rotating ring */}
-      <motion.div
-        animate={{ rotate: 360 }}
-        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-        className="absolute w-80 h-80 rounded-full border border-mint/20"
-      >
+      {/* CSS-only outer rotating ring */}
+      <div className="absolute w-80 h-80 rounded-full border border-mint/20 anim-spin-slow">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-mint" />
-      </motion.div>
+      </div>
 
-      {/* Map card */}
-      <motion.div
-        animate={{ y: [0, -6, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="relative w-60 h-72 rounded-[1.5rem] bg-cream text-forest shadow-2xl shadow-teal/20 overflow-hidden p-6"
-      >
+      {/* CSS-only floating map card */}
+      <div className="relative w-60 h-72 rounded-[1.5rem] bg-cream text-forest shadow-2xl shadow-teal/20 overflow-hidden p-6 anim-float-y">
         {/* Header */}
         <div className="flex items-center justify-between mb-2">
           <div className="font-mono text-[0.6rem] tracking-[0.2em] uppercase text-forest/50">
@@ -917,7 +884,7 @@ function RouteScene({ local }: { local: MotionValue<number> }) {
             />
           </svg>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

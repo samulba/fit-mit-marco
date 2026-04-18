@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { leistungen } from "@/lib/leistungen";
+import { articles } from "@/lib/ratgeber";
 
 const SITE = "https://fitmitmarco.com";
 
@@ -58,5 +59,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...leistungRoutes];
+  const ratgeberIndex: MetadataRoute.Sitemap = [
+    {
+      url: `${SITE}/ratgeber`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.75,
+    },
+  ];
+
+  const ratgeberArticles: MetadataRoute.Sitemap = articles.map((a) => ({
+    url: `${SITE}/ratgeber/${a.slug}`,
+    lastModified: new Date(a.updated || a.published),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [
+    ...staticRoutes,
+    ...leistungRoutes,
+    ...ratgeberIndex,
+    ...ratgeberArticles,
+  ];
 }
