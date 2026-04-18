@@ -35,7 +35,7 @@ const jetbrains = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Fit mit Marco | Personal Trainer für Senioren in München",
   description:
-    "Dein Personal Trainer für mehr Lebensqualität in München. Mit über 12 Jahren Erfahrung helfe ich Menschen ab 60, ihre Stärke, Beweglichkeit und Lebensfreude zurückzugewinnen – individuell, sicher und bei dir zuhause.",
+    "Dein Personal Trainer für mehr Lebensqualität in München. Ich helfe Menschen ab 60, ihre Stärke, Beweglichkeit und Lebensfreude zurückzugewinnen – individuell, sicher und bei dir zuhause.",
   keywords: [
     "Personal Trainer München",
     "Senioren Fitness",

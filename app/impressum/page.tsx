@@ -3,7 +3,7 @@ import { LegalPage } from "@/components/LegalPage";
 
 export const metadata: Metadata = {
   title: "Impressum | Fit mit Marco",
-  description: "Anbieterkennzeichnung nach § 5 TMG",
+  description: "Anbieterkennzeichnung nach § 5 DDG",
   robots: { index: true, follow: false },
 };
 
@@ -13,11 +13,13 @@ export default function ImpressumPage() {
       <h2>Angaben gemäß § 5 DDG</h2>
       <div className="card">
         <p>
-          <strong>Samuel Liba Unternehmensberatung</strong>
+          <strong>Marco Degel – Fit mit Marco</strong>
           <br />
-          Geranienweg 7
+          Personal Training für Senioren
           <br />
-          85586 Poing
+          Beethovenstraße 3
+          <br />
+          85622 Feldkirchen
           <br />
           Deutschland
         </p>
@@ -27,33 +29,35 @@ export default function ImpressumPage() {
       <div className="card">
         <p>
           <strong>Telefon:</strong>{" "}
-          <a href="tel:+4917631335327">+49 176 31335327</a>
+          <a href="tel:+491726223371">+49 172 6223371</a>
           <br />
           <strong>E-Mail:</strong>{" "}
-          <a href="mailto:info@vicinusmedia.com">info@vicinusmedia.com</a>
+          <a href="mailto:fitmitmarcomuc@gmail.com">
+            fitmitmarcomuc@gmail.com
+          </a>
           <br />
           <strong>Web:</strong>{" "}
-          <a
-            href="https://www.vicinusmedia.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            www.vicinusmedia.com
-          </a>
+          <a href="https://fitmitmarco.com">fitmitmarco.com</a>
         </p>
       </div>
 
-      <h2>Umsatzsteuer-ID</h2>
+      <h2>Steuerliche Angaben</h2>
       <p>
-        Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:{" "}
-        <strong>DE450215192</strong>
+        Die Tätigkeit wird <strong>freiberuflich</strong> ausgeübt. Die
+        steuerliche Erfassung wurde über ELSTER beim zuständigen Finanzamt
+        eingereicht. Eine Gewerbeanmeldung liegt daher nicht vor.
+      </p>
+      <p>
+        Gemäß <strong>§ 19 UStG (Kleinunternehmerregelung)</strong> wird keine
+        Umsatzsteuer ausgewiesen. Eine Umsatzsteuer-Identifikationsnummer
+        besteht derzeit nicht.
       </p>
 
       <h2>Redaktionell verantwortlich</h2>
       <p>
-        Samuel Liba
+        Marco Degel
         <br />
-        Geranienweg 7, 85586 Poing
+        Beethovenstraße 3, 85622 Feldkirchen
       </p>
 
       <h2>EU-Streitschlichtung</h2>
@@ -78,12 +82,12 @@ export default function ImpressumPage() {
 
       <h2>Haftung für Inhalte</h2>
       <p>
-        Als Diensteanbieter sind wir gemäß § 7 Abs.1 DDG für eigene Inhalte auf
-        diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8
-        bis 10 DDG sind wir als Diensteanbieter jedoch nicht verpflichtet,
-        übermittelte oder gespeicherte fremde Informationen zu überwachen oder
-        nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit
-        hinweisen.
+        Als Diensteanbieter sind wir gemäß § 7 Abs. 1 DDG für eigene Inhalte
+        auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach
+        §§ 8 bis 10 DDG sind wir als Diensteanbieter jedoch nicht
+        verpflichtet, übermittelte oder gespeicherte fremde Informationen zu
+        überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige
+        Tätigkeit hinweisen.
       </p>
       <p>
         Verpflichtungen zur Entfernung oder Sperrung der Nutzung von
@@ -105,7 +109,7 @@ export default function ImpressumPage() {
 
       <h2>Urheberrecht</h2>
       <p>
-        Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen
+        Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen
         Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung,
         Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der
         Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des

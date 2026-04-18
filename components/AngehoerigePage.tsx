@@ -574,13 +574,12 @@ function QuoteBlock() {
             className="font-display italic leading-[1.2] text-cream mb-8"
             style={{ fontSize: "clamp(1.5rem, 3vw, 2.5rem)" }}
           >
-            &ldquo;Marco hat meine Mutter wieder zum Lächeln gebracht. Sie
-            freut sich inzwischen jede Woche auf das Training – und ich habe
-            endlich das Gefühl, dass jemand gut auf sie aufpasst, auch wenn ich
-            nicht da bin.&rdquo;
+            &ldquo;Training im Alter ist nicht dazu da, Höchstleistungen zu
+            bringen – sondern Sicherheit, Kraft und Lebensqualität im Alltag
+            zu verbessern. Wer rastet, der rostet.&rdquo;
           </blockquote>
           <figcaption className="text-sm text-white/50">
-            Tochter einer 76-jährigen Kundin · Empfehlung
+            Marco Degel · Fit mit Marco
           </figcaption>
         </motion.figure>
       </div>

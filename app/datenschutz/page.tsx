@@ -20,20 +20,20 @@ export default function DatenschutzPage() {
       </p>
       <div className="card">
         <p>
-          <strong>Samuel Liba Unternehmensberatung</strong>
+          <strong>Marco Degel – Fit mit Marco</strong>
           <br />
-          Geranienweg 7
+          Beethovenstraße 3
           <br />
-          85586 Poing
+          85622 Feldkirchen
           <br />
           Deutschland
           <br />
           <br />
           Telefon:{" "}
-          <a href="tel:+4917631335327">+49 176 31335327</a>
+          <a href="tel:+491726223371">+49 172 6223371</a>
           <br />
           E-Mail:{" "}
-          <a href="mailto:info@vicinusmedia.com">info@vicinusmedia.com</a>
+          <a href="mailto:fitmitmarcomuc@gmail.com">fitmitmarcomuc@gmail.com</a>
         </p>
       </div>
 
@@ -160,7 +160,7 @@ export default function DatenschutzPage() {
       </ul>
       <p>
         Zur Ausübung deiner Rechte reicht eine formlose Mitteilung an{" "}
-        <a href="mailto:info@vicinusmedia.com">info@vicinusmedia.com</a>.
+        <a href="mailto:fitmitmarcomuc@gmail.com">fitmitmarcomuc@gmail.com</a>.
       </p>
 
       <h2>9. Beschwerderecht bei der Aufsichtsbehörde</h2>

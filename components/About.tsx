@@ -7,18 +7,18 @@ import { Award, Package, Heart, ArrowUpRight } from "lucide-react";
 const usps = [
   {
     icon: Award,
-    title: "Zertifizierter Trainer",
-    text: "Staatlich anerkannte Ausbildung mit Spezialisierung auf Senioren-Fitness und Reha-Sport.",
+    title: "Erfahrung aus dem Leistungssport",
+    text: "4 Jahre Hochleistungssport-Betreuung und mehrere Jahre Personal-Training-Erfahrung. Training auf Basis fundierter Praxis, zugeschnitten auf deinen Körper.",
   },
   {
     icon: Package,
     title: "Equipment inklusive",
-    text: "Ich bringe professionelles Equipment mit – du brauchst nichts weiter als bequeme Kleidung.",
+    text: "Ich bringe alles mit, was wir brauchen – Bänder, Hanteln, Matte, Balance- und Koordinationstools. Du brauchst nur bequeme Kleidung.",
   },
   {
     icon: Heart,
-    title: "Zufriedenheitsgarantie",
-    text: "Dein Wohlbefinden steht an erster Stelle. Kein Druck, kein Stress – dein Tempo zählt.",
+    title: "Dein Tempo steht im Mittelpunkt",
+    text: "Kein Druck, kein Stress – dein Wohlbefinden entscheidet. Wir trainieren so, wie es für dich heute passt.",
   },
 ];
 
@@ -42,9 +42,9 @@ export function About() {
       {/* Background number */}
       <motion.div
         style={{ y: numberY }}
-        className="absolute -right-10 sm:-right-20 top-10 font-display text-[16rem] sm:text-[22rem] lg:text-[32rem] leading-none font-bold text-forest/[0.035] pointer-events-none select-none"
+        className="absolute -right-10 sm:-right-20 top-10 font-display text-[12rem] sm:text-[18rem] lg:text-[26rem] leading-none font-bold text-forest/[0.035] pointer-events-none select-none"
       >
-        12+
+        200+
       </motion.div>
 
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 grid xl:grid-cols-12 gap-10 xl:gap-20 items-center relative">
@@ -71,14 +71,14 @@ export function About() {
               Marco Degel
             </div>
             <div className="absolute top-5 right-5 px-3 py-1.5 rounded-full bg-teal text-forest text-[0.65rem] tracking-[0.15em] font-semibold">
-              seit 2013
+              München
             </div>
 
             {/* Quote at bottom */}
             <div className="absolute bottom-5 left-5 right-5">
               <div className="bg-cream/95 backdrop-blur-md rounded-2xl p-5 lg:p-6">
                 <div className="font-display italic text-lg lg:text-xl text-forest leading-tight">
-                  &ldquo;Du bist nie zu alt, um wieder stark zu werden.&rdquo;
+                  &ldquo;Wer rastet, der rostet.&rdquo;
                 </div>
               </div>
             </div>
@@ -97,15 +97,15 @@ export function About() {
                 200+
               </div>
               <div className="text-[0.65rem] text-white/60 mt-2 tracking-[0.2em] uppercase">
-                Kunden begleitet
+                Trainings&shy;stunden
               </div>
             </div>
             <div className="bg-white rounded-2xl p-5 lg:p-6 border border-sand">
               <div className="font-display text-3xl lg:text-4xl font-bold text-forest leading-none">
-                5.0
+                4 J.
               </div>
               <div className="text-[0.65rem] text-slate mt-2 tracking-[0.2em] uppercase">
-                Google Rating
+                Hochleistungs&shy;sport
               </div>
             </div>
           </motion.div>
@@ -126,12 +126,15 @@ export function About() {
               Hi, ich bin <span className="italic text-teal">Marco.</span>
             </h2>
             <p className="text-lg sm:text-xl lg:text-2xl text-forest/80 font-light leading-relaxed mb-6 lg:mb-8 max-w-2xl">
-              Seit über 12 Jahren helfe ich Menschen ab 60, ihre{" "}
-              <span className="text-forest font-normal">Selbstständigkeit</span>{" "}
-              und{" "}
-              <span className="text-teal font-normal">Lebensfreude</span>{" "}
-              zurückzugewinnen. Kein Fitnessstudio-Lärm. Kein Leistungsdruck.
-              Nur du, ich und dein Körper.
+              Ich begleite Menschen dabei, auch im Alter{" "}
+              <span className="text-forest font-normal">aktiv, mobil und selbstständig</span>{" "}
+              zu bleiben. Durch meine Erfahrung im Fitness- und
+              Gesundheitsbereich habe ich gesehen, wie wichtig gezieltes
+              Training gerade für ältere Menschen ist. Deshalb habe ich mich
+              mit{" "}
+              <span className="text-teal font-normal">&bdquo;Fit mit Marco&ldquo;</span>{" "}
+              auf persönliches, alltagstaugliches Training für Senioren in
+              München und Umgebung spezialisiert.
             </p>
           </motion.div>
 

@@ -165,8 +165,10 @@ export default function AGBPage() {
         den vertragstypischen, vorhersehbaren Schaden.
       </p>
       <p>
-        (3) Der Personal Trainer verfügt über eine gültige
-        Berufshaftpflichtversicherung.
+        (3) Für Personenschäden haftet der Personal Trainer im gesetzlichen
+        Rahmen. Der Abschluss einer Berufshaftpflichtversicherung ist in
+        Vorbereitung; nähere Angaben werden nach Abschluss im Impressum
+        ergänzt.
       </p>
 
       <h2>§ 10 Datenschutz</h2>

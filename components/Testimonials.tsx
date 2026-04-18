@@ -6,28 +6,24 @@ import { Quote, Star } from "lucide-react";
 
 const testimonials = [
   {
-    text: "Marco hat mir geholfen, nach meiner Hüft-OP wieder sicher auf den Beinen zu stehen. Seine Geduld und sein Fachwissen sind außergewöhnlich.",
-    name: "Helga M.",
-    age: 72,
-    source: "Google Bewertung",
+    text: "Marco hat mir gezeigt, wo kleine Veränderungen bei mir viel ausmachen. Ich fühle mich im Alltag deutlich beweglicher und freier – und das ohne großen Aufwand.",
+    name: "Annelise D.",
+    source: "Persönliche Empfehlung",
   },
   {
-    text: "Seit ich mit Marco trainiere, fühle ich mich zehn Jahre jünger. Die Rückenschmerzen sind fast weg und ich bin viel beweglicher geworden.",
-    name: "Werner K.",
-    age: 68,
-    source: "Google Bewertung",
+    text: "Ich war anfangs skeptisch, ob Personal Training für mich noch Sinn macht. Heute freue ich mich auf jede Einheit. Marco holt mich genau da ab, wo ich stehe.",
+    name: "Karl-Heinz W.",
+    source: "Persönliche Empfehlung",
   },
   {
-    text: "Marco ist pünktlich, professionell und macht das Training zu einem echten Highlight meiner Woche. Kann ich nur weiterempfehlen!",
-    name: "Ingrid S.",
-    age: 75,
-    source: "Empfehlung",
+    text: "Seit ich regelmäßig trainiere, fühle ich mich beim Gehen wieder viel sicherer. Das gibt mir im Alltag enorm viel Ruhe zurück.",
+    name: "Helga T.",
+    source: "Persönliche Empfehlung",
   },
   {
-    text: "Ich hätte nie gedacht, dass ich mit 70 noch so fit werden kann. Marco zeigt einem, was alles möglich ist – mit viel Humor und Einfühlungsvermögen.",
-    name: "Hans-Peter W.",
-    age: 70,
-    source: "Google Bewertung",
+    text: "Ich kann wieder längere Strecken gehen, ohne dass mir früh die Puste ausgeht. Für mich ein echtes Stück Lebensfreude zurück.",
+    name: "Konrad T.",
+    source: "Persönliche Empfehlung",
   },
 ];
 
@@ -141,7 +137,7 @@ export function Testimonials() {
                         isFeatured ? "text-white" : "text-forest"
                       }`}
                     >
-                      {t.name}, {t.age}
+                      {t.name}
                     </div>
                     <div
                       className={`text-xs ${

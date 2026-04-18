@@ -628,7 +628,8 @@ function QuoteBlock({ leistung }: { leistung: Leistung }) {
               </div>
               <div>
                 <div className="font-semibold">
-                  {leistung.quote.name}, {leistung.quote.age}
+                  {leistung.quote.name}
+                  {leistung.quote.age ? `, ${leistung.quote.age}` : ""}
                 </div>
                 <div className="text-xs text-white/50">
                   Kunde von Fit mit Marco

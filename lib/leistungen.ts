@@ -30,7 +30,7 @@ export type Leistung = {
   quote: {
     text: string;
     name: string;
-    age: number;
+    age?: number;
   };
   faq: { q: string; a: string }[];
   iconName:
@@ -41,6 +41,30 @@ export type Leistung = {
     | "stethoscope"
     | "apple";
 };
+
+// ─── Shared session defaults (60-Min Einheit bei dir zuhause) ───────────
+const sharedSteps = [
+  {
+    title: "Kurzes Gespräch & Tagescheck",
+    text: "Wie geht's dir heute? Wo zwickt es, was lief gut? Bevor wir starten, klären wir die Tagesform.",
+    duration: "~ 5 Min",
+  },
+  {
+    title: "Aufwärmen",
+    text: "Sanfte Mobilisation und leichte Bewegungen, damit Gelenke und Muskeln auf die Belastung vorbereitet sind.",
+    duration: "~ 10 Min",
+  },
+  {
+    title: "Individueller Hauptteil",
+    text: "Gleichgewicht, Kraft oder Mobilität – je nach deinem Ziel. Alles angepasst an dein Tempo, deinen Körper.",
+    duration: "~ 35 Min",
+  },
+  {
+    title: "Abschluss & Alltagstipps",
+    text: "Kurze Reflexion, Dehnung und zwei bis drei konkrete Empfehlungen, die du im Alltag umsetzen kannst.",
+    duration: "~ 10 Min",
+  },
+];
 
 export const leistungen: Leistung[] = [
   {
@@ -54,14 +78,14 @@ export const leistungen: Leistung[] = [
       kicker: "Leistung 01 · Fundament",
       headline: "Wieder stark.",
       headlineItalic: "Im Alltag.",
-      sub: "Ab 30 verlieren wir jedes Jahr Muskeln – ab 60 geht das schneller. Gezieltes Krafttraining dreht das um. Treppen, Einkaufstaschen, Enkelkinder hochheben: alles wieder leichter.",
+      sub: "Mit dem Alter verlieren wir Muskeln – gezieltes Training dreht das um. Treppen steigen, Einkaufstaschen tragen, Enkelkinder hochheben: Schritt für Schritt wird alles wieder leichter.",
     },
     forWhom: {
       title: "Für dich gemacht, wenn…",
       points: [
         "du merkst, dass dir Alltagsdinge schwerer fallen als früher",
-        "du Angst hast, nach einem längeren Krankenhausaufenthalt nicht mehr fit zu werden",
-        "du nach einer OP wieder Kraft aufbauen möchtest",
+        "du nach einem Krankenhausaufenthalt wieder zu Kräften kommen möchtest",
+        "du nach einer OP wieder Kraft aufbauen willst",
         "du einfach nicht mehr so schnell ermüden willst",
       ],
     },
@@ -69,75 +93,53 @@ export const leistungen: Leistung[] = [
       title: "Was dein Körper bekommt",
       items: [
         {
-          title: "Mehr Muskelmasse",
-          text: "Schon 2 Einheiten pro Woche genügen, um verlorene Muskeln zurückzugewinnen. Studien zeigen: Selbst 80-Jährige können Kraft aufbauen.",
+          title: "Mehr Kraft im Alltag",
+          text: "Aufstehen, Treppen, Taschen tragen – was dir heute schwer fällt, wird mit regelmäßigem Training spürbar leichter.",
         },
         {
           title: "Stärkere Knochen",
-          text: "Belastung durch Training erhöht die Knochendichte und senkt das Osteoporose-Risiko spürbar.",
+          text: "Belastung durch Training unterstützt die Knochendichte – ein wichtiger Faktor mit zunehmendem Alter.",
         },
         {
           title: "Stabiler Stoffwechsel",
-          text: "Mehr Muskulatur heißt: mehr Grundumsatz. Du nimmst leichter ab und hältst dein Gewicht ohne Diäten.",
+          text: "Mehr Muskulatur heißt: mehr Grundumsatz. Du hältst dein Gewicht leichter ohne extreme Diäten.",
         },
         {
-          title: "Selbstvertrauen",
+          title: "Mehr Selbstvertrauen",
           text: "Wenn du weißt, dass dich dein Körper trägt, gehst du wieder aufrechter durch die Welt.",
         },
       ],
     },
     session: {
       title: "So läuft eine Trainingsstunde ab",
-      sub: "60 Minuten bei dir zuhause – ich bringe alle Geräte mit",
-      steps: [
-        {
-          title: "Mobilisation & Aufwärmen",
-          text: "Sanfte Gelenkübungen, damit dein Körper bereit für Belastung ist.",
-          duration: "10 Min",
-        },
-        {
-          title: "Kraftübungen",
-          text: "Funktionelle Bewegungen mit Kettlebells, Widerstandsbändern oder Hanteln – immer angepasst an deine Tagesform.",
-          duration: "35 Min",
-        },
-        {
-          title: "Stabilisierung",
-          text: "Rumpf- und Balanceübungen, damit die neue Kraft auch im Alltag hält.",
-          duration: "10 Min",
-        },
-        {
-          title: "Cool-Down & Gespräch",
-          text: "Dehnen, kurze Reflexion, Plan für zuhause bis zum nächsten Mal.",
-          duration: "5 Min",
-        },
-      ],
+      sub: "60 Minuten bei dir zuhause – ich bringe Bänder, Hanteln und Matte mit",
+      steps: sharedSteps,
     },
     results: {
-      title: "Realistisch in 12 Wochen",
+      title: "Realistisch in 6 bis 12 Wochen",
       points: [
-        "Spürbar mehr Kraft in Beinen und Armen",
         "Sichereres Aufstehen vom Stuhl, aus dem Bett, aus dem Sessel",
-        "Leichteres Treppensteigen – ohne Pause",
-        "Weniger Nacken- und Schulterverspannungen",
+        "Leichteres Treppensteigen – mit weniger Pausen",
+        "Weniger Verspannungen in Nacken und Schultern",
+        "Mehr Selbstvertrauen bei alltäglichen Bewegungen",
       ],
     },
     quote: {
-      text: "Ich konnte nicht mal mehr meinen Koffer selbst in den Zug heben. Nach vier Monaten mit Marco hebe ich ihn wieder – und mehr.",
-      name: "Werner K.",
-      age: 68,
+      text: "Ich merke schon nach wenigen Wochen, wie viel leichter mir Treppen und Einkaufen wieder fallen. Marco holt mich genau dort ab, wo ich stehe.",
+      name: "Karl-Heinz W.",
     },
     faq: [
       {
         q: "Ist Krafttraining in meinem Alter nicht gefährlich?",
-        a: "Im Gegenteil. Gezieltes, richtig dosiertes Krafttraining ist eine der sichersten Sportarten für Senioren. Risikoreich ist das Nicht-Trainieren – das ist es, was dich schwach macht.",
+        a: "Im Gegenteil. Gezieltes, richtig dosiertes Krafttraining ist eine der sichersten und wichtigsten Trainingsformen im Alter. Risikoreich ist das Nicht-Trainieren – das ist es, was auf Dauer schwach macht.",
       },
       {
-        q: "Brauche ich viele schwere Gewichte?",
-        a: "Nein. Wir arbeiten hauptsächlich mit Körpergewicht, Widerstandsbändern und moderaten Hanteln. Alles platzsparend und bei dir zuhause durchführbar.",
+        q: "Brauche ich dafür schwere Gewichte?",
+        a: "Nein. Wir arbeiten hauptsächlich mit Körpergewicht, Widerstandsbändern und leichten Hanteln. Alles platzsparend und bei dir zuhause machbar.",
       },
       {
-        q: "Was, wenn ich Arthrose habe?",
-        a: "Krafttraining ist sogar empfohlen bei Arthrose – die Muskeln entlasten die Gelenke. Wir bauen das Training um schmerzhafte Bewegungen herum auf.",
+        q: "Was, wenn ich Beschwerden an den Gelenken habe?",
+        a: "Training lässt sich sehr gut an bestehende Beschwerden anpassen. Wir wählen die Übungen so, dass sie schonend sind und gleichzeitig die umliegende Muskulatur stärken.",
       },
     ],
   },
@@ -151,17 +153,17 @@ export const leistungen: Leistung[] = [
     iconName: "footprints",
     hero: {
       kicker: "Leistung 02 · Sicherheit",
-      headline: "Nie wieder",
-      headlineItalic: "stolpern.",
-      sub: "Ein Sturz im Alter ändert alles. Wer regelmäßig an seiner Balance arbeitet, reduziert sein Sturzrisiko um bis zu 50 Prozent. Das ist kein Zufall – das ist Training.",
+      headline: "Sicher",
+      headlineItalic: "auf den Beinen.",
+      sub: "Ein Sturz im Alter kann viel verändern. Wer regelmäßig an seiner Balance arbeitet, gewinnt Standfestigkeit und Sicherheit im Alltag zurück – und fühlt sich dabei deutlich freier.",
     },
     forWhom: {
       title: "Das richtige Training, wenn…",
       points: [
-        "du dich beim Gehen unsicher fühlst",
+        "du dich beim Gehen manchmal unsicher fühlst",
         "du schon mal gestürzt bist – oder Angst davor hast",
-        "du beim Treppensteigen dich am Geländer festhalten musst",
-        "dein Arzt Sturzprävention empfohlen hat",
+        "du dich beim Treppensteigen gerne festhältst",
+        "dir Sturzprävention empfohlen wurde",
       ],
     },
     benefits: {
@@ -169,7 +171,7 @@ export const leistungen: Leistung[] = [
       items: [
         {
           title: "Schnellere Reaktionen",
-          text: "Dein Gehirn lernt wieder, schnell auf Unebenheiten zu reagieren – so stolperst du nicht erst.",
+          text: "Dein Körper lernt wieder, auf Unebenheiten zu reagieren, bevor es zu einem Stolpern kommt.",
         },
         {
           title: "Starke Fußmuskulatur",
@@ -177,11 +179,11 @@ export const leistungen: Leistung[] = [
         },
         {
           title: "Bessere Körperwahrnehmung",
-          text: "Du spürst wieder, wo dein Körper im Raum steht – die Basis jeder Balance.",
+          text: "Du spürst wieder, wo dein Körper im Raum steht – die Grundlage jeder Balance.",
         },
         {
           title: "Mehr Mut",
-          text: "Wer seinem Körper vertraut, traut sich wieder an Dinge wie Wandern, Reisen oder Tanzen.",
+          text: "Wer seinem Körper vertraut, traut sich wieder an Dinge wie Spazieren, Wandern oder Reisen.",
         },
       ],
     },
@@ -190,53 +192,52 @@ export const leistungen: Leistung[] = [
       sub: "60 Minuten strukturiertes Training, 100% alltagsnah",
       steps: [
         {
-          title: "Gangbild-Analyse",
-          text: "Beim ersten Training schauen wir, wie du gehst und stehst – das ist die Grundlage.",
-          duration: "10 Min",
+          title: "Kurzes Gespräch & Tagescheck",
+          text: "Wie geht's dir heute? Wir schauen, was heute sinnvoll und sicher ist.",
+          duration: "~ 5 Min",
         },
         {
-          title: "Balance-Drills",
-          text: "Einbeinstand, Gewichtsverlagerung, Blick-Koordination – klassische und funktionelle Übungen.",
-          duration: "25 Min",
+          title: "Standfestigkeit aufbauen",
+          text: "Einbeinstand, Gewichtsverlagerung, Blick-Koordination – klassische und funktionelle Balance-Übungen.",
+          duration: "~ 20 Min",
         },
         {
           title: "Alltags-Szenarien",
-          text: "Stolperfallen simulieren, auf unebenem Untergrund gehen, aus dem Stand Richtung wechseln.",
-          duration: "20 Min",
+          text: "Sicheres Gehen, auf unebenem Untergrund, Richtung wechseln, Alltagsbewegungen durchgehen.",
+          duration: "~ 25 Min",
         },
         {
-          title: "Reflexion",
-          text: "Was hat heute gut funktioniert? Was nehmen wir beim nächsten Mal dazu?",
-          duration: "5 Min",
+          title: "Abschluss & Alltagstipps",
+          text: "Kurze Reflexion und konkrete Übungen, die du sicher zuhause weitermachen kannst.",
+          duration: "~ 10 Min",
         },
       ],
     },
     results: {
-      title: "Nach 8–12 Wochen typischerweise",
+      title: "Spürbar nach 6 bis 12 Wochen",
       points: [
-        "Sichere Einbeinstand für 20+ Sekunden",
-        "Treppensteigen ohne Geländer möglich",
-        "Spürbar weniger Angst bei Dunkelheit oder Nässe",
+        "Sichererer Stand und sichereres Gehen",
+        "Treppensteigen mit weniger Unsicherheit",
+        "Weniger Angst bei Dunkelheit, Nässe oder Unebenheiten",
         "Besseres Vertrauen in den eigenen Körper",
       ],
     },
     quote: {
-      text: "Nach meinem Sturz letzten Winter hatte ich richtig Angst rauszugehen. Marco hat mir mein Vertrauen zurückgegeben – ich gehe wieder spazieren, jeden Tag.",
-      name: "Ingrid S.",
-      age: 75,
+      text: "Seit ich regelmäßig trainiere, fühle ich mich beim Gehen wieder viel sicherer. Das gibt mir im Alltag enorm viel Ruhe zurück.",
+      name: "Helga T.",
     },
     faq: [
       {
         q: "Ich bin schon mal gestürzt – kann ich trotzdem trainieren?",
-        a: "Ja, und gerade dann ist es besonders wichtig. Wir starten behutsam, zuerst im Sitzen oder mit Halt, und bauen Schritt für Schritt auf.",
+        a: "Ja, und gerade dann ist es besonders wichtig. Wir starten behutsam, zuerst im Sitzen oder mit sicherem Halt, und bauen Schritt für Schritt auf.",
       },
       {
         q: "Ist das dasselbe wie Physiotherapie?",
-        a: "Nein – wir ergänzen Physiotherapie. Physio behandelt Beschwerden, wir bauen dauerhaft Sicherheit und Kraft auf.",
+        a: "Nein – wir ergänzen Physiotherapie. Physio behandelt Beschwerden, wir bauen darüber hinaus dauerhaft Sicherheit und Kraft auf.",
       },
       {
         q: "Brauche ich viel Platz zuhause?",
-        a: "Nein. Ein Stuhl, 2m² freie Fläche und eventuell eine Wand zum Abstützen reichen.",
+        a: "Nein. Ein Stuhl, eine kleine freie Fläche und eventuell eine Wand zum Abstützen reichen.",
       },
     ],
   },
@@ -252,14 +253,14 @@ export const leistungen: Leistung[] = [
       kicker: "Leistung 03 · Freiheit",
       headline: "Dein Körper",
       headlineItalic: "wird wieder leicht.",
-      sub: "Steife Schultern, blockierte Hüften, schmerzender Rücken – nicht das Alter ist schuld, sondern Bewegungsmangel. Wir bringen die Beweglichkeit zurück, die du in den letzten Jahren verloren hast.",
+      sub: "Steife Schultern, blockierte Hüften, ein müder Rücken – oft liegt es nicht am Alter, sondern an Bewegungsmangel. Mit gezielter Mobilisation kehrt Beweglichkeit zurück, die du im Alltag sofort spürst.",
     },
     forWhom: {
       title: "Wenn dich das betrifft…",
       points: [
         "du fühlst dich morgens steif und brauchst lange, um richtig in Gang zu kommen",
         "du kommst beim Anziehen nicht mehr gut an die Socken",
-        "Kopf drehen beim Autofahren tut weh",
+        "Kopf drehen beim Autofahren tut unangenehm weh",
         "du möchtest dich einfach wieder frei bewegen können",
       ],
     },
@@ -268,7 +269,7 @@ export const leistungen: Leistung[] = [
       items: [
         {
           title: "Weniger Schmerzen",
-          text: "Bewegliche Gelenke sind schmerzarme Gelenke. Steife Strukturen entzünden sich schneller.",
+          text: "Bewegliche Gelenke sind entlastete Gelenke. Regelmäßige Mobilisation beugt Verspannungen vor.",
         },
         {
           title: "Bessere Körperhaltung",
@@ -289,53 +290,52 @@ export const leistungen: Leistung[] = [
       sub: "60 Minuten sanfte, gezielte Arbeit",
       steps: [
         {
-          title: "Gelenk-Check",
-          text: "Wir testen jedes Gelenk einzeln – wo sind Einschränkungen, wo läuft alles?",
-          duration: "10 Min",
+          title: "Kurzes Gespräch & Check",
+          text: "Wo sind die Einschränkungen heute besonders spürbar? Danach richten wir die Einheit aus.",
+          duration: "~ 5 Min",
         },
         {
-          title: "Aktive Mobilisation",
-          text: "Bewegungsübungen, die das Gelenk selbst beweglicher machen – keine passiven Dehnungen.",
-          duration: "25 Min",
+          title: "Gelenkmobilisation",
+          text: "Gezielte Bewegungsübungen, die deine Gelenke geschmeidiger machen – ohne Zwang, ohne Schmerz.",
+          duration: "~ 20 Min",
         },
         {
-          title: "Stärkung in neuen Bereichen",
-          text: "Neu gewonnene Beweglichkeit sichern wir durch Kraft, damit sie bleibt.",
-          duration: "20 Min",
+          title: "Bewegungsfluss & Dehnung",
+          text: "Alltagsnahe Bewegungsmuster, sanfte Dehnungen und Kräftigung in den neu gewonnenen Bereichen.",
+          duration: "~ 25 Min",
         },
         {
           title: "Routine für zuhause",
-          text: "Du bekommst 3–5 Übungen, die du jeden Morgen in 5 Minuten machen kannst.",
-          duration: "5 Min",
+          text: "Du bekommst 3–5 Übungen, die du jeden Morgen in wenigen Minuten machen kannst.",
+          duration: "~ 10 Min",
         },
       ],
     },
     results: {
       title: "Schon nach wenigen Wochen merkst du",
       points: [
-        "Morgensteife verschwindet fast komplett",
+        "Morgensteife verschwindet spürbar",
         "Du drehst den Kopf wieder ohne nachzudenken",
-        "Der untere Rücken fühlt sich geschmiert an",
+        "Der untere Rücken fühlt sich lockerer an",
         "Anziehen geht wieder ohne Akrobatik",
       ],
     },
     quote: {
-      text: "Ich konnte nicht mal mehr in meinen Garten hinuntergehen, um Unkraut zu zupfen. Heute tu ich's wieder zwei Stunden am Stück.",
-      name: "Helga M.",
-      age: 72,
+      text: "Morgens ging gar nichts mehr ohne Steifheit. Das hat sich jetzt echt verändert – ich fühle mich im Alltag viel freier.",
+      name: "Annelise D.",
     },
     faq: [
       {
         q: "Ich bin nie beweglich gewesen – geht das überhaupt noch?",
-        a: "Fast immer. Der Körper vergisst Bewegungen nicht – er braucht nur regelmäßige Erinnerung. Auch mit 70+ sind große Fortschritte möglich.",
+        a: "Fast immer. Der Körper vergisst Bewegungen nicht – er braucht nur regelmäßige Erinnerung. Auch mit 70+ sind klare Fortschritte möglich.",
       },
       {
         q: "Ist Yoga nicht dasselbe?",
-        a: "Yoga ist super, aber oft zu komplex für Senioren mit Einschränkungen. Wir arbeiten individueller und präziser auf deinen Körper zugeschnitten.",
+        a: "Yoga ist eine tolle Ergänzung, aber oft für Senioren mit Einschränkungen nicht individuell genug. Wir arbeiten direkt an dem, was dein Körper braucht.",
       },
       {
         q: "Muss ich mich dafür auf den Boden legen können?",
-        a: "Nein. Fast alles geht im Stehen, Sitzen oder mit Unterstützung.",
+        a: "Nein. Fast alles geht im Stehen, Sitzen oder mit Unterstützung. Wir finden für jede Übung den passenden Einstieg.",
       },
     ],
   },
@@ -351,14 +351,14 @@ export const leistungen: Leistung[] = [
       kicker: "Leistung 04 · Vitalität",
       headline: "Mehr Energie.",
       headlineItalic: "Jeden Tag.",
-      sub: "Ein starkes Herz gibt dir Energie für alles andere – vom Spaziergang bis zur Reise. Und es ist das beste Mittel gegen die Müdigkeit, die du mit dem Alter spürst.",
+      sub: "Ein fittes Herz gibt dir Energie für alles andere – vom Spaziergang bis zur Reise. Sanftes, dosiertes Training hilft, Müdigkeit im Alltag spürbar zu verringern.",
     },
     forWhom: {
       title: "Richtig für dich, wenn…",
       points: [
         "du nach wenigen Stockwerken außer Atem bist",
         "du dich häufig müde fühlst, ohne viel getan zu haben",
-        "dein Arzt dir mehr Bewegung empfohlen hat",
+        "dir mehr Bewegung empfohlen wurde",
         "du etwas für dein Herz tun möchtest – bevor's zum Problem wird",
       ],
     },
@@ -366,20 +366,20 @@ export const leistungen: Leistung[] = [
       title: "Was dein Herz bekommt",
       items: [
         {
-          title: "Niedrigerer Blutdruck",
-          text: "Moderates Ausdauertraining senkt den Blutdruck oft so effektiv wie Medikamente.",
-        },
-        {
-          title: "Mehr Ausdauer",
+          title: "Bessere Ausdauer",
           text: "Spaziergänge werden länger, Treppen werden kürzer – dein Alltag fühlt sich leichter an.",
         },
         {
-          title: "Besserer Schlaf",
-          text: "Wer seinen Körper regelmäßig moderat fordert, schläft tiefer und wacher auf.",
+          title: "Ruhigerer Puls",
+          text: "Mit der Zeit kommst du bei Alltagsbelastungen seltener außer Atem.",
         },
         {
-          title: "Mehr Lebensjahre",
-          text: "Studien sind eindeutig: Ausdauer ist einer der stärksten Einflussfaktoren auf die Lebenserwartung.",
+          title: "Besserer Schlaf",
+          text: "Wer seinen Körper regelmäßig moderat fordert, kommt abends leichter zur Ruhe.",
+        },
+        {
+          title: "Mehr Lebensfreude",
+          text: "Bewegung ist einer der stärksten Einflussfaktoren auf Stimmung und Energie im Alter.",
         },
       ],
     },
@@ -388,53 +388,52 @@ export const leistungen: Leistung[] = [
       sub: "60 Minuten moderates, kontrolliertes Training",
       steps: [
         {
-          title: "Puls-Messung & Warm-Up",
-          text: "Wir messen deinen Ausgangspuls und wärmen gelenkschonend auf.",
-          duration: "10 Min",
+          title: "Kurzes Gespräch & Check",
+          text: "Wie fühlst du dich heute? Das bestimmt die Intensität für den Tag.",
+          duration: "~ 5 Min",
         },
         {
-          title: "Intervall-Block",
-          text: "Belastung und Erholung im Wechsel – das effizienteste Training für dein Herz. Kein Schnaufen bis zur Erschöpfung.",
-          duration: "30 Min",
+          title: "Sanfte Ausdauer",
+          text: "Gehtraining, leichte Intervalle, alltagsorientierte Belastungssteigerung – immer im angenehmen Bereich.",
+          duration: "~ 30 Min",
         },
         {
           title: "Kraftausdauer",
-          text: "Leichte Kraftübungen mit vielen Wiederholungen – hält den Puls im Bereich und baut nebenbei Muskulatur auf.",
-          duration: "15 Min",
+          text: "Leichte Kraftübungen mit vielen Wiederholungen – hält den Puls oben und baut nebenbei Muskulatur auf.",
+          duration: "~ 15 Min",
         },
         {
-          title: "Ausdehnen & Puls-Recovery",
-          text: "Langsames Runterkommen, dehnen, letzter Pulscheck.",
-          duration: "5 Min",
+          title: "Cool-Down & Kontrolle",
+          text: "Langsam runterkommen, dehnen, Belastung einordnen – damit du weißt, wie dein Körper reagiert hat.",
+          duration: "~ 10 Min",
         },
       ],
     },
     results: {
-      title: "Innerhalb von 8 Wochen",
+      title: "Innerhalb von 6 bis 12 Wochen",
       points: [
-        "Du kommst 2 Stockwerke hoch ohne Pause",
-        "Ruhepuls senkt sich messbar",
-        "Du fühlst dich nachmittags nicht mehr müde",
+        "Du kommst Stockwerke leichter hoch",
+        "Du merkst mehr Energie im Alltag",
         "Spaziergänge werden zur Gewohnheit, nicht zur Überwindung",
+        "Du fühlst dich nachmittags weniger müde",
       ],
     },
     quote: {
-      text: "Nach drei Monaten war mein Blutdruck das erste Mal seit Jahren wieder normal. Meine Ärztin war begeistert.",
-      name: "Hans-Peter W.",
-      age: 70,
+      text: "Ich kann wieder längere Strecken gehen, ohne dass mir früh die Puste ausgeht. Das gibt richtig Lebensfreude zurück.",
+      name: "Konrad T.",
     },
     faq: [
       {
         q: "Ist das nicht gefährlich mit meinem Herz?",
-        a: "Kontrolliertes Training ist das Beste für dein Herz – gerade mit Vorerkrankungen. Bei Bluthochdruck, KHK oder nach Herzinfarkt stimmen wir das Training vorher mit deinem Arzt ab.",
+        a: "Kontrolliertes, moderates Training ist gerade bei Vorerkrankungen sehr wertvoll. Wichtig ist, dass du deinem Arzt vorher Bescheid sagst und wir die Belastung entsprechend wählen.",
       },
       {
         q: "Muss ich joggen?",
         a: "Nein. Wir arbeiten mit zügigem Gehen, moderatem Intervalltraining und Kraftausdauer. Gelenkschonend, für jeden machbar.",
       },
       {
-        q: "Brauche ich einen Pulsgurt?",
-        a: "Nein. Ich bringe ein Gerät mit, falls nötig. Wichtiger ist das subjektive Empfinden – und das trainieren wir mit.",
+        q: "Wie kontrollieren wir die Belastung?",
+        a: "Über dein subjektives Empfinden, den sogenannten Sprechtest und einfache Pulskontrolle. Alles ohne komplizierte Geräte.",
       },
     ],
   },
@@ -449,36 +448,36 @@ export const leistungen: Leistung[] = [
     hero: {
       kicker: "Leistung 05 · Heilung",
       headline: "Nach der Reha",
-      headlineItalic: "geht's erst los.",
-      sub: "Die klassische Reha endet nach 3 Wochen. Danach bist du meist auf dich gestellt – und die Erfolge gehen schnell wieder verloren. Hier setze ich an: ich begleite dich so lange, bis du wirklich wieder fit bist.",
+      headlineItalic: "geht's weiter.",
+      sub: "Eine Reha endet meist nach wenigen Wochen – danach bist du oft auf dich gestellt. Ich begleite dich im Rahmen meiner Qualifikation weiter, damit die Erfolge erhalten bleiben und du wieder Vertrauen in deinen Körper gewinnst.",
     },
     forWhom: {
       title: "Die Begleitung passt, wenn…",
       points: [
-        "du gerade eine Hüft- oder Knie-OP hinter dir hast",
-        "du nach einem Krankenhausaufenthalt wieder aufbauen musst",
-        "du dich nach einem Schlaganfall oder Herzinfarkt weiter stabilisieren möchtest",
-        "dein Arzt oder Physiotherapeut dir ergänzendes Training empfiehlt",
+        "du nach einer Verletzung oder längeren Pause wieder starten möchtest",
+        "du nach einem Krankenhausaufenthalt wieder aufbauen willst",
+        "du die Ergebnisse einer Reha erhalten und ausbauen willst",
+        "dir begleitendes Training empfohlen wurde",
       ],
     },
     benefits: {
-      title: "Warum gezielte Nachsorge so wichtig ist",
+      title: "Warum behutsames Training so wichtig ist",
       items: [
         {
           title: "Ergebnisse sichern",
-          text: "Was du in der Reha aufgebaut hast, geht ohne Fortsetzung innerhalb von Wochen verloren. Wir halten und erweitern es.",
+          text: "Was du in der Reha aufgebaut hast, geht ohne Fortsetzung schnell wieder verloren. Wir halten und erweitern es.",
         },
         {
-          title: "Abstimmung mit Ärzten",
-          text: "Auf Wunsch stimme ich Trainingsinhalte mit deinem Arzt oder Physiotherapeuten ab – kein Gegeneinander, sondern Miteinander.",
+          title: "Behutsamer Aufbau",
+          text: "Ich steigere die Belastung nur so weit, wie dein Körper bereit dafür ist – Schritt für Schritt, ohne Risiko.",
         },
         {
-          title: "Schrittweise Belastung",
-          text: "Ich weiß, wann dein Körper bereit ist für mehr – und wann wir besser pausieren.",
+          title: "Kein Ersatz, sondern Ergänzung",
+          text: "Dieses Training ersetzt keine Physiotherapie oder ärztliche Behandlung. Es ergänzt sie sinnvoll.",
         },
         {
           title: "Mentale Sicherheit",
-          text: "Nach einer OP ist Bewegung oft mit Angst besetzt. Mit mir an deiner Seite traust du dich wieder.",
+          text: "Nach einer Verletzung ist Bewegung oft mit Angst besetzt. Gemeinsam baust du dieses Vertrauen Schritt für Schritt wieder auf.",
         },
       ],
     },
@@ -488,51 +487,51 @@ export const leistungen: Leistung[] = [
       steps: [
         {
           title: "Kurzer Gesundheitscheck",
-          text: "Wie geht's heute? Wie war die Nacht? Wo zwickt es? Jedes Training startet hier.",
-          duration: "5 Min",
+          text: "Wie geht's heute? Wo zwickt es? Wie war die Nacht? Jedes Training startet hier.",
+          duration: "~ 5 Min",
         },
         {
-          title: "Mobilisation der betroffenen Region",
-          text: "Sanfte, sichere Bewegungsarbeit – wir nähern uns langsam an die volle Beweglichkeit an.",
-          duration: "20 Min",
+          title: "Sanfte Mobilisation",
+          text: "Behutsame Bewegungsarbeit für die betroffene Region – wir nähern uns langsam an volle Beweglichkeit an.",
+          duration: "~ 20 Min",
         },
         {
-          title: "Aufbauendes Training",
-          text: "Kraftaufbau mit dosierten Reizen. Keine Experimente, nur erprobte Übungen.",
-          duration: "25 Min",
+          title: "Aufbauender Hauptteil",
+          text: "Kraft, Balance oder Mobilität je nach Ziel – immer mit dosiertem Reiz, nie mit Experimenten.",
+          duration: "~ 25 Min",
         },
         {
-          title: "Recovery & Hausaufgaben",
-          text: "Kühlen, dehnen, was du zuhause sinnvoll tun kannst bis zum nächsten Mal.",
-          duration: "10 Min",
+          title: "Abschluss & Alltagstipps",
+          text: "Was hat heute gut funktioniert, worauf solltest du bis zum nächsten Mal achten?",
+          duration: "~ 10 Min",
         },
       ],
     },
     results: {
-      title: "Typische Fortschritte",
+      title: "Worauf du dich freuen kannst",
       points: [
-        "Nach 6 Wochen: normale Alltagsbelastung möglich",
-        "Nach 12 Wochen: sicheres Treppensteigen und Gehen ohne Hilfsmittel",
-        "Nach 6 Monaten: wieder volle Belastung, oft über dem Niveau vor der OP",
+        "Mehr Stabilität in der betroffenen Region",
+        "Normale Alltagsbelastungen fallen wieder leichter",
+        "Sicheres Gehen und Bewegen ohne ständige Vorsicht",
+        "Dauerhaftes Halten und Ausbauen der Reha-Erfolge",
       ],
     },
     quote: {
-      text: "Nach meiner Hüft-OP war ich komplett verunsichert. Marco hat mich Schritt für Schritt wieder hingeführt – heute gehe ich besser als vor der OP.",
-      name: "Helga M.",
-      age: 72,
+      text: "Nach meiner OP war ich unsicher, mich überhaupt zu bewegen. Marco holt mich behutsam ab und ich fühle mich jede Woche ein Stück sicherer.",
+      name: "Karl-Heinz W.",
     },
     faq: [
       {
         q: "Ersetzt das meine Physiotherapie?",
-        a: "Nein, es ergänzt sie. Physio behandelt akute Beschwerden – ich baue langfristig wieder Kraft, Ausdauer und Vertrauen auf. Ideal ist beides parallel oder anschließend.",
+        a: "Nein. Meine Begleitung ersetzt keine Physiotherapie oder ärztliche Behandlung. Sie ist eine sinnvolle Ergänzung – ideal parallel oder im Anschluss, im Rahmen meiner Qualifikation als Personal Trainer.",
       },
       {
         q: "Kann die Krankenkasse die Kosten übernehmen?",
-        a: "Personal Training ist eine Selbstzahler-Leistung. Manche privaten Zusatzversicherungen erstatten jedoch Teile – schaue in deinen Vertrag oder frage nach.",
+        a: "Personal Training ist grundsätzlich eine Selbstzahlerleistung. Eine Erstattung ist nur im Einzelfall möglich und hängt von deinem Tarif bzw. deiner Zusatzversicherung ab – das müsstest du selbst bei deiner Versicherung prüfen.",
       },
       {
-        q: "Ab wann kann ich nach einer OP starten?",
-        a: "Sobald dein Arzt grünes Licht gibt – oft nach 4–6 Wochen. Wir steigen behutsam ein und tasten uns zusammen vor.",
+        q: "Ab wann kann ich nach einer Verletzung starten?",
+        a: "Sobald dein Arzt grünes Licht gibt. Wir steigen behutsam ein und tasten uns zusammen an eine passende Belastung heran.",
       },
     ],
   },
@@ -548,90 +547,89 @@ export const leistungen: Leistung[] = [
       kicker: "Leistung 06 · Balance",
       headline: "Essen, das",
       headlineItalic: "dich trägt.",
-      sub: "Ab 60 braucht dein Körper andere Nährstoffe als mit 40. Wer das ignoriert, verliert Muskeln, Energie und Konzentration. Wir schauen gemeinsam, was wirklich in deinen Teller gehört – ohne Verbote, ohne Diät.",
+      sub: "Wir schauen gemeinsam auf deine Gewohnheiten und Routinen – ohne Verbote, ohne Druck. Kleine, alltagstaugliche Veränderungen können im Alter viel bewirken.",
     },
     forWhom: {
       title: "Die Beratung hilft, wenn…",
       points: [
-        "du trotz wenig Essen zunimmst – oder nicht zunehmen willst",
-        "du oft Energielöcher am Nachmittag hast",
-        "du wissen willst, was deinem Training wirklich hilft",
-        "du unsicher bist, ob du genug Eiweiß isst",
+        "du dich unsicher bist, was im Alter wirklich wichtig ist",
+        "du oft Energielöcher im Alltag spürst",
+        "du dein Training bestmöglich unterstützen möchtest",
+        "du wissen möchtest, wie kleine Veränderungen viel bringen können",
       ],
     },
     benefits: {
-      title: "Was dir bewusste Ernährung gibt",
+      title: "Was du davon hast",
       items: [
         {
-          title: "Muskeln erhalten",
-          text: "Mit 60+ brauchst du deutlich mehr Eiweiß als jüngere Menschen. Viele essen viel zu wenig davon.",
+          title: "Struktur im Alltag",
+          text: "Einfache, praktische Tipps, die du direkt umsetzen kannst – keine komplizierten Ernährungspläne.",
         },
         {
-          title: "Stabiler Blutzucker",
-          text: "Keine Heißhunger-Attacken, kein Nachmittagstief. Du fühlst dich den ganzen Tag gleichmäßig wach.",
+          title: "Mehr Energie",
+          text: "Gesunde Gewohnheiten helfen, Nachmittagstiefs und Schwankungen im Tag deutlich zu reduzieren.",
         },
         {
-          title: "Bessere Verdauung",
-          text: "Wir schauen auf Ballaststoffe, Flüssigkeit und Essrhythmus – oft verschwinden Magen-Darm-Probleme in Wochen.",
+          title: "Bewusstere Routinen",
+          text: "Du wirst dir klar, was dir gut tut – und was nicht. Das hilft dauerhaft, auch ohne ständige Kontrolle.",
         },
         {
           title: "Genuss ohne Reue",
-          text: "Kein Verzicht auf Kuchen und Wein. Nur die Balance, die dein Körper jetzt braucht.",
+          text: "Keine Verbote. Es geht um Balance, die du im Alltag wirklich leben kannst.",
         },
       ],
     },
     session: {
       title: "Wie die Beratung abläuft",
-      sub: "Meist in bestehende Trainingsstunden integriert oder 60 Min pur",
+      sub: "Oft integriert in deine Trainings-Einheiten oder als eigene 60 Min",
       steps: [
         {
-          title: "Ess-Analyse",
-          text: "Wir schauen gemeinsam, was du typischerweise isst – ohne Bewertung, nur als Startpunkt.",
-          duration: "20 Min",
+          title: "Offenes Gespräch",
+          text: "Wir schauen gemeinsam, wie dein Alltag und deine Ernährung aussehen – ohne Bewertung, nur als Startpunkt.",
+          duration: "~ 20 Min",
         },
         {
-          title: "Was passt zu deinem Körper",
-          text: "Wir identifizieren Lücken und einfache, alltagstaugliche Verbesserungen. Konkret, nicht theoretisch.",
-          duration: "25 Min",
+          title: "Was passt zu dir",
+          text: "Wir identifizieren 2–3 konkrete Stellen, die wir gemeinsam anpassen – ganz alltagstauglich.",
+          duration: "~ 25 Min",
         },
         {
-          title: "Ein Plan für die nächste Woche",
-          text: "Nicht 'alles anders', sondern 2–3 Stellschrauben, die du wirklich umsetzt.",
-          duration: "10 Min",
+          title: "Dein Mini-Plan",
+          text: "Nicht 'alles anders', sondern wenige Stellschrauben, die du wirklich umsetzen kannst.",
+          duration: "~ 10 Min",
         },
         {
           title: "Nachhalten",
-          text: "Im nächsten Training schauen wir: was hat funktioniert, was nicht. So wird es nachhaltig.",
-          duration: "5 Min",
+          text: "Beim nächsten Mal schauen wir: Was hat funktioniert, was nicht. So wird es nachhaltig.",
+          duration: "~ 5 Min",
         },
       ],
     },
     results: {
-      title: "Schon nach 4 Wochen merkst du",
+      title: "Schon nach wenigen Wochen merkst du",
       points: [
-        "Mehr Energie, besonders nachmittags",
+        "Mehr Energie, besonders am Nachmittag",
         "Weniger Heißhunger auf Süßes",
-        "Stabileres Gewicht, auch ohne Diät",
-        "Bessere Erholung nach Training und Alltag",
+        "Bewussterer Umgang mit Essen und Trinken",
+        "Besseres Gefühl nach dem Training",
       ],
     },
     quote: {
-      text: "Ich dachte immer, ich esse gesund. Marco hat mir gezeigt, was bei meinem Körper wirklich fehlt – zwei kleine Änderungen, Riesenunterschied.",
-      name: "Werner K.",
-      age: 68,
+      text: "Ich dachte, ich esse schon gesund. Marco hat mir gezeigt, wo kleine Verbesserungen viel bringen – ohne Verzicht.",
+      name: "Annelise D.",
     },
     faq: [
       {
         q: "Muss ich auf alles verzichten, was mir schmeckt?",
-        a: "Nein. Ich arbeite nicht mit Verboten. Wir schauen, was fehlt – und was du weiterhin genießen kannst.",
+        a: "Nein. Ich arbeite nicht mit Verboten. Wir schauen, was dein Alltag braucht – und was du weiterhin genießen kannst.",
       },
       {
-        q: "Ist das eine offizielle Ernährungsberatung nach Heilpraktikergesetz?",
-        a: "Nein, ich berate als Personal Trainer im Rahmen deines Trainings. Bei Erkrankungen wie Diabetes oder Niereninsuffizienz verweise ich an zertifizierte Ernährungstherapeuten.",
+        q: "Ist das eine offizielle Ernährungstherapie?",
+        a: "Nein. Ich begleite dich als Personal Trainer mit alltagsnaher, praktischer Unterstützung. Bei Erkrankungen wie Diabetes oder Niereninsuffizienz ist zusätzlich eine zertifizierte Ernährungstherapie wichtig.",
       },
       {
-        q: "Brauche ich Nahrungsergänzungsmittel?",
-        a: "Meist nicht. In Einzelfällen (z.B. Vitamin D, Eiweißshake bei wenig Appetit) besprechen wir das gemeinsam.",
+        q: "Empfiehlst du Nahrungsergänzungsmittel?",
+        a: "Grundsätzlich nicht pauschal. Wenn es individuell sinnvoll erscheint, besprechen wir das zurückhaltend und auf dich zugeschnitten.",
       },
     ],
   },

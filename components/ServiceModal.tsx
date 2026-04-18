@@ -257,7 +257,8 @@ function Content({
                   </div>
                   <div className="text-sm">
                     <div className="font-semibold">
-                      {leistung.quote.name}, {leistung.quote.age}
+                      {leistung.quote.name}
+                      {leistung.quote.age ? `, ${leistung.quote.age}` : ""}
                     </div>
                     <div className="text-white/50 text-xs">
                       Kunde von Fit mit Marco

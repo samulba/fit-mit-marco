@@ -9,7 +9,7 @@ import {
   useSpring,
   useMotionTemplate,
 } from "framer-motion";
-import { ArrowDown, Star, Play } from "lucide-react";
+import { ArrowDown, Play } from "lucide-react";
 import { MagneticButton } from "./MagneticButton";
 
 export function Hero() {
@@ -187,12 +187,11 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 1.3 }}
               className="mt-6 lg:mt-10 text-base sm:text-lg lg:text-xl text-white/60 leading-relaxed font-light max-w-xl"
             >
-              Mit über{" "}
+              Ich helfe Menschen ab 60, ihre{" "}
               <strong className="text-mint font-normal">
-                12 Jahren Erfahrung
+                Stärke, Beweglichkeit und Lebensfreude
               </strong>{" "}
-              helfe ich Menschen ab 60, ihre Stärke, Beweglichkeit und
-              Lebensfreude zurückzugewinnen – bei dir zuhause.
+              zurückzugewinnen – individuell, sicher und bei dir zuhause.
             </motion.p>
 
             {/* CTAs */}
@@ -232,39 +231,11 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 1.7 }}
               className="mt-10 lg:mt-14 flex flex-wrap items-center gap-6 lg:gap-10 pt-6 border-t border-white/10"
             >
-              <div className="flex items-center gap-3">
-                <div className="flex -space-x-2">
-                  {["H", "W", "I", "P"].map((c, i) => (
-                    <div
-                      key={c}
-                      className="w-8 h-8 rounded-full border-2 border-forest bg-gradient-to-br from-sage to-teal/60 flex items-center justify-center font-display font-bold text-forest text-xs"
-                      style={{ zIndex: 4 - i }}
-                    >
-                      {c}
-                    </div>
-                  ))}
-                </div>
-                <div>
-                  <div className="flex gap-0.5">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        size={10}
-                        className="fill-gold text-gold"
-                        strokeWidth={0}
-                      />
-                    ))}
-                  </div>
-                  <div className="text-[0.65rem] text-white/50 mt-0.5">
-                    50+ Bewertungen · <span className="text-mint">5.0</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex gap-6">
-                <Stat value="12+" label="Jahre" />
-                <Stat value="200+" label="Kunden" />
-              </div>
+              <Stat value="200+" label="Trainings­stunden" />
+              <div className="w-px h-10 bg-white/10 hidden sm:block" />
+              <Stat value="4 J." label="Hochleistungs­sport" />
+              <div className="w-px h-10 bg-white/10 hidden sm:block" />
+              <Stat value="30 km" label="um München" />
             </motion.div>
           </div>
 
