@@ -1,3 +1,5 @@
+"use client";
+
 import { Logo } from "./Logo";
 import { MapPin, Phone, Mail, ArrowUpRight, Sparkles } from "lucide-react";
 
@@ -15,6 +17,7 @@ const legalLinks = [
   { href: "/impressum", label: "Impressum" },
   { href: "/datenschutz", label: "Datenschutz" },
   { href: "/agb", label: "AGB" },
+  { href: "#cookie-settings", label: "Cookie-Einstellungen" },
 ];
 
 export function Footer() {
@@ -64,12 +67,30 @@ export function Footer() {
             <ul className="space-y-3">
               {legalLinks.map((l) => (
                 <li key={l.label}>
-                  <a
-                    href={l.href}
-                    className="text-white/70 hover:text-teal transition-colors"
-                  >
-                    {l.label}
-                  </a>
+                  {l.href === "#cookie-settings" ? (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (
+                          typeof window !== "undefined" &&
+                          typeof (window as any).__openCookieSettings ===
+                            "function"
+                        ) {
+                          (window as any).__openCookieSettings();
+                        }
+                      }}
+                      className="text-white/70 hover:text-teal transition-colors text-left"
+                    >
+                      {l.label}
+                    </button>
+                  ) : (
+                    <a
+                      href={l.href}
+                      className="text-white/70 hover:text-teal transition-colors"
+                    >
+                      {l.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>

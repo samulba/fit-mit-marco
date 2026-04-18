@@ -153,12 +153,73 @@ export default function DatenschutzPage() {
         <strong> nicht</strong> statt.
       </p>
 
-      <h2>7. Cookies</h2>
+      <h2 id="cookies">7. Cookies und Einwilligungsmanagement</h2>
       <p>
-        Diese Website verwendet <strong>keine</strong> Tracking-, Marketing-
-        oder Analyse-Cookies. Es werden lediglich technisch notwendige
-        Speichermechanismen des Browsers eingesetzt, soweit zur Funktion der
-        Website erforderlich.
+        Unsere Website nutzt Cookies und vergleichbare Speichertechnologien.
+        Cookies sind kleine Dateien, die dein Browser lokal ablegt und die
+        entweder für den Betrieb der Website notwendig sind oder — nur mit
+        deiner ausdrücklichen Einwilligung — zur anonymen Reichweitenmessung
+        oder für Marketingzwecke eingesetzt werden.
+      </p>
+
+      <h3>Kategorien</h3>
+      <ul>
+        <li>
+          <strong>Notwendige Cookies:</strong> für grundlegende Funktionen
+          (z.B. Formularschutz, Speicherung deiner Cookie-Einwilligung). Diese
+          werden ohne Einwilligung gesetzt, da die Website ohne sie nicht
+          funktionieren würde. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO
+          (berechtigtes Interesse).
+        </li>
+        <li>
+          <strong>Statistik-Cookies (optional):</strong> dienen der
+          anonymisierten Reichweiten- und Verhaltensanalyse. Werden erst nach
+          deiner aktiven Zustimmung geladen. Rechtsgrundlage: Art. 6 Abs. 1
+          lit. a DSGVO (Einwilligung) i.V.m. § 25 Abs. 1 TTDSG.
+        </li>
+        <li>
+          <strong>Marketing-Cookies (optional):</strong> für mögliche
+          Remarketing-Technologien. Aktuell nicht aktiv. Werden erst nach
+          deiner aktiven Zustimmung geladen.
+        </li>
+      </ul>
+
+      <h3>Eingesetzte Dienste</h3>
+      <p>
+        Sobald wir Analyse- oder Marketingdienste aktivieren (z. B. Google
+        Analytics, Google Tag Manager, Meta-Pixel), werden sie hier und im
+        Cookie-Banner transparent aufgelistet. Stand April 2026:{" "}
+        <strong>Aktuell sind keine Drittanbieter-Tracking-Cookies aktiv.</strong>
+      </p>
+
+      <h3>Deine Einwilligung widerrufen oder ändern</h3>
+      <p>
+        Deine Auswahl kannst du jederzeit über den{" "}
+        <a
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            if (
+              typeof window !== "undefined" &&
+              typeof (window as any).__openCookieSettings === "function"
+            ) {
+              (window as any).__openCookieSettings();
+            }
+          }}
+        >
+          Cookie-Einstellungen-Dialog
+        </a>{" "}
+        neu treffen. Widerruf wirkt ab dem Moment der Einstellung — bereits
+        verarbeitete Daten bleiben bis zur Löschung bestehen.
+      </p>
+
+      <h3>Speicherdauer</h3>
+      <p>
+        Die Einwilligungsentscheidung selbst wird in deinem Browser (lokal im
+        <code> localStorage</code> unter dem Schlüssel
+        <code> „fmm-consent"</code>) gespeichert und bleibt bis zu einem
+        manuellen Widerruf erhalten. Statistik- und Marketing-Cookies haben
+        jeweils eigene Laufzeiten, die wir bei Aktivierung transparent machen.
       </p>
 
       <h2>8. Deine Rechte</h2>

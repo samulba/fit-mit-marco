@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { SkipLink } from "@/components/SkipLink";
+import { CookieBanner } from "@/components/CookieBanner";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -126,6 +127,7 @@ export default function RootLayout({
       <body className="font-sans">
         <SkipLink />
         {children}
+        <CookieBanner />
       </body>
     </html>
   );
