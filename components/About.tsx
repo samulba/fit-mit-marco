@@ -57,7 +57,7 @@ export function About() {
               className="absolute inset-[-5%]"
             >
               <Image
-                src="/marco.jpg"
+                src="/marco-about.jpg"
                 alt="Marco Degel – Personal Trainer für Senioren in München und Umgebung"
                 fill
                 sizes="(max-width: 1280px) 90vw, 40vw"
