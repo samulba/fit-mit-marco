@@ -174,9 +174,11 @@ export function Hero() {
       {/* Content */}
       <motion.div
         style={{ opacity }}
-        className="relative z-10 min-h-screen xl:h-full xl:min-h-0 flex flex-col justify-center pt-24 pb-14 xl:pt-28 xl:pb-16"
+        className="relative z-10 min-h-screen xl:h-full xl:min-h-0 flex flex-col pt-24 pb-10 xl:pt-24 xl:pb-10"
       >
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 w-full grid xl:grid-cols-12 gap-8 xl:gap-12 items-center">
+        {/* Middle area — grid fills remaining space, grid contents centered */}
+        <div className="flex-1 flex items-center">
+          <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 w-full grid xl:grid-cols-12 gap-8 xl:gap-12 items-center">
           {/* Left: Text */}
           <div className="xl:col-span-7">
             {/* Badge */}
@@ -266,19 +268,6 @@ export function Hero() {
               </a>
             </motion.div>
 
-            {/* Trust row */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.7 }}
-              className="mt-10 lg:mt-14 flex flex-wrap items-center gap-6 lg:gap-10 pt-6 border-t border-white/10"
-            >
-              <Stat value="200+" label="Trainings­stunden" />
-              <div className="w-px h-10 bg-white/10 hidden sm:block" />
-              <Stat value="4 J." label="Hochleistungs­sport" />
-              <div className="w-px h-10 bg-white/10 hidden sm:block" />
-              <Stat value="30 km" label="um München" />
-            </motion.div>
           </div>
 
           {/* Right: Marco photo */}
@@ -339,7 +328,22 @@ export function Hero() {
               </div>
             </div>
           </motion.div>
+          </div>
         </div>
+
+        {/* Bottom-pinned trust row — full width, visual boundary to next section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.7 }}
+          className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 w-full mt-10 xl:mt-6 pt-6 border-t border-white/10 flex flex-wrap items-center gap-6 lg:gap-10"
+        >
+          <Stat value="200+" label="Trainings­stunden" />
+          <div className="w-px h-10 bg-white/10 hidden sm:block" />
+          <Stat value="4 J." label="Hochleistungs­sport" />
+          <div className="w-px h-10 bg-white/10 hidden sm:block" />
+          <Stat value="30 km" label="um München" />
+        </motion.div>
       </motion.div>
 
       {/* Scroll indicator */}
