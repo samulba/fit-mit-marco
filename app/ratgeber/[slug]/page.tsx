@@ -34,11 +34,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       modifiedTime: article.updated || article.published,
       authors: [article.author],
       tags: article.keywords,
+      images: [
+        {
+          url: "/marco-og.jpg",
+          width: 1200,
+          height: 630,
+          alt: `${article.title} – Fit mit Marco`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: article.metaTitle,
       description: article.metaDescription,
+      images: ["/marco-og.jpg"],
     },
   };
 }
@@ -71,7 +80,7 @@ export default function Page({ params }: Props) {
     },
     inLanguage: "de-DE",
     keywords: article.keywords.join(", "),
-    image: `${SITE}/marco.jpg`,
+    image: `${SITE}/marco-og.jpg`,
   };
 
   return (

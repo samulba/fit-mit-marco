@@ -31,7 +31,7 @@ export const localBusinessSchema = {
   telephone: "+49 172 6223371",
   email: "fitmitmarcomuc@gmail.com",
   image: `${SITE}/marco.jpg`,
-  logo: `${SITE}/marco.jpg`,
+  logo: `${SITE}/icon-512.png`,
   priceRange: "€€",
   currenciesAccepted: "EUR",
   paymentAccepted: "Überweisung, PayPal, Bar",

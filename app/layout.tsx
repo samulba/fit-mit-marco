@@ -87,10 +87,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/marco.jpg",
+        url: "/marco-og.jpg",
         width: 1200,
-        height: 1600,
-        alt: "Marco Degel – Personal Trainer für Senioren in München",
+        height: 630,
+        alt: "Fit mit Marco – Personal Trainer für Senioren in München & Umgebung",
       },
     ],
   },
@@ -99,7 +99,7 @@ export const metadata: Metadata = {
     title: "Personal Trainer für Senioren in München – Fit mit Marco",
     description:
       "Persönliches Training für Menschen ab 60 – individuell und sicher bei dir zuhause.",
-    images: ["/marco.jpg"],
+    images: ["/marco-og.jpg"],
   },
   robots: {
     index: true,
