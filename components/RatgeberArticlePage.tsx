@@ -100,9 +100,10 @@ export function RatgeberArticlePage({ article }: { article: Article }) {
                 Marco Degel
               </div>
               <p className="text-sm text-slate leading-relaxed">
-                Personal Trainer für Senioren in München. Mehrjährige Erfahrung
-                aus Hochleistungssport und Personal Training. Training bei dir
-                zuhause – individuell, sicher und ehrlich.
+                Personal Trainer für Senioren in München. Seit 2018 als
+                Personal Trainer tätig, zuvor vier Jahre Betreuung im
+                Hochleistungssport. Training bei dir zuhause – individuell,
+                sicher und ehrlich.
               </p>
             </div>
           </div>

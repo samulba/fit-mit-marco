@@ -102,6 +102,7 @@ export const localBusinessSchema = {
     },
   ],
   slogan: "Wer rastet, der rostet.",
+  foundingDate: "2018",
   knowsAbout: [
     "Seniorenfitness",
     "Krafttraining",
@@ -122,9 +123,19 @@ export const personSchema = {
   name: "Marco Degel",
   jobTitle: "Personal Trainer für Senioren",
   description:
-    "Personal Trainer mit Erfahrung aus dem Hochleistungssport, spezialisiert auf Training mit Menschen ab 60 in München und Umgebung.",
+    "Personal Trainer mit Erfahrung aus dem Hochleistungssport, seit 2018 als Personal Trainer tätig, spezialisiert auf Training mit Menschen ab 60 in München und Umgebung.",
   image: `${SITE}/marco.jpg`,
   worksFor: { "@id": `${SITE}/#business` },
+  hasOccupation: {
+    "@type": "Occupation",
+    name: "Personal Trainer für Senioren",
+    occupationLocation: {
+      "@type": "City",
+      name: "München",
+    },
+    skills:
+      "Seniorenfitness, Krafttraining, Sturzprävention, Mobilität, Balance, Reha-Nachsorge",
+  },
   address: {
     "@type": "PostalAddress",
     streetAddress: "Beethovenstraße 3",

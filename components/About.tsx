@@ -9,7 +9,7 @@ const usps = [
   {
     icon: Award,
     title: "Erfahrung aus dem Leistungssport",
-    text: "4 Jahre Hochleistungssport-Betreuung und mehrere Jahre Personal-Training-Erfahrung. Training auf Basis fundierter Praxis, zugeschnitten auf deinen Körper.",
+    text: "4 Jahre Hochleistungssport-Betreuung und über 8 Jahre Personal-Training-Erfahrung (seit 2018). Training auf Basis fundierter Praxis, zugeschnitten auf deinen Körper.",
   },
   {
     icon: Package,

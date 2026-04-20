@@ -324,7 +324,7 @@ export function Hero() {
                   <br /> der rostet.&rdquo;
                 </div>
                 <div className="mt-2 text-[0.65rem] tracking-[0.2em] uppercase text-forest/50">
-                  Personal Trainer · seit 2013
+                  Personal Trainer · seit 2018
                 </div>
               </div>
             </div>
@@ -335,7 +335,7 @@ export function Hero() {
                 seit
               </div>
               <div className="font-display font-bold text-xl leading-none mt-1">
-                2013
+                2018
               </div>
             </div>
           </motion.div>
