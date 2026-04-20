@@ -130,17 +130,53 @@ export function About() {
             <h2 className="font-display text-4xl sm:text-5xl lg:text-7xl font-bold text-forest leading-[0.95] mb-6 lg:mb-8">
               Hi, ich bin <span className="italic text-teal">Marco.</span>
             </h2>
-            <p className="text-lg sm:text-xl lg:text-2xl text-forest/80 font-light leading-relaxed mb-6 lg:mb-8 max-w-2xl">
-              Ich begleite Menschen dabei, auch im Alter{" "}
-              <span className="text-forest font-normal">aktiv, mobil und selbstständig</span>{" "}
-              zu bleiben. Durch meine Erfahrung im Fitness- und
-              Gesundheitsbereich habe ich gesehen, wie wichtig gezieltes
-              Training gerade für ältere Menschen ist. Deshalb habe ich mich
-              mit{" "}
-              <span className="text-teal font-normal">&bdquo;Fit mit Marco&ldquo;</span>{" "}
-              auf persönliches, alltagstaugliches Training für Senioren in
-              München und Umgebung spezialisiert.
+            <p className="text-lg sm:text-xl lg:text-2xl text-forest/80 font-light leading-relaxed mb-6 max-w-2xl">
+              Durch meine Erfahrung im{" "}
+              <span className="text-forest font-normal">Fitness- und Gesundheitsbereich</span>{" "}
+              weiß ich, wie entscheidend gezieltes Training gerade im Alter
+              ist — für Kraft, Beweglichkeit und Lebensqualität im Alltag.
             </p>
+            <p className="text-lg sm:text-xl lg:text-2xl text-forest/80 font-light leading-relaxed mb-8 max-w-2xl">
+              Bei{" "}
+              <span className="text-teal font-normal">&bdquo;Fit mit Marco&ldquo;</span>{" "}
+              trainieren wir in deiner{" "}
+              <span className="text-forest font-normal">privaten Umgebung</span>
+              {" "}— kein Gym-Stress, keine fremden Blicke, nur du, ich und
+              genau das Training, das dir guttut.
+            </p>
+
+            {/* Free trial session callout */}
+            <motion.a
+              href="/erstgespraech"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="group mb-8 lg:mb-10 inline-flex items-start gap-4 max-w-2xl p-5 lg:p-6 rounded-2xl bg-gradient-to-br from-teal/10 to-mint/5 border border-teal/20 hover:border-teal/50 hover:shadow-soft-md transition-all duration-400 ease-smooth"
+            >
+              <div className="flex-shrink-0 w-11 h-11 lg:w-12 lg:h-12 rounded-xl bg-teal text-forest flex items-center justify-center group-hover:rotate-[-8deg] transition-transform duration-400">
+                <span className="font-display font-bold text-xl">1.</span>
+              </div>
+              <div className="flex-1">
+                <div className="flex flex-wrap items-center gap-2 mb-1">
+                  <span className="font-display font-bold text-forest text-lg sm:text-xl">
+                    Schnupper-Trainingsstunde
+                  </span>
+                  <span className="px-2.5 py-0.5 rounded-full bg-teal text-forest text-[0.65rem] font-bold tracking-[0.15em] uppercase">
+                    kostenlos
+                  </span>
+                </div>
+                <div className="text-slate text-sm sm:text-base leading-relaxed">
+                  Die erste Trainingsstunde ist gratis. Wir lernen uns kennen,
+                  schauen wie es dir geht und du spürst direkt, wie sich das
+                  Training anfühlt — ganz ohne Verpflichtung.
+                </div>
+                <div className="mt-3 inline-flex items-center gap-2 text-teal text-sm font-semibold group-hover:gap-3 transition-all">
+                  Schnupperstunde vereinbaren
+                  <ArrowUpRight size={16} className="group-hover:rotate-45 transition-transform duration-400" />
+                </div>
+              </div>
+            </motion.a>
           </motion.div>
 
           <div className="space-y-2 lg:space-y-3 mt-8 lg:mt-12">

@@ -320,8 +320,8 @@ export function Hero() {
               {/* Bottom quote card */}
               <div className="absolute bottom-5 left-5 right-5 bg-cream/95 backdrop-blur-md rounded-2xl p-5 text-forest">
                 <div className="font-display italic text-lg leading-tight">
-                  &ldquo;Dein Körper ist stärker,
-                  <br /> als du glaubst.&rdquo;
+                  &ldquo;Wer rastet,
+                  <br /> der rostet.&rdquo;
                 </div>
                 <div className="mt-2 text-[0.65rem] tracking-[0.2em] uppercase text-forest/50">
                   Personal Trainer · seit 2013
@@ -332,10 +332,10 @@ export function Hero() {
             {/* Floating badge */}
             <div className="absolute -top-4 -right-4 bg-teal text-forest rounded-2xl px-5 py-4 shadow-xl rotate-[6deg]">
               <div className="font-display font-bold text-xl leading-none">
-                12+
+                seit
               </div>
-              <div className="text-[0.6rem] tracking-[0.2em] uppercase mt-1">
-                Jahre
+              <div className="font-display font-bold text-xl leading-none mt-1">
+                2013
               </div>
             </div>
           </motion.div>
