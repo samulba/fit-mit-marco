@@ -38,7 +38,7 @@ export function About() {
     <section
       ref={ref}
       id="about"
-      className="py-24 sm:py-28 lg:py-40 bg-cream relative overflow-hidden"
+      className="py-24 sm:py-28 lg:py-40 bg-cream relative overflow-x-clip"
     >
       {/* Background number */}
       <motion.div
@@ -48,9 +48,9 @@ export function About() {
         200+
       </motion.div>
 
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 grid xl:grid-cols-12 gap-10 xl:gap-20 items-center relative">
-        {/* Left: Photo */}
-        <div className="xl:col-span-5 max-w-xl w-full mx-auto xl:mx-0">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 grid xl:grid-cols-12 gap-10 xl:gap-20 items-start relative">
+        {/* Left: Photo (sticky on desktop so it pins while long right column scrolls) */}
+        <div className="xl:col-span-5 max-w-xl w-full mx-auto xl:mx-0 xl:sticky xl:top-24 xl:self-start">
           <div className="relative aspect-[3/4] rounded-[2rem] overflow-hidden bg-forest">
             <motion.div
               style={{ y: imageY, scale: imageScale }}
