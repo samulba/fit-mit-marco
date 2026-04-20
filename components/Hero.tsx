@@ -125,7 +125,7 @@ export function Hero() {
     <section
       ref={ref}
       id="home"
-      className="relative min-h-screen overflow-hidden bg-forest text-cream"
+      className="relative min-h-screen xl:h-screen xl:min-h-0 overflow-hidden bg-forest text-cream"
     >
       {/* Noise texture */}
       <div
@@ -174,7 +174,7 @@ export function Hero() {
       {/* Content */}
       <motion.div
         style={{ opacity }}
-        className="relative z-10 min-h-screen flex flex-col justify-center pt-24 pb-14 xl:pt-32 xl:pb-20"
+        className="relative z-10 min-h-screen xl:h-full xl:min-h-0 flex flex-col justify-center pt-24 pb-14 xl:pt-28 xl:pb-16"
       >
         <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 w-full grid xl:grid-cols-12 gap-8 xl:gap-12 items-center">
           {/* Left: Text */}
