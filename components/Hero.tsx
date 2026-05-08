@@ -174,7 +174,7 @@ export function Hero() {
       {/* Content */}
       <motion.div
         style={{ opacity }}
-        className="relative z-10 min-h-screen xl:h-full xl:min-h-0 flex flex-col pt-24 pb-10 xl:pt-24 xl:pb-10"
+        className="relative z-10 min-h-screen xl:h-full xl:min-h-0 flex flex-col pt-24 pb-10 xl:pt-32 xl:pb-10"
       >
         {/* Middle area — grid fills remaining space, grid contents centered */}
         <div className="flex-1 flex items-center">
@@ -203,17 +203,17 @@ export function Hero() {
               className="font-display font-bold leading-[0.95] tracking-tight"
             >
               <SplitLine delay={0.3}>
-                <span className="block text-[clamp(3rem,11vw,7.5rem)]">
+                <span className="block text-[clamp(3rem,min(11vw,13vh),7.5rem)]">
                   Dein Körper
                 </span>
               </SplitLine>
               <SplitLine delay={0.45}>
-                <span className="block text-[clamp(3rem,11vw,7.5rem)] text-white/85 italic">
+                <span className="block text-[clamp(3rem,min(11vw,13vh),7.5rem)] text-white/85 italic">
                   kann mehr
                 </span>
               </SplitLine>
               <SplitLine delay={0.6}>
-                <span className="block text-[clamp(3rem,11vw,7.5rem)]">
+                <span className="block text-[clamp(3rem,min(11vw,13vh),7.5rem)]">
                   als du <span className="text-teal italic">denkst.</span>
                 </span>
               </SplitLine>
