@@ -47,17 +47,6 @@ p {
   line-height: 1.7;
 }
 
-/* Make ALL standard links underlined by default — color alone is not
-   a sufficient affordance for users with reduced color vision (very
-   common in 60+). Components can opt out via .no-underline or by
-   layering a button class on top. */
-a:not([class*="no-underline"]):not([class*="rounded"]):not([class*="bg-"]):not([class*="border"]) {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-  text-decoration-color: currentColor;
-}
-
 /* Make form inputs never trigger zoom on iOS (16px min) and ensure
    form fields are large enough for senior fingers. */
 input,
@@ -66,17 +55,6 @@ select {
   font-size: 17px;
   line-height: 1.5;
 }
-
-/* Buttons inherit body font but never go smaller than 16px and always
-   meet a 44×44 touch-target minimum (WCAG 2.1 AAA). */
-button,
-[role="button"],
-a[class*="inline-flex"],
-a[class*="rounded-full"] {
-  min-height: 44px;
-}
-
-/* Stronger, more-visible focus ring */
 
 /* Selection */
 ::selection {
