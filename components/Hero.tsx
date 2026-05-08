@@ -186,7 +186,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full border border-mint/25 bg-mint/[0.04] backdrop-blur-sm mb-6 lg:mb-10 shadow-soft-sm"
+              className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full border border-mint/25 bg-mint/[0.04] backdrop-blur-sm mb-4 lg:mb-6 shadow-soft-sm"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-mint opacity-75" />
@@ -203,17 +203,17 @@ export function Hero() {
               className="font-display font-bold leading-[0.95] tracking-tight"
             >
               <SplitLine delay={0.3}>
-                <span className="block text-[clamp(3rem,min(11vw,13vh),7.5rem)]">
+                <span className="block text-[clamp(2.5rem,min(8.5vw,10.5vh),5.5rem)]">
                   Dein Körper
                 </span>
               </SplitLine>
               <SplitLine delay={0.45}>
-                <span className="block text-[clamp(3rem,min(11vw,13vh),7.5rem)] text-white/85 italic">
+                <span className="block text-[clamp(2.5rem,min(8.5vw,10.5vh),5.5rem)] text-white/85 italic">
                   kann mehr
                 </span>
               </SplitLine>
               <SplitLine delay={0.6}>
-                <span className="block text-[clamp(3rem,min(11vw,13vh),7.5rem)]">
+                <span className="block text-[clamp(2.5rem,min(8.5vw,10.5vh),5.5rem)]">
                   als du <span className="text-teal italic">denkst.</span>
                 </span>
               </SplitLine>
@@ -224,7 +224,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.3 }}
-              className="mt-6 lg:mt-10 text-lg sm:text-xl lg:text-2xl text-white/90 leading-[1.65] font-normal max-w-xl"
+              className="mt-4 lg:mt-6 text-base sm:text-lg lg:text-xl text-white/90 leading-[1.6] font-normal max-w-xl"
             >
               Ich helfe Menschen ab 60, ihre{" "}
               <strong className="text-mint font-normal">
@@ -238,7 +238,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.5 }}
-              className="mt-8 lg:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4"
+              className="mt-6 lg:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4"
             >
               <MagneticButton
                 href="/erstgespraech"
