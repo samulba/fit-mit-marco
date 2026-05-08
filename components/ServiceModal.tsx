@@ -142,7 +142,7 @@ function Content({
                 <Icon size={28} />
               </div>
               <div className="flex-1 min-w-0 pr-10">
-                <div className="text-[0.65rem] font-semibold tracking-[0.25em] uppercase text-mint mb-2">
+                <div className="text-[0.78rem] font-semibold tracking-[0.15em] uppercase text-mint mb-2">
                   Leistung {leistung.num} · {leistung.tag}
                 </div>
                 <h2
@@ -158,7 +158,7 @@ function Content({
               </div>
             </div>
 
-            <p className="relative mt-6 text-base lg:text-lg text-white/70 leading-relaxed max-w-2xl font-light">
+            <p className="relative mt-6 text-base lg:text-lg text-white/85 leading-relaxed max-w-2xl font-normal">
               {leistung.hero.sub}
             </p>
           </div>
@@ -178,7 +178,7 @@ function Content({
                 {leistung.forWhom.points.map((point, i) => (
                   <li
                     key={i}
-                    className="flex items-start gap-3 text-slate leading-relaxed"
+                    className="flex items-start gap-3 text-forest/75 leading-relaxed"
                   >
                     <span className="flex-shrink-0 w-6 h-6 rounded-full bg-teal/15 text-teal flex items-center justify-center mt-0.5">
                       <Check size={13} strokeWidth={2.5} />
@@ -204,7 +204,7 @@ function Content({
                     <div className="font-display font-bold text-forest mb-1.5">
                       {b.title}
                     </div>
-                    <p className="text-sm text-slate leading-relaxed">
+                    <p className="text-sm text-forest/75 leading-relaxed">
                       {b.text}
                     </p>
                   </div>
@@ -218,7 +218,7 @@ function Content({
               <h3 className="font-display text-xl sm:text-2xl font-bold text-forest mt-2 mb-1">
                 {leistung.session.title}
               </h3>
-              <p className="text-sm text-slate font-mono mb-5">
+              <p className="text-sm text-forest/75 font-mono mb-5">
                 {leistung.session.sub}
               </p>
               <div className="space-y-2.5">
@@ -234,9 +234,9 @@ function Content({
                       <div className="font-display font-bold text-forest leading-snug">
                         {s.title}
                       </div>
-                      <div className="text-sm text-slate mt-0.5">{s.text}</div>
+                      <div className="text-sm text-forest/75 mt-0.5">{s.text}</div>
                     </div>
-                    <div className="font-mono text-xs text-slate whitespace-nowrap pt-2">
+                    <div className="font-mono text-xs text-forest/75 whitespace-nowrap pt-2">
                       {s.duration}
                     </div>
                   </div>
@@ -260,7 +260,7 @@ function Content({
                       {leistung.quote.name}
                       {leistung.quote.age ? `, ${leistung.quote.age}` : ""}
                     </div>
-                    <div className="text-white/50 text-xs">
+                    <div className="text-white/80 text-xs">
                       Kunde von Fit mit Marco
                     </div>
                   </div>
@@ -299,7 +299,7 @@ function Content({
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div className="text-[0.65rem] font-semibold tracking-[0.25em] uppercase text-teal">
+    <div className="text-[0.78rem] font-semibold tracking-[0.15em] uppercase text-teal">
       {children}
     </div>
   );

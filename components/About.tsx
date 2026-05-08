@@ -73,10 +73,10 @@ export function About() {
               <div className="absolute inset-0 bg-gradient-to-t from-forest/50 via-transparent to-transparent" />
 
               {/* Top badges */}
-              <div className="absolute top-5 left-5 px-3 py-1.5 rounded-full bg-cream/90 backdrop-blur-sm text-forest text-[0.65rem] tracking-[0.25em] uppercase font-semibold">
+              <div className="absolute top-5 left-5 px-3 py-1.5 rounded-full bg-cream/90 backdrop-blur-sm text-forest text-[0.78rem] tracking-[0.15em] uppercase font-semibold">
                 Marco Degel
               </div>
-              <div className="absolute top-5 right-5 px-3 py-1.5 rounded-full bg-teal text-forest text-[0.65rem] tracking-[0.15em] font-semibold">
+              <div className="absolute top-5 right-5 px-3 py-1.5 rounded-full bg-teal text-forest text-[0.78rem] tracking-[0.15em] font-semibold">
                 München
               </div>
 
@@ -99,19 +99,19 @@ export function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
             >
-              <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-4">
+              <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-teal mb-4">
                 Über mich
               </div>
               <h2 className="font-display text-4xl sm:text-5xl lg:text-7xl font-bold text-forest leading-[0.95] mb-6 lg:mb-8">
                 Hi, ich bin <span className="italic text-teal">Marco.</span>
               </h2>
-              <p className="text-lg sm:text-xl lg:text-2xl text-forest/80 font-light leading-relaxed mb-5 max-w-2xl">
+              <p className="text-lg sm:text-xl lg:text-2xl text-forest/80 font-normal leading-relaxed mb-5 max-w-2xl">
                 Durch meine Erfahrung im{" "}
                 <span className="text-forest font-normal">Fitness- und Gesundheitsbereich</span>{" "}
                 weiß ich, wie entscheidend gezieltes Training gerade im Alter
                 ist — für Kraft, Beweglichkeit und Lebensqualität im Alltag.
               </p>
-              <p className="text-lg sm:text-xl lg:text-2xl text-forest/80 font-light leading-relaxed max-w-2xl">
+              <p className="text-lg sm:text-xl lg:text-2xl text-forest/80 font-normal leading-relaxed max-w-2xl">
                 Bei{" "}
                 <span className="text-teal font-normal">&bdquo;Fit mit Marco&ldquo;</span>{" "}
                 trainieren wir in deiner{" "}
@@ -139,24 +139,24 @@ export function About() {
                 <span className="font-display font-bold text-2xl lg:text-3xl">1.</span>
               </div>
               <div className="md:hidden">
-                <span className="px-2.5 py-1 rounded-full bg-teal text-forest text-[0.65rem] font-bold tracking-[0.15em] uppercase">
+                <span className="px-2.5 py-1 rounded-full bg-teal text-forest text-[0.78rem] font-bold tracking-[0.15em] uppercase">
                   kostenlos
                 </span>
               </div>
             </div>
             <div className="flex-1 min-w-0">
               <div className="hidden md:flex items-center gap-3 mb-2">
-                <span className="text-[0.7rem] font-semibold tracking-[0.25em] uppercase text-teal">
+                <span className="text-[0.7rem] font-semibold tracking-[0.15em] uppercase text-teal">
                   Das erste Mal ist auf mich
                 </span>
-                <span className="px-2.5 py-0.5 rounded-full bg-teal text-forest text-[0.65rem] font-bold tracking-[0.15em] uppercase">
+                <span className="px-2.5 py-0.5 rounded-full bg-teal text-forest text-[0.78rem] font-bold tracking-[0.15em] uppercase">
                   kostenlos
                 </span>
               </div>
               <div className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-forest leading-tight mb-2 lg:mb-3">
                 Schnupper-Trainingsstunde
               </div>
-              <div className="text-slate leading-relaxed text-base lg:text-lg max-w-2xl">
+              <div className="text-forest/75 leading-relaxed text-base lg:text-lg max-w-2xl">
                 Die erste Trainingsstunde ist gratis. Wir lernen uns kennen,
                 schauen wie es dir geht und du spürst direkt, wie sich das
                 Training anfühlt — ganz ohne Verpflichtung.
@@ -191,7 +191,7 @@ export function About() {
                 <div className="font-display font-bold text-forest text-xl mb-2">
                   {usp.title}
                 </div>
-                <div className="text-slate leading-relaxed text-sm lg:text-base">
+                <div className="text-forest/75 leading-relaxed text-sm lg:text-base">
                   {usp.text}
                 </div>
               </div>
@@ -211,7 +211,7 @@ export function About() {
             <div className="font-display text-3xl lg:text-5xl font-bold text-mint leading-none">
               200+
             </div>
-            <div className="text-[0.6rem] sm:text-[0.65rem] text-white/60 mt-2 lg:mt-3 tracking-[0.2em] uppercase">
+            <div className="text-[0.75rem] sm:text-[0.78rem] text-white/85 mt-2 lg:mt-3 tracking-[0.2em] uppercase">
               Trainings&shy;stunden
             </div>
           </div>
@@ -219,7 +219,7 @@ export function About() {
             <div className="font-display text-3xl lg:text-5xl font-bold text-forest leading-none">
               seit 2018
             </div>
-            <div className="text-[0.6rem] sm:text-[0.65rem] text-slate mt-2 lg:mt-3 tracking-[0.2em] uppercase">
+            <div className="text-[0.75rem] sm:text-[0.78rem] text-forest/75 mt-2 lg:mt-3 tracking-[0.2em] uppercase">
               Personal Trainer
             </div>
           </div>
@@ -227,7 +227,7 @@ export function About() {
             <div className="font-display text-3xl lg:text-5xl font-bold text-forest leading-none">
               4 J.
             </div>
-            <div className="text-[0.6rem] sm:text-[0.65rem] text-slate mt-2 lg:mt-3 tracking-[0.2em] uppercase">
+            <div className="text-[0.75rem] sm:text-[0.78rem] text-forest/75 mt-2 lg:mt-3 tracking-[0.2em] uppercase">
               Hochleistungs&shy;sport
             </div>
           </div>

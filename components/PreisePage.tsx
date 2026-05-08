@@ -183,13 +183,13 @@ function ServicesGrid() {
           transition={{ duration: 0.7 }}
           className="max-w-2xl mb-10 lg:mb-14"
         >
-          <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-4">
+          <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-teal mb-4">
             In allen Paketen enthalten
           </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-forest leading-[1.05]">
             Leistungen, aus denen wir wählen.
           </h2>
-          <p className="mt-5 text-base sm:text-lg text-slate leading-relaxed">
+          <p className="mt-5 text-base sm:text-lg text-forest/75 leading-relaxed">
             Je nach deinem Ziel und Tagesform kombinieren wir aus diesen
             sechs Bereichen. Klick rein, um mehr über jede Leistung zu erfahren.
           </p>
@@ -216,7 +216,7 @@ function ServicesGrid() {
                     <div className="font-display font-bold text-lg text-forest leading-tight mb-1">
                       {s.title}
                     </div>
-                    <div className="text-sm text-slate leading-snug">
+                    <div className="text-sm text-forest/75 leading-snug">
                       {s.desc}
                     </div>
                   </div>
@@ -318,7 +318,7 @@ function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
-            className="mt-8 lg:mt-12 text-lg sm:text-xl text-white/65 leading-relaxed max-w-2xl mx-auto font-light"
+            className="mt-8 lg:mt-12 text-lg sm:text-xl text-white/85 leading-relaxed max-w-2xl mx-auto font-normal"
           >
             Drei Pakete, unterschiedliche Intensität, gleiche Qualität. Kein
             verstecktes Kleingedrucktes, keine Anfahrtspauschalen, keine
@@ -342,7 +342,7 @@ function Hero() {
             </a>
             <a
               href="tel:+491726223371"
-              className="inline-flex items-center gap-2 text-white/70 hover:text-mint transition-colors"
+              className="inline-flex items-center gap-2 text-white/85 hover:text-mint transition-colors"
             >
               <Phone size={16} />
               <span className="font-mono text-sm">+49 172 6223371</span>
@@ -378,13 +378,13 @@ function StickyPricing() {
           transition={{ duration: 0.7 }}
           className="text-center max-w-3xl mx-auto"
         >
-          <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-4">
+          <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-teal mb-4">
             Deine Optionen
           </div>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-forest leading-[1]">
             Drei Wege.
             <br />
-            <span className="italic text-forest/40">Ein Ziel.</span>
+            <span className="italic text-forest/65">Ein Ziel.</span>
           </h2>
         </motion.div>
       </div>
@@ -484,7 +484,7 @@ function PackageRail({ progress }: { progress: MotionValue<number> }) {
           className="absolute inset-x-0 top-0 bg-teal"
         />
       </div>
-      <div className="font-mono text-xs text-slate flex items-center gap-2">
+      <div className="font-mono text-xs text-forest/75 flex items-center gap-2">
         <motion.span className="text-forest font-semibold">{current}</motion.span>
         <span className="text-forest/30">/</span>
         <span className="text-forest/30">
@@ -539,7 +539,7 @@ function PackageCopy({
       className="absolute inset-x-0"
     >
       <div className="flex items-center gap-3 mb-6">
-        <span className="px-3 py-1 rounded-full bg-teal/10 border border-teal/20 text-teal text-[0.65rem] tracking-[0.25em] uppercase font-semibold">
+        <span className="px-3 py-1 rounded-full bg-teal/10 border border-teal/20 text-teal text-[0.78rem] tracking-[0.15em] uppercase font-semibold">
           Paket {String(index + 1).padStart(2, "0")}
         </span>
         {pkg.highlight && (
@@ -561,9 +561,9 @@ function PackageCopy({
         >
           {pkg.price} {pkg.unit}
         </span>
-        <span className="text-sm font-mono text-slate">{pkg.per}</span>
+        <span className="text-sm font-mono text-forest/75">{pkg.per}</span>
       </div>
-      <p className="text-lg lg:text-xl text-slate leading-relaxed max-w-xl font-light">
+      <p className="text-lg lg:text-xl text-forest/75 leading-relaxed max-w-xl font-normal">
         {pkg.desc}
       </p>
     </motion.div>
@@ -607,7 +607,7 @@ function Pricing() {
           transition={{ duration: 0.7 }}
           className="text-center max-w-3xl mx-auto mb-14 lg:mb-20"
         >
-          <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-4">
+          <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-teal mb-4">
             Alle Details im Überblick
           </div>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-forest leading-[1]">
@@ -653,7 +653,7 @@ function Pricing() {
 
               <p
                 className={`leading-relaxed mb-8 ${
-                  pkg.highlight ? "text-white/70" : "text-slate"
+                  pkg.highlight ? "text-white/85" : "text-forest/75"
                 }`}
               >
                 {pkg.desc}
@@ -678,7 +678,7 @@ function Pricing() {
               </div>
               <div
                 className={`text-sm font-mono mb-8 ${
-                  pkg.highlight ? "text-white/50" : "text-slate"
+                  pkg.highlight ? "text-white/80" : "text-forest/75"
                 }`}
               >
                 {pkg.per}
@@ -722,7 +722,7 @@ function Pricing() {
           ))}
         </div>
 
-        <p className="text-center text-xs text-slate mt-10 font-mono">
+        <p className="text-center text-xs text-forest/75 mt-10 font-mono">
           Alle Preise verstehen sich nach § 19 UStG ohne Ausweis der Umsatzsteuer
           (Kleinunternehmerregelung).
         </p>
@@ -742,7 +742,7 @@ function IncludedBar() {
           transition={{ duration: 0.7 }}
           className="mb-10"
         >
-          <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-mint mb-4">
+          <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-mint mb-4">
             In jedem Paket enthalten
           </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.05] max-w-2xl">
@@ -792,7 +792,7 @@ function GiftCallout() {
               <h3 className="font-display text-2xl sm:text-3xl font-bold text-forest mb-2">
                 Verschenken auch möglich
               </h3>
-              <p className="text-slate leading-relaxed">
+              <p className="text-forest/75 leading-relaxed">
                 Du möchtest jemandem Training schenken? Gutscheine in jeder Höhe
                 sind möglich – einfach anrufen oder schreiben, ich stelle dir
                 einen passenden Gutschein aus.
@@ -818,7 +818,7 @@ function FaqSection() {
     <section className="py-24 sm:py-28 lg:py-32 bg-white">
       <div className="max-w-3xl mx-auto px-5 sm:px-6 lg:px-10">
         <div className="text-center mb-12">
-          <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-3">
+          <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-teal mb-3">
             FAQ
           </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-forest leading-[1]">
@@ -875,13 +875,13 @@ function FinalCTA() {
   return (
     <section className="py-24 lg:py-32 bg-cream">
       <div className="max-w-4xl mx-auto px-5 sm:px-6 lg:px-10 text-center">
-        <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-4">
+        <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-teal mb-4">
           Noch unsicher?
         </div>
         <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-forest leading-[1] mb-6">
           Starte kostenlos.
         </h2>
-        <p className="text-lg text-slate max-w-xl mx-auto leading-relaxed mb-10">
+        <p className="text-lg text-forest/75 max-w-xl mx-auto leading-relaxed mb-10">
           Bevor du dich für ein Paket entscheidest: Lass uns reden. Das
           Erstgespräch ist kostenlos, unverbindlich und dauert 30 Minuten.
         </p>

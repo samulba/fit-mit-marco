@@ -46,13 +46,13 @@ export function Contact() {
     <section id="kontakt" className="py-20 sm:py-24 lg:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10">
         <div className="max-w-2xl mb-12 sm:mb-16">
-          <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-4">
+          <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-teal mb-4">
             Kontakt
           </div>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-forest leading-[0.95] mb-4 sm:mb-5">
             Lass uns <span className="italic text-teal">kennenlernen</span>
           </h2>
-          <p className="text-base sm:text-lg text-slate leading-relaxed">
+          <p className="text-base sm:text-lg text-forest/75 leading-relaxed">
             Ruf mich einfach an oder schreib mir eine Nachricht – ich melde mich
             innerhalb von 24 Stunden bei dir zurück.
           </p>
@@ -83,7 +83,7 @@ export function Contact() {
                     <Phone size={18} />
                   </div>
                   <div className="min-w-0">
-                    <div className="text-xs text-white/50 uppercase tracking-wider mb-1">
+                    <div className="text-xs text-white/80 uppercase tracking-wider mb-1">
                       Telefon
                     </div>
                     <div className="font-mono text-sm sm:text-base group-hover:text-mint transition-colors">
@@ -100,7 +100,7 @@ export function Contact() {
                     <Mail size={18} />
                   </div>
                   <div className="min-w-0">
-                    <div className="text-xs text-white/50 uppercase tracking-wider mb-1">
+                    <div className="text-xs text-white/80 uppercase tracking-wider mb-1">
                       E-Mail
                     </div>
                     <div className="font-mono text-sm sm:text-base group-hover:text-mint transition-colors break-all">
@@ -114,11 +114,11 @@ export function Contact() {
                     <MapPin size={18} />
                   </div>
                   <div>
-                    <div className="text-xs text-white/50 uppercase tracking-wider mb-1">
+                    <div className="text-xs text-white/80 uppercase tracking-wider mb-1">
                       Einsatzgebiet
                     </div>
                     <div className="text-sm sm:text-base">München & Umgebung</div>
-                    <div className="text-xs sm:text-sm text-white/60 mt-0.5">
+                    <div className="text-xs sm:text-sm text-white/85 mt-0.5">
                       Hausbesuche im Umkreis von 30 km
                     </div>
                   </div>
@@ -129,7 +129,7 @@ export function Contact() {
                     <Clock size={18} />
                   </div>
                   <div>
-                    <div className="text-xs text-white/50 uppercase tracking-wider mb-1">
+                    <div className="text-xs text-white/80 uppercase tracking-wider mb-1">
                       Erreichbarkeit
                     </div>
                     <div className="text-sm sm:text-base">
@@ -180,7 +180,7 @@ export function Contact() {
             <div className="mb-5">
               <label
                 htmlFor="message"
-                className="block text-[0.65rem] font-semibold uppercase tracking-[0.15em] text-teal mb-2"
+                className="block text-[0.78rem] font-semibold uppercase tracking-[0.15em] text-teal mb-2"
               >
                 Worum geht&apos;s?
               </label>
@@ -193,7 +193,7 @@ export function Contact() {
               />
             </div>
 
-            <p className="text-xs text-slate mb-5 sm:mb-6 leading-relaxed">
+            <p className="text-xs text-forest/75 mb-5 sm:mb-6 leading-relaxed">
               Mit dem Absenden stimmst du zu, dass deine Angaben zur Bearbeitung
               deiner Anfrage verwendet werden. Mehr in der{" "}
               <a href="/datenschutz" className="text-teal underline">
@@ -240,7 +240,7 @@ function Field({
     <div>
       <label
         htmlFor={name}
-        className="block text-[0.65rem] font-semibold uppercase tracking-[0.15em] text-teal mb-2"
+        className="block text-[0.78rem] font-semibold uppercase tracking-[0.15em] text-teal mb-2"
       >
         {label}
         {required && " *"}

@@ -192,7 +192,7 @@ export function Hero() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-mint opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-mint" />
               </span>
-              <span className="text-[0.6rem] sm:text-[0.7rem] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-mint/90 font-medium">
+              <span className="text-[0.75rem] sm:text-[0.7rem] tracking-[0.2em] sm:tracking-[0.15em] uppercase text-mint/90 font-medium">
                 München · Hausbesuche im Umkreis 30 km
               </span>
             </motion.div>
@@ -208,7 +208,7 @@ export function Hero() {
                 </span>
               </SplitLine>
               <SplitLine delay={0.45}>
-                <span className="block text-[clamp(3rem,11vw,7.5rem)] text-white/40 italic">
+                <span className="block text-[clamp(3rem,11vw,7.5rem)] text-white/85 italic">
                   kann mehr
                 </span>
               </SplitLine>
@@ -224,7 +224,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.3 }}
-              className="mt-6 lg:mt-10 text-base sm:text-lg lg:text-xl text-white/60 leading-relaxed font-light max-w-xl"
+              className="mt-6 lg:mt-10 text-lg sm:text-xl lg:text-2xl text-white/90 leading-[1.65] font-normal max-w-xl"
             >
               Ich helfe Menschen ab 60, ihre{" "}
               <strong className="text-mint font-normal">
@@ -243,26 +243,26 @@ export function Hero() {
               <MagneticButton
                 href="/erstgespraech"
                 strength={14}
-                className="group relative overflow-hidden inline-flex items-center gap-3 bg-teal hover:bg-mint text-forest pl-6 sm:pl-7 pr-2 py-2 rounded-full font-semibold transition-colors duration-400 hover:shadow-teal-glow w-fit"
+                className="group relative overflow-hidden inline-flex items-center gap-3 bg-teal hover:bg-mint text-forest pl-7 sm:pl-8 pr-2.5 py-2.5 rounded-full font-semibold transition-colors duration-400 hover:shadow-teal-glow w-fit"
               >
                 {/* sheen overlay */}
                 <span
                   aria-hidden="true"
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-600 ease-smooth"
                 />
-                <span className="relative z-10 text-sm sm:text-base">
+                <span className="relative z-10 text-base sm:text-lg">
                   Kostenloses Erstgespräch
                 </span>
-                <span className="relative z-10 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-forest text-teal group-hover:text-forest group-hover:bg-cream flex items-center justify-center transition-all duration-400">
-                  <ArrowDown size={16} className="-rotate-45 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-400" />
+                <span className="relative z-10 w-12 h-12 sm:w-13 sm:h-13 rounded-full bg-forest text-teal group-hover:text-forest group-hover:bg-cream flex items-center justify-center transition-all duration-400">
+                  <ArrowDown size={18} className="-rotate-45 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-400" />
                 </span>
               </MagneticButton>
               <a
                 href="#about"
-                className="group inline-flex items-center gap-3 text-white/70 hover:text-mint text-sm font-medium transition-colors duration-400"
+                className="group inline-flex items-center gap-3 text-white/85 hover:text-mint text-base font-medium transition-colors duration-400"
               >
-                <span className="w-10 h-10 rounded-full border border-white/20 group-hover:border-mint group-hover:bg-mint/10 flex items-center justify-center transition-all duration-400 group-hover:scale-105">
-                  <Play size={12} className="fill-current ml-0.5" />
+                <span className="w-12 h-12 rounded-full border border-white/20 group-hover:border-mint group-hover:bg-mint/10 flex items-center justify-center transition-all duration-400 group-hover:scale-105">
+                  <Play size={14} className="fill-current ml-0.5" />
                 </span>
                 <span className="link-underline">So arbeite ich</span>
               </a>
@@ -302,7 +302,7 @@ export function Hero() {
               </div>
 
               {/* Top badge */}
-              <div className="absolute top-5 left-5 px-3 py-1.5 rounded-full bg-forest/50 backdrop-blur-md border border-white/20 text-white text-[0.65rem] tracking-[0.2em] uppercase">
+              <div className="absolute top-5 left-5 px-3 py-1.5 rounded-full bg-forest/50 backdrop-blur-md border border-white/20 text-white text-[0.78rem] tracking-[0.2em] uppercase">
                 Marco Degel
               </div>
 
@@ -312,7 +312,7 @@ export function Hero() {
                   &ldquo;Wer rastet,
                   <br /> der rostet.&rdquo;
                 </div>
-                <div className="mt-2 text-[0.65rem] tracking-[0.2em] uppercase text-forest/50">
+                <div className="mt-2 text-[0.78rem] tracking-[0.2em] uppercase text-forest/70">
                   Personal Trainer · seit 2018
                 </div>
               </div>
@@ -349,9 +349,9 @@ export function Hero() {
       {/* Scroll indicator */}
       <motion.div
         style={{ opacity }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/40"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/85"
       >
-        <span className="text-[0.6rem] tracking-[0.3em] uppercase">
+        <span className="text-[0.75rem] tracking-[0.18em] uppercase">
           Scroll
         </span>
         <motion.div
@@ -380,7 +380,7 @@ function Stat({ value, label }: { value: string; label: string }) {
       <div className="font-display font-bold text-xl text-mint leading-none">
         {value}
       </div>
-      <div className="text-[0.6rem] text-white/40 uppercase tracking-wider mt-1">
+      <div className="text-[0.75rem] text-white/85 uppercase tracking-wider mt-1">
         {label}
       </div>
     </div>

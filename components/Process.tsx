@@ -97,7 +97,7 @@ export function Process() {
             transition={{ duration: 0.7 }}
             className="max-w-3xl"
           >
-            <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-mint mb-4">
+            <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-mint mb-4">
               Der Weg
             </div>
             <h2
@@ -293,7 +293,7 @@ function CinematicRail({ progress }: { progress: MotionValue<number> }) {
 
   return (
     <div className="hidden lg:flex absolute right-10 top-1/2 -translate-y-1/2 flex-col items-center gap-6 z-20">
-      <div className="font-mono text-[0.65rem] text-white/40 tracking-widest uppercase">
+      <div className="font-mono text-[0.78rem] text-white/85 tracking-widest uppercase">
         Schritt
       </div>
       <div className="relative w-px h-[40vh] bg-white/10">
@@ -315,7 +315,7 @@ function CinematicRail({ progress }: { progress: MotionValue<number> }) {
       <div className="flex items-center gap-1.5 font-mono text-xs">
         <motion.span className="text-mint font-semibold">{current}</motion.span>
         <span className="text-white/20">/</span>
-        <span className="text-white/40">
+        <span className="text-white/85">
           {String(steps.length).padStart(2, "0")}
         </span>
       </div>
@@ -637,7 +637,7 @@ function TrainingScene() {
         <motion.div
           animate={{ y: [0, -6, 0], opacity: [0.8, 1, 0.8] }}
           transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -top-2 -right-4 bg-teal text-forest px-3 py-1.5 rounded-full font-mono text-[0.6rem] tracking-widest uppercase shadow-lg shadow-teal/30"
+          className="absolute -top-2 -right-4 bg-teal text-forest px-3 py-1.5 rounded-full font-mono text-[0.75rem] tracking-widest uppercase shadow-lg shadow-teal/30"
         >
           Let&apos;s go
         </motion.div>
@@ -703,10 +703,10 @@ function TextStage({
           <Icon size={18} />
         </div>
         <div>
-          <div className="font-mono text-[0.65rem] text-mint tracking-[0.25em] uppercase font-semibold">
+          <div className="font-mono text-[0.78rem] text-mint tracking-[0.15em] uppercase font-semibold">
             Schritt {step.num} · {step.keyword}
           </div>
-          <div className="font-mono text-xs text-white/40 mt-0.5">
+          <div className="font-mono text-xs text-white/85 mt-0.5">
             {step.eyebrow}
           </div>
         </div>
@@ -745,7 +745,7 @@ function TextStage({
       {/* Body */}
       <motion.p
         style={{ opacity: textOpacity, y: textY }}
-        className="text-lg lg:text-xl text-white/65 leading-relaxed max-w-xl font-light"
+        className="text-lg lg:text-xl text-white/85 leading-relaxed max-w-xl font-normal"
       >
         {step.text}
       </motion.p>
@@ -756,14 +756,14 @@ function TextStage({
         className="mt-10 flex items-center gap-6 pt-6 border-t border-white/10"
       >
         <div>
-          <div className="text-[0.6rem] tracking-[0.2em] uppercase text-white/40 mb-1">
+          <div className="text-[0.75rem] tracking-[0.2em] uppercase text-white/85 mb-1">
             Dauer
           </div>
           <div className="font-mono text-sm text-mint">{step.duration}</div>
         </div>
         <div className="w-px h-8 bg-white/10" />
         <div>
-          <div className="text-[0.6rem] tracking-[0.2em] uppercase text-white/40 mb-1">
+          <div className="text-[0.75rem] tracking-[0.2em] uppercase text-white/85 mb-1">
             Du brauchst
           </div>
           <div className="font-mono text-sm text-mint">{step.need}</div>

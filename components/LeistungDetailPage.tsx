@@ -112,7 +112,7 @@ function Hero({
               transition={{ duration: 0.6 }}
               className="inline-flex items-center gap-3 mb-8"
             >
-              <span className="text-[0.7rem] tracking-[0.25em] uppercase text-mint font-semibold">
+              <span className="text-[0.7rem] tracking-[0.15em] uppercase text-mint font-semibold">
                 {leistung.hero.kicker}
               </span>
             </motion.div>
@@ -149,7 +149,7 @@ function Hero({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1 }}
-              className="mt-8 lg:mt-10 text-lg sm:text-xl text-white/65 leading-relaxed max-w-xl font-light"
+              className="mt-8 lg:mt-10 text-lg sm:text-xl text-white/85 leading-relaxed max-w-xl font-normal"
             >
               {leistung.hero.sub}
             </motion.p>
@@ -171,7 +171,7 @@ function Hero({
               </Link>
               <a
                 href="tel:+491726223371"
-                className="inline-flex items-center gap-2 text-white/70 hover:text-mint transition-colors"
+                className="inline-flex items-center gap-2 text-white/85 hover:text-mint transition-colors"
               >
                 <Phone size={16} />
                 <span className="font-mono text-sm">+49 172 6223371</span>
@@ -197,7 +197,7 @@ function Hero({
               </motion.div>
               <div className="relative w-64 h-64 rounded-full bg-forest-mid border border-white/10 flex items-center justify-center shadow-2xl shadow-forest/40">
                 <Icon size={90} className="text-mint" strokeWidth={1.3} />
-                <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-teal text-forest text-[0.65rem] font-mono tracking-widest px-4 py-1.5 rounded-full">
+                <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-teal text-forest text-[0.78rem] font-mono tracking-widest px-4 py-1.5 rounded-full">
                   {leistung.num} · {leistung.tag}
                 </div>
               </div>
@@ -220,7 +220,7 @@ function ForWhom({ leistung }: { leistung: Leistung }) {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-4">
+          <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-teal mb-4">
             Für wen
           </div>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-forest leading-[1] mb-10 lg:mb-14">
@@ -234,7 +234,7 @@ function ForWhom({ leistung }: { leistung: Leistung }) {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="flex items-start gap-4 text-lg lg:text-xl text-slate leading-relaxed"
+                className="flex items-start gap-4 text-lg lg:text-xl text-forest/75 leading-relaxed"
               >
                 <span className="flex-shrink-0 w-8 h-8 rounded-full bg-teal/15 text-teal flex items-center justify-center mt-1">
                   <Check size={16} />
@@ -261,7 +261,7 @@ function Benefits({ leistung }: { leistung: Leistung }) {
           transition={{ duration: 0.7 }}
           className="max-w-3xl mb-14 lg:mb-20"
         >
-          <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-mint mb-4">
+          <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-mint mb-4">
             Nutzen
           </div>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1]">
@@ -282,7 +282,7 @@ function Benefits({ leistung }: { leistung: Leistung }) {
               <div className="font-display font-bold text-2xl sm:text-3xl mb-3">
                 {b.title}
               </div>
-              <p className="text-white/65 leading-relaxed">{b.text}</p>
+              <p className="text-white/85 leading-relaxed">{b.text}</p>
             </motion.div>
           ))}
         </div>
@@ -318,13 +318,13 @@ function Session({ leistung }: { leistung: Leistung }) {
           transition={{ duration: 0.7 }}
           className="text-center max-w-3xl mx-auto"
         >
-          <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-4">
+          <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-teal mb-4">
             Ablauf
           </div>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-forest leading-[1] mb-4">
             {leistung.session.title}
           </h2>
-          <p className="text-lg text-slate font-mono">{leistung.session.sub}</p>
+          <p className="text-lg text-forest/75 font-mono">{leistung.session.sub}</p>
         </motion.div>
       </div>
 
@@ -441,7 +441,7 @@ function SessionRail({
           className="absolute inset-x-0 top-0 bg-teal"
         />
       </div>
-      <div className="font-mono text-xs text-slate flex items-center gap-2">
+      <div className="font-mono text-xs text-forest/75 flex items-center gap-2">
         <motion.span className="text-forest font-semibold">
           {currentStep}
         </motion.span>
@@ -498,7 +498,7 @@ function SessionStepCopy({
       className="absolute inset-x-0"
     >
       <div className="flex items-center gap-3 mb-6">
-        <div className="font-mono text-xs text-slate tracking-widest">
+        <div className="font-mono text-xs text-forest/75 tracking-widest">
           SCHRITT {String(index + 1).padStart(2, "0")}
         </div>
         <div className="h-px w-16 bg-teal/40" />
@@ -514,7 +514,7 @@ function SessionStepCopy({
         {step.title}
       </h3>
 
-      <p className="text-lg lg:text-xl text-slate leading-relaxed max-w-xl font-light">
+      <p className="text-lg lg:text-xl text-forest/75 leading-relaxed max-w-xl font-normal">
         {step.text}
       </p>
     </motion.div>
@@ -565,7 +565,7 @@ function Results({ leistung }: { leistung: Leistung }) {
           transition={{ duration: 0.7 }}
           className="text-center mb-14"
         >
-          <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-4">
+          <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-teal mb-4">
             Ergebnisse
           </div>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-forest leading-[1]">
@@ -631,7 +631,7 @@ function QuoteBlock({ leistung }: { leistung: Leistung }) {
                   {leistung.quote.name}
                   {leistung.quote.age ? `, ${leistung.quote.age}` : ""}
                 </div>
-                <div className="text-xs text-white/50">
+                <div className="text-xs text-white/80">
                   Kunde von Fit mit Marco
                 </div>
               </div>
@@ -650,7 +650,7 @@ function FaqSection({ leistung }: { leistung: Leistung }) {
     <section className="py-20 sm:py-24 lg:py-28 bg-white">
       <div className="max-w-3xl mx-auto px-5 sm:px-6 lg:px-10">
         <div className="text-center mb-10 lg:mb-14">
-          <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-3">
+          <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-teal mb-3">
             Häufige Fragen
           </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-forest leading-[1]">
@@ -711,7 +711,7 @@ function CrossSell({ current }: { current: string }) {
     <section className="py-20 sm:py-24 lg:py-28 bg-cream">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10">
         <div className="mb-10">
-          <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-3">
+          <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-teal mb-3">
             Weitere Leistungen
           </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-forest leading-[1]">
@@ -731,14 +731,14 @@ function CrossSell({ current }: { current: string }) {
                   <div className="w-11 h-11 rounded-xl bg-forest text-mint group-hover:bg-teal group-hover:text-forest flex items-center justify-center transition-colors">
                     <OIcon size={20} />
                   </div>
-                  <span className="font-mono text-xs text-slate tracking-wider">
+                  <span className="font-mono text-xs text-forest/75 tracking-wider">
                     {o.num} · {o.tag}
                   </span>
                 </div>
                 <div className="font-display font-bold text-xl text-forest leading-tight mb-2">
                   {o.titleShort}
                 </div>
-                <div className="text-sm text-slate">
+                <div className="text-sm text-forest/75">
                   <span className="inline-flex items-center gap-1 text-teal font-semibold mt-2">
                     Mehr erfahren <ArrowRight size={14} />
                   </span>

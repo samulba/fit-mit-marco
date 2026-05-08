@@ -89,7 +89,7 @@ export function Services() {
             transition={{ duration: 0.8 }}
             className="max-w-4xl"
           >
-            <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-mint mb-5">
+            <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-mint mb-5">
               Leistungen
             </div>
             <h2
@@ -100,7 +100,7 @@ export function Services() {
               <br />
               <span className="text-white/30 italic">Ein Ziel.</span>
             </h2>
-            <p className="text-lg lg:text-xl text-white/60 max-w-xl leading-relaxed font-light">
+            <p className="text-lg lg:text-xl text-white/85 max-w-xl leading-relaxed font-normal">
               Als Personal Trainer für Senioren in München kombiniere ich
               verschiedene Trainingsbereiche – individuell auf dich
               zugeschnitten, abhängig davon, was dein Körper gerade braucht.
@@ -118,7 +118,7 @@ export function Services() {
             {[1, 2, 3, 4, 5, 6].map((n) => (
               <div
                 key={n}
-                className="w-12 h-12 rounded-xl border border-white/10 flex items-center justify-center font-mono text-xs text-white/40"
+                className="w-12 h-12 rounded-xl border border-white/10 flex items-center justify-center font-mono text-xs text-white/85"
               >
                 0{n}
               </div>
@@ -154,14 +154,14 @@ export function Services() {
                     <div className="w-11 h-11 rounded-xl bg-cream/5 border border-white/10 flex items-center justify-center text-mint">
                       <s.icon size={19} />
                     </div>
-                    <span className="px-2.5 py-1 rounded-full bg-teal/10 border border-teal/20 text-mint text-[0.6rem] tracking-[0.2em] uppercase font-semibold">
+                    <span className="px-2.5 py-1 rounded-full bg-teal/10 border border-teal/20 text-mint text-[0.75rem] tracking-[0.2em] uppercase font-semibold">
                       {s.tag}
                     </span>
                   </div>
                   <h3 className="font-display text-2xl font-bold leading-tight mb-2.5">
                     {s.title}
                   </h3>
-                  <p className="text-white/60 leading-relaxed text-sm mb-4">
+                  <p className="text-white/85 leading-relaxed text-sm mb-4">
                     {s.text}
                   </p>
                   <div className="inline-flex items-center gap-1.5 text-mint text-xs font-semibold">
@@ -185,7 +185,7 @@ export function Services() {
           >
             <div>
               <div className="font-display text-2xl font-bold leading-tight">
-                Bereit? <span className="italic text-forest/60">Ich auch.</span>
+                Bereit? <span className="italic text-forest/75">Ich auch.</span>
               </div>
               <div className="text-xs mt-1 font-mono">Erstgespräch buchen</div>
             </div>
@@ -234,13 +234,13 @@ function HorizontalScroll({ onOpen }: { onOpen: (slug: string) => void }) {
             className="group flex-shrink-0 w-[60vw] lg:w-[35vw] h-[60vh] rounded-3xl bg-teal text-forest p-10 flex flex-col justify-between"
           >
             <div>
-              <div className="text-xs font-mono text-forest/60 mb-4">
+              <div className="text-xs font-mono text-forest/75 mb-4">
                 07 · nächster Schritt
               </div>
               <h3 className="font-display text-4xl lg:text-5xl font-bold leading-tight">
                 Bereit?
                 <br />
-                <span className="italic text-forest/60">Ich auch.</span>
+                <span className="italic text-forest/75">Ich auch.</span>
               </h3>
             </div>
             <div className="flex items-center justify-between">
@@ -254,7 +254,7 @@ function HorizontalScroll({ onOpen }: { onOpen: (slug: string) => void }) {
           </motion.a>
         </motion.div>
       </div>
-      <div className="absolute bottom-10 right-10 flex items-center gap-3 text-[0.65rem] tracking-[0.25em] uppercase text-white/40 font-mono">
+      <div className="absolute bottom-10 right-10 flex items-center gap-3 text-[0.78rem] tracking-[0.15em] uppercase text-white/85 font-mono">
         <motion.span
           animate={{ x: [-3, 3, -3] }}
           transition={{ duration: 2, repeat: Infinity, ease: [0.22, 1, 0.36, 1] }}
@@ -304,7 +304,7 @@ function ServiceCard({
             <div className="w-14 h-14 rounded-2xl bg-cream/5 border border-white/10 backdrop-blur-sm flex items-center justify-center text-mint">
               <service.icon size={24} />
             </div>
-            <span className="px-3 py-1 rounded-full bg-teal/10 border border-teal/20 text-mint text-[0.65rem] tracking-[0.25em] uppercase font-semibold">
+            <span className="px-3 py-1 rounded-full bg-teal/10 border border-teal/20 text-mint text-[0.78rem] tracking-[0.15em] uppercase font-semibold">
               {service.tag}
             </span>
           </div>
@@ -313,7 +313,7 @@ function ServiceCard({
           <h3 className="font-display text-4xl lg:text-5xl font-bold leading-[1.05] mb-5">
             {service.title}
           </h3>
-          <p className="text-white/60 leading-relaxed text-base lg:text-lg max-w-sm mb-8">
+          <p className="text-white/85 leading-relaxed text-base lg:text-lg max-w-sm mb-8">
             {service.text}
           </p>
           <div className="flex items-center gap-2 text-mint text-sm font-semibold">

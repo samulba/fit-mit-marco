@@ -196,7 +196,7 @@ function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
-            className="mt-8 lg:mt-12 text-lg sm:text-xl text-white/65 leading-relaxed max-w-2xl font-light"
+            className="mt-8 lg:mt-12 text-lg sm:text-xl text-white/85 leading-relaxed max-w-2xl font-normal"
           >
             Wenn Sie merken, dass Ihre Eltern oder Großeltern körperlich
             abbauen, aber nie in ein Fitnessstudio gehen würden – dann ist
@@ -221,7 +221,7 @@ function Hero() {
             </Link>
             <a
               href="tel:+491726223371"
-              className="inline-flex items-center gap-2 text-white/70 hover:text-mint transition-colors"
+              className="inline-flex items-center gap-2 text-white/85 hover:text-mint transition-colors"
             >
               <Phone size={16} />
               <span className="font-mono text-sm">
@@ -260,7 +260,7 @@ function Concerns() {
           transition={{ duration: 0.7 }}
           className="max-w-3xl"
         >
-          <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-4">
+          <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-teal mb-4">
             Kommt Ihnen bekannt vor?
           </div>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-forest leading-[1]">
@@ -361,7 +361,7 @@ function ConcernRail({ progress }: { progress: MotionValue<number> }) {
           className="absolute inset-x-0 top-0 bg-coral"
         />
       </div>
-      <div className="font-mono text-xs text-slate flex items-center gap-2">
+      <div className="font-mono text-xs text-forest/75 flex items-center gap-2">
         <motion.span className="text-forest font-semibold">
           {currentConcern}
         </motion.span>
@@ -423,7 +423,7 @@ function ConcernCopy({
         <div className="w-12 h-12 rounded-xl bg-coral/10 text-coral flex items-center justify-center">
           <Icon size={20} />
         </div>
-        <div className="font-mono text-xs text-slate tracking-widest">
+        <div className="font-mono text-xs text-forest/75 tracking-widest">
           SORGE {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
         </div>
       </div>
@@ -433,7 +433,7 @@ function ConcernCopy({
       >
         {concern.title}
       </h3>
-      <p className="text-lg lg:text-xl text-slate leading-relaxed max-w-2xl font-light">
+      <p className="text-lg lg:text-xl text-forest/75 leading-relaxed max-w-2xl font-normal">
         {concern.text}
       </p>
     </motion.div>
@@ -477,13 +477,13 @@ function Benefits() {
           transition={{ duration: 0.7 }}
           className="max-w-3xl mb-14 lg:mb-20"
         >
-          <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-mint mb-4">
+          <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-mint mb-4">
             Was ich anders mache
           </div>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1]">
             Personal Training,
             <br />
-            <span className="italic text-white/40">das funktioniert.</span>
+            <span className="italic text-white/85">das funktioniert.</span>
           </h2>
         </motion.div>
 
@@ -500,7 +500,7 @@ function Benefits() {
               <div className="font-display font-bold text-xl sm:text-2xl mb-3 leading-tight">
                 {b.title}
               </div>
-              <p className="text-white/65 leading-relaxed">{b.text}</p>
+              <p className="text-white/85 leading-relaxed">{b.text}</p>
             </motion.div>
           ))}
         </div>
@@ -520,13 +520,13 @@ function How() {
           transition={{ duration: 0.7 }}
           className="max-w-3xl mb-14"
         >
-          <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-4">
+          <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-teal mb-4">
             So läuft's ab
           </div>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-forest leading-[1]">
             Drei Schritte.
             <br />
-            <span className="italic text-forest/40">Keine Eile.</span>
+            <span className="italic text-forest/65">Keine Eile.</span>
           </h2>
         </motion.div>
 
@@ -546,7 +546,7 @@ function How() {
               <div className="font-display font-bold text-2xl text-forest mb-3 leading-tight">
                 {step.title}
               </div>
-              <p className="text-slate leading-relaxed">{step.text}</p>
+              <p className="text-forest/75 leading-relaxed">{step.text}</p>
             </motion.div>
           ))}
         </div>
@@ -578,7 +578,7 @@ function QuoteBlock() {
             bringen – sondern Sicherheit, Kraft und Lebensqualität im Alltag
             zu verbessern. Wer rastet, der rostet.&rdquo;
           </blockquote>
-          <figcaption className="text-sm text-white/50">
+          <figcaption className="text-sm text-white/80">
             Marco Degel · Fit mit Marco
           </figcaption>
         </motion.figure>
@@ -593,7 +593,7 @@ function FaqSection() {
     <section className="py-24 sm:py-28 lg:py-32 bg-cream">
       <div className="max-w-3xl mx-auto px-5 sm:px-6 lg:px-10">
         <div className="text-center mb-12">
-          <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-3">
+          <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-teal mb-3">
             Häufige Fragen
           </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-forest leading-[1]">
@@ -656,7 +656,7 @@ function FinalCTA() {
         <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-forest leading-[1] mb-6">
           Lassen Sie uns reden.
         </h2>
-        <p className="text-lg text-slate max-w-xl mx-auto leading-relaxed mb-10">
+        <p className="text-lg text-forest/75 max-w-xl mx-auto leading-relaxed mb-10">
           Ein unverbindliches Telefonat, 15 Minuten. Sie erzählen mir von der
           Situation, ich sage Ihnen ehrlich, ob ich helfen kann – und wenn ja,
           wie.

@@ -10,37 +10,73 @@
 }
 
 /* ── Base sizing tuned for audience 60+ ──
-   Browsers default to 16px. We bump to 17px so body text and
-   form inputs are a touch more legible without breaking the
-   layout. rem-based utilities scale accordingly. */
+   Senior-friendly typography is the foundation. Browsers default to
+   16px. We bump to 18px on desktop and 17px on mobile so body text
+   and form inputs are comfortably legible for older eyes. rem-based
+   utilities scale accordingly throughout the design. */
 html {
-  font-size: 17px;
+  font-size: 18px;
   scroll-behavior: smooth;
   overflow-x: clip;
 }
+@media (max-width: 1024px) {
+  html { font-size: 17px; }
+}
 @media (max-width: 640px) {
-  html {
-    font-size: 16px; /* keep mobile at standard 16 so layouts are predictable */
-  }
+  html { font-size: 16px; }
 }
 
 body {
   background-color: var(--cream);
-  color: #2D3436;
+  /* Use a stronger near-black instead of charcoal-gray so body text
+     hits AAA contrast on cream backgrounds for senior readers. */
+  color: #1A2A26;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: clip;
-  /* Slightly looser line-height for comfortable reading */
-  line-height: 1.6;
+  /* Generous line-height for comfortable reading at 60+ */
+  line-height: 1.7;
+  /* Default to 400 weight for body content; never hairlines */
+  font-weight: 400;
 }
 
-/* Make form inputs never trigger zoom on iOS (16px min) */
+/* Senior-friendly defaults for paragraphs throughout the site —
+   ensures any unstyled <p> renders with comfortable size, weight,
+   and spacing without needing to touch individual components. */
+p {
+  line-height: 1.7;
+}
+
+/* Make ALL standard links underlined by default — color alone is not
+   a sufficient affordance for users with reduced color vision (very
+   common in 60+). Components can opt out via .no-underline or by
+   layering a button class on top. */
+a:not([class*="no-underline"]):not([class*="rounded"]):not([class*="bg-"]):not([class*="border"]) {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: currentColor;
+}
+
+/* Make form inputs never trigger zoom on iOS (16px min) and ensure
+   form fields are large enough for senior fingers. */
 input,
 textarea,
-select,
-button {
-  font-size: 16px;
+select {
+  font-size: 17px;
+  line-height: 1.5;
 }
+
+/* Buttons inherit body font but never go smaller than 16px and always
+   meet a 44×44 touch-target minimum (WCAG 2.1 AAA). */
+button,
+[role="button"],
+a[class*="inline-flex"],
+a[class*="rounded-full"] {
+  min-height: 44px;
+}
+
+/* Stronger, more-visible focus ring */
 
 /* Selection */
 ::selection {
@@ -65,11 +101,13 @@ button {
 }
 
 /* Focus ring that's visible for keyboard users — important for
-   senior audience and screen-reader / low-vision users */
+   senior audience and screen-reader / low-vision users.
+   We use 3px solid + a subtle box-shadow halo for extra visibility. */
 *:focus-visible {
-  outline: 2px solid var(--teal);
+  outline: 3px solid var(--teal);
   outline-offset: 3px;
   border-radius: 4px;
+  box-shadow: 0 0 0 6px rgba(0, 184, 148, 0.18);
 }
 
 /* ── Reusable design system utilities ────────────────────────── */

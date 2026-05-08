@@ -140,7 +140,7 @@ export function Navbar() {
                 <a
                   key={l.href}
                   href={l.href}
-                  className="relative px-5 py-2.5 text-sm font-medium rounded-full transition-colors"
+                  className="relative px-5 py-2.5 text-base font-medium rounded-full transition-colors"
                 >
                   {isActive && (
                     <motion.span
@@ -161,27 +161,27 @@ export function Navbar() {
             })}
           </nav>
 
-          {/* Phone + CTA */}
+          {/* Phone + CTA — bigger touch targets, more legible numbers */}
           <div className="flex items-center gap-2">
             <a
               href="tel:+491726223371"
-              className={`flex items-center gap-2 px-4 py-3 rounded-full font-mono text-xs transition-all duration-500 ease-smooth ${
+              className={`flex items-center gap-2.5 px-5 py-3.5 rounded-full font-mono text-sm transition-all duration-500 ease-smooth ${
                 scrolled
-                  ? "bg-white/80 backdrop-blur-2xl border border-white/60 text-forest hover:bg-white hover:shadow-soft"
-                  : "bg-white/55 backdrop-blur-xl border border-white/40 text-forest/80 hover:bg-white/80"
+                  ? "bg-white/85 backdrop-blur-2xl border border-white/60 text-forest hover:bg-white hover:shadow-soft"
+                  : "bg-white/60 backdrop-blur-xl border border-white/45 text-forest hover:bg-white/85"
               }`}
               aria-label="Marco anrufen"
             >
-              <Phone size={14} />
+              <Phone size={16} />
               <span>+49 172 6223371</span>
             </a>
             <a
               href="/erstgespraech"
-              className="group relative overflow-hidden flex items-center gap-2 bg-teal hover:bg-mint text-forest pl-5 pr-2 py-2 rounded-full text-sm font-semibold transition-all duration-400 ease-smooth hover:shadow-teal-glow"
+              className="group relative overflow-hidden flex items-center gap-2.5 bg-teal hover:bg-mint text-forest pl-6 pr-2 py-2.5 rounded-full text-base font-semibold transition-all duration-400 ease-smooth hover:shadow-teal-glow"
             >
               <span className="relative z-10">Erstgespräch</span>
-              <span className="relative z-10 w-8 h-8 rounded-full bg-forest group-hover:bg-forest flex items-center justify-center text-cream transition-all duration-500 group-hover:rotate-45">
-                <ArrowUpRight size={14} />
+              <span className="relative z-10 w-9 h-9 rounded-full bg-forest group-hover:bg-forest flex items-center justify-center text-cream transition-all duration-500 group-hover:rotate-45">
+                <ArrowUpRight size={16} />
               </span>
             </a>
           </div>
@@ -221,7 +221,7 @@ export function Navbar() {
               >
                 <a
                   href="tel:+491726223371"
-                  className="flex items-center gap-3 text-white/70"
+                  className="flex items-center gap-3 text-white/85"
                 >
                   <Phone size={16} /> +49 172 6223371
                 </a>

@@ -194,7 +194,7 @@ function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
-            className="mt-8 lg:mt-12 text-lg sm:text-xl lg:text-2xl text-white/70 leading-relaxed max-w-2xl mx-auto font-light"
+            className="mt-8 lg:mt-12 text-lg sm:text-xl lg:text-2xl text-white/85 leading-relaxed max-w-2xl mx-auto font-normal"
           >
             30 Minuten. Kein Druck. Kein Verkauf.
             <br />
@@ -219,7 +219,7 @@ function Hero() {
             </a>
             <a
               href="tel:+491726223371"
-              className="inline-flex items-center gap-2 text-white/70 hover:text-mint transition-colors"
+              className="inline-flex items-center gap-2 text-white/85 hover:text-mint transition-colors"
             >
               <Phone size={16} />
               <span className="font-mono text-sm">oder +49 172 6223371</span>
@@ -231,9 +231,9 @@ function Hero() {
       {/* Scroll hint */}
       <motion.div
         style={{ opacity }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/40"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/85"
       >
-        <span className="text-[0.6rem] tracking-[0.3em] uppercase">
+        <span className="text-[0.75rem] tracking-[0.18em] uppercase">
           So läuft's ab
         </span>
         <motion.div
@@ -299,7 +299,7 @@ function WhatHappens() {
             transition={{ duration: 0.7 }}
             className="max-w-3xl"
           >
-            <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-mint mb-4">
+            <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-mint mb-4">
               Was dich erwartet
             </div>
             <h2 className="font-display font-bold leading-[1]"
@@ -498,7 +498,7 @@ function CinematicRail({ progress }: { progress: MotionValue<number> }) {
 
   return (
     <div className="hidden lg:flex absolute right-10 top-1/2 -translate-y-1/2 flex-col items-center gap-6 z-20">
-      <div className="font-mono text-[0.65rem] text-white/40 tracking-widest uppercase">
+      <div className="font-mono text-[0.78rem] text-white/85 tracking-widest uppercase">
         Akt
       </div>
       <div className="relative w-px h-[40vh] bg-white/10">
@@ -520,7 +520,7 @@ function CinematicRail({ progress }: { progress: MotionValue<number> }) {
       <div className="flex items-center gap-1.5 font-mono text-xs">
         <motion.span className="text-mint font-semibold">{current}</motion.span>
         <span className="text-white/20">/</span>
-        <span className="text-white/40">
+        <span className="text-white/85">
           {String(whatHappens.length).padStart(2, "0")}
         </span>
       </div>
@@ -728,7 +728,7 @@ function RouteScene({ local }: { local: MotionValue<number> }) {
       <div className="relative w-60 h-72 rounded-[1.5rem] bg-cream text-forest shadow-2xl shadow-teal/20 overflow-hidden p-6 anim-float-y">
         {/* Header */}
         <div className="flex items-center justify-between mb-2">
-          <div className="font-mono text-[0.6rem] tracking-[0.2em] uppercase text-forest/50">
+          <div className="font-mono text-[0.75rem] tracking-[0.2em] uppercase text-forest/70">
             Dein Plan
           </div>
           <div className="flex gap-1">
@@ -871,7 +871,7 @@ function RouteScene({ local }: { local: MotionValue<number> }) {
 
         {/* Footer pill */}
         <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between px-3 py-2 rounded-full bg-forest text-cream">
-          <span className="font-mono text-[0.6rem] tracking-widest uppercase">
+          <span className="font-mono text-[0.75rem] tracking-widest uppercase">
             3 Schritte
           </span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
@@ -946,10 +946,10 @@ function TextStage({
           <Icon size={18} />
         </div>
         <div>
-          <div className="font-mono text-[0.65rem] text-mint tracking-[0.25em] uppercase font-semibold">
+          <div className="font-mono text-[0.78rem] text-mint tracking-[0.15em] uppercase font-semibold">
             Akt {String(index + 1).padStart(2, "0")} · {step.keyword}
           </div>
-          <div className="font-mono text-xs text-white/40 mt-0.5">
+          <div className="font-mono text-xs text-white/85 mt-0.5">
             {step.eyebrow}
           </div>
         </div>
@@ -980,7 +980,7 @@ function TextStage({
       {/* Body */}
       <motion.p
         style={{ opacity: textOpacity, y: textY }}
-        className="text-lg lg:text-xl text-white/65 leading-relaxed max-w-xl font-light"
+        className="text-lg lg:text-xl text-white/85 leading-relaxed max-w-xl font-normal"
       >
         {step.text}
       </motion.p>
@@ -994,7 +994,7 @@ function TextStage({
         className="mt-10 flex items-center gap-6 pt-6 border-t border-white/10"
       >
         <div>
-          <div className="text-[0.6rem] tracking-[0.2em] uppercase text-white/40 mb-1">
+          <div className="text-[0.75rem] tracking-[0.2em] uppercase text-white/85 mb-1">
             Dauer
           </div>
           <div className="font-mono text-sm text-mint">
@@ -1003,7 +1003,7 @@ function TextStage({
         </div>
         <div className="w-px h-8 bg-white/10" />
         <div>
-          <div className="text-[0.6rem] tracking-[0.2em] uppercase text-white/40 mb-1">
+          <div className="text-[0.75rem] tracking-[0.2em] uppercase text-white/85 mb-1">
             Du brauchst
           </div>
           <div className="font-mono text-sm text-mint">
@@ -1114,17 +1114,17 @@ function FormSection() {
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           {/* Left */}
           <div className="lg:col-span-5 lg:sticky lg:top-10">
-            <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-4">
+            <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-teal mb-4">
               Dein Termin
             </div>
             <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-forest leading-[1] mb-6">
               Schreib mir.
               <br />
-              <span className="italic text-forest/40">
+              <span className="italic text-forest/65">
                 Ich melde mich heute noch.
               </span>
             </h2>
-            <p className="text-lg text-slate leading-relaxed mb-8 max-w-lg">
+            <p className="text-lg text-forest/75 leading-relaxed mb-8 max-w-lg">
               Hinterlasse deine Nummer – ich rufe dich innerhalb von 24 Stunden
               zurück und wir finden einen Termin, der für uns beide passt.
             </p>
@@ -1145,7 +1145,7 @@ function FormSection() {
                   <div className="font-display font-bold text-2xl group-hover:text-mint transition-colors">
                     +49 172 6223371
                   </div>
-                  <div className="text-xs text-white/60 mt-0.5">
+                  <div className="text-xs text-white/85 mt-0.5">
                     Mo – Sa, 8:00 – 20:00 Uhr
                   </div>
                 </div>
@@ -1192,7 +1192,7 @@ function FormSection() {
             </div>
 
             <div className="mb-5">
-              <label className="block text-[0.65rem] font-semibold uppercase tracking-[0.15em] text-teal mb-2">
+              <label className="block text-[0.78rem] font-semibold uppercase tracking-[0.15em] text-teal mb-2">
                 Wann erreiche ich dich am besten?
               </label>
               <select
@@ -1214,10 +1214,10 @@ function FormSection() {
             <div className="mb-6">
               <label
                 htmlFor="erstgespraech-message"
-                className="block text-[0.65rem] font-semibold uppercase tracking-[0.15em] text-teal mb-2"
+                className="block text-[0.78rem] font-semibold uppercase tracking-[0.15em] text-teal mb-2"
               >
                 Worum geht&apos;s?{" "}
-                <span className="text-slate font-normal normal-case tracking-normal">
+                <span className="text-forest/75 font-normal normal-case tracking-normal">
                   (optional)
                 </span>
               </label>
@@ -1230,7 +1230,7 @@ function FormSection() {
               />
             </div>
 
-            <p className="text-xs text-slate mb-6 leading-relaxed">
+            <p className="text-xs text-forest/75 mb-6 leading-relaxed">
               Mit dem Absenden stimmst du zu, dass deine Angaben zur Bearbeitung
               deiner Anfrage verwendet werden. Mehr in der{" "}
               <Link href="/datenschutz" className="text-teal underline">
@@ -1285,7 +1285,7 @@ function Field({
     <div>
       <label
         htmlFor={`eg-${name}`}
-        className="block text-[0.65rem] font-semibold uppercase tracking-[0.15em] text-teal mb-2"
+        className="block text-[0.78rem] font-semibold uppercase tracking-[0.15em] text-teal mb-2"
       >
         {label}
         {required && " *"}
@@ -1309,7 +1309,7 @@ function FaqSection() {
     <section className="py-24 sm:py-28 lg:py-32 bg-white">
       <div className="max-w-3xl mx-auto px-5 sm:px-6 lg:px-10">
         <div className="text-center mb-12 sm:mb-14">
-          <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-3">
+          <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-teal mb-3">
             Noch Fragen?
           </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-forest leading-[1]">
@@ -1369,7 +1369,7 @@ function FaqSection() {
         </div>
 
         <div className="mt-12 text-center">
-          <p className="text-slate mb-5">
+          <p className="text-forest/75 mb-5">
             Andere Frage? Einfach anrufen – ich beantworte sie direkt.
           </p>
           <a

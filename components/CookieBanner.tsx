@@ -142,7 +142,7 @@ export function CookieBanner() {
                     </h2>
                     <p
                       id="cookie-body"
-                      className="text-sm sm:text-base text-white/70 leading-relaxed"
+                      className="text-sm sm:text-base text-white/85 leading-relaxed"
                     >
                       Diese Website nutzt Cookies für das technische
                       Funktionieren und{" "}
@@ -208,7 +208,7 @@ export function CookieBanner() {
                     <button
                       type="button"
                       onClick={() => setShowSettings(true)}
-                      className="inline-flex items-center justify-center gap-2 text-white/60 hover:text-mint text-sm transition-colors px-4 py-2"
+                      className="inline-flex items-center justify-center gap-2 text-white/85 hover:text-mint text-sm transition-colors px-4 py-2"
                     >
                       <Settings size={14} />
                       Einstellungen
@@ -220,13 +220,13 @@ export function CookieBanner() {
                     aria-label="Schließen"
                     className={`${
                       showSettings ? "inline-flex" : "hidden"
-                    } w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 text-white/60 hover:text-white items-center justify-center transition-colors sm:ml-auto`}
+                    } w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 text-white/85 hover:text-white items-center justify-center transition-colors sm:ml-auto`}
                   >
                     <X size={14} />
                   </button>
                 </div>
 
-                <div className="mt-4 pt-4 border-t border-white/10 flex flex-wrap gap-x-5 gap-y-1 text-[0.7rem] text-white/40">
+                <div className="mt-4 pt-4 border-t border-white/10 flex flex-wrap gap-x-5 gap-y-1 text-[0.7rem] text-white/85">
                   <a
                     href="/datenschutz"
                     className="hover:text-mint transition-colors"
@@ -280,12 +280,12 @@ function ConsentRow({
             {title}
           </span>
           {disabled && (
-            <span className="font-mono text-[0.6rem] tracking-widest uppercase text-mint/70 px-2 py-0.5 rounded-full bg-mint/10 border border-mint/20">
+            <span className="font-mono text-[0.75rem] tracking-widest uppercase text-mint/70 px-2 py-0.5 rounded-full bg-mint/10 border border-mint/20">
               Aktiv
             </span>
           )}
         </div>
-        <p className="text-xs text-white/60 leading-relaxed">{desc}</p>
+        <p className="text-xs text-white/85 leading-relaxed">{desc}</p>
       </div>
       {/* Toggle switch (or static check if disabled) */}
       <div

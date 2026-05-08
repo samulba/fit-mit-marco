@@ -57,7 +57,7 @@ export function Testimonials() {
           transition={{ duration: 0.8 }}
           className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 lg:mb-20"
         >
-          <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-4">
+          <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-teal mb-4">
             Kundenstimmen
           </div>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-7xl font-bold text-forest leading-[0.95]">
@@ -141,7 +141,7 @@ export function Testimonials() {
                     </div>
                     <div
                       className={`text-xs ${
-                        isFeatured ? "text-white/50" : "text-slate"
+                        isFeatured ? "text-white/80" : "text-forest/75"
                       }`}
                     >
                       {t.source}

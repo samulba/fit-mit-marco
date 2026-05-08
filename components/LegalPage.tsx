@@ -31,7 +31,7 @@ export function LegalPage({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-mint mb-4">
+            <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-mint mb-4">
               {kicker}
             </div>
             <h1
@@ -41,7 +41,7 @@ export function LegalPage({
               {title}
             </h1>
             {lastUpdated && (
-              <div className="mt-6 font-mono text-xs text-white/50">
+              <div className="mt-6 font-mono text-xs text-white/80">
                 Stand: {lastUpdated}
               </div>
             )}

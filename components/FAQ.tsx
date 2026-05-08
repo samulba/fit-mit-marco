@@ -45,13 +45,13 @@ export function FAQ() {
     <section className="deferred-section py-20 sm:py-24 lg:py-32 bg-white">
       <div className="max-w-4xl mx-auto px-5 sm:px-6 lg:px-10">
         <div className="mb-12 sm:mb-16 text-center">
-          <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-4">
+          <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-teal mb-4">
             FAQ
           </div>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-forest leading-[0.95] mb-4 sm:mb-5">
             Deine <span className="italic text-teal">Fragen</span>, beantwortet
           </h2>
-          <p className="text-base sm:text-lg text-slate leading-relaxed max-w-xl mx-auto">
+          <p className="text-base sm:text-lg text-forest/75 leading-relaxed max-w-xl mx-auto">
             Antworten auf die häufigsten Fragen meiner Kunden. Falls du eine
             Frage hast die hier nicht steht, melde dich gerne direkt bei mir.
           </p>
@@ -124,7 +124,7 @@ export function FAQ() {
         >
           <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-teal/20 blur-[100px] pointer-events-none" />
           <div className="relative">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-mint/10 border border-mint/30 text-mint text-[0.65rem] tracking-[0.25em] uppercase font-semibold mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-mint/10 border border-mint/30 text-mint text-[0.78rem] tracking-[0.15em] uppercase font-semibold mb-6">
               <Sparkles size={12} />
               Häufige Bedenken
             </div>
@@ -142,7 +142,7 @@ export function FAQ() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.08 }}
-                  className="bg-forest-mid border border-white/10 rounded-2xl px-5 py-4 font-display italic text-white/70 text-base sm:text-lg"
+                  className="bg-forest-mid border border-white/10 rounded-2xl px-5 py-4 font-display italic text-white/85 text-base sm:text-lg"
                 >
                   {c.text}
                 </motion.div>

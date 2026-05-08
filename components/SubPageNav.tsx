@@ -48,7 +48,7 @@ export function SubPageNav({
         </Link>
         <Link
           href={backHref}
-          className="inline-flex items-center gap-2 text-xs font-medium tracking-widest uppercase text-white/70 hover:text-mint transition-colors"
+          className="inline-flex items-center gap-2 text-xs font-medium tracking-widest uppercase text-white/85 hover:text-mint transition-colors"
         >
           <ArrowLeft size={14} /> {backLabel}
         </Link>

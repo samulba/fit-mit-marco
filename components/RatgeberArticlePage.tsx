@@ -46,7 +46,7 @@ export function RatgeberArticlePage({ article }: { article: Article }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-mint/30 bg-mint/5 text-mint text-[0.65rem] tracking-[0.25em] uppercase font-semibold mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-mint/30 bg-mint/5 text-mint text-[0.78rem] tracking-[0.15em] uppercase font-semibold mb-6">
               Ratgeber · {article.category}
             </div>
             <h1
@@ -55,7 +55,7 @@ export function RatgeberArticlePage({ article }: { article: Article }) {
             >
               {article.title}
             </h1>
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-white/60 font-mono">
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-white/85 font-mono">
               <span className="inline-flex items-center gap-1.5">
                 <User size={14} /> {article.author}
               </span>
@@ -93,13 +93,13 @@ export function RatgeberArticlePage({ article }: { article: Article }) {
               />
             </div>
             <div className="flex-1">
-              <div className="text-[0.65rem] tracking-[0.25em] uppercase text-teal font-semibold mb-1">
+              <div className="text-[0.78rem] tracking-[0.15em] uppercase text-teal font-semibold mb-1">
                 Geschrieben von
               </div>
               <div className="font-display text-xl sm:text-2xl font-bold text-forest mb-1">
                 Marco Degel
               </div>
-              <p className="text-sm text-slate leading-relaxed">
+              <p className="text-sm text-forest/75 leading-relaxed">
                 Personal Trainer für Senioren in München. Seit 2018 als
                 Personal Trainer tätig, zuvor vier Jahre Betreuung im
                 Hochleistungssport. Training bei dir zuhause – individuell,
@@ -115,7 +115,7 @@ export function RatgeberArticlePage({ article }: { article: Article }) {
         <div className="max-w-5xl mx-auto px-5 sm:px-6 lg:px-10">
           <div className="flex items-end justify-between mb-10">
             <div>
-              <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-3">
+              <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-teal mb-3">
                 Passt dazu
               </div>
               <h2 className="font-display text-2xl sm:text-3xl font-bold text-forest leading-tight">
@@ -137,13 +137,13 @@ export function RatgeberArticlePage({ article }: { article: Article }) {
                 href={`/ratgeber/${r.slug}`}
                 className="group block bg-white border border-sand rounded-2xl p-6 hover:border-teal/40 hover:shadow-soft-md hover:-translate-y-1 transition-all duration-500 ease-smooth"
               >
-                <div className="text-[0.65rem] tracking-[0.25em] uppercase text-teal font-semibold mb-3">
+                <div className="text-[0.78rem] tracking-[0.15em] uppercase text-teal font-semibold mb-3">
                   {r.category}
                 </div>
                 <div className="font-display font-bold text-lg sm:text-xl text-forest leading-snug mb-3 group-hover:text-teal transition-colors">
                   {r.title}
                 </div>
-                <div className="text-sm text-slate leading-relaxed mb-4 line-clamp-2">
+                <div className="text-sm text-forest/75 leading-relaxed mb-4 line-clamp-2">
                   {r.excerpt}
                 </div>
                 <div className="inline-flex items-center gap-1.5 text-teal text-sm font-semibold">
@@ -202,7 +202,7 @@ function BlockRenderer({ block }: { block: ArticleBlock }) {
     case "callout":
       return (
         <div className="relative my-8 p-6 sm:p-7 rounded-2xl bg-cream border-l-4 border-teal">
-          <div className="flex items-center gap-2 text-[0.65rem] tracking-[0.25em] uppercase text-teal font-semibold mb-2">
+          <div className="flex items-center gap-2 text-[0.78rem] tracking-[0.15em] uppercase text-teal font-semibold mb-2">
             <Lightbulb size={12} />
             {block.title}
           </div>

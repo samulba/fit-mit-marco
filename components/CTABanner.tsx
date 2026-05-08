@@ -19,14 +19,14 @@ export function CTABanner() {
 
           <div className="relative flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 lg:gap-10">
             <div className="max-w-2xl">
-              <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-mint mb-3 lg:mb-4">
+              <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-mint mb-3 lg:mb-4">
                 Dein nächster Schritt
               </div>
               <h2 className="font-display text-3xl sm:text-4xl lg:text-6xl font-bold leading-[1.05]">
                 Bereit für dein neues{" "}
                 <span className="italic text-teal">Lebensgefühl?</span>
               </h2>
-              <p className="mt-4 lg:mt-6 text-base lg:text-lg text-white/70 leading-relaxed">
+              <p className="mt-4 lg:mt-6 text-base lg:text-lg text-white/85 leading-relaxed">
                 Ein Anruf genügt – das Erstgespräch ist kostenlos und
                 unverbindlich. Ich freue mich darauf, dich kennenzulernen.
               </p>
@@ -49,7 +49,7 @@ export function CTABanner() {
               </a>
               <a
                 href="tel:+491726223371"
-                className="text-white/60 hover:text-white transition-colors text-center lg:text-right font-mono text-xs lg:text-sm"
+                className="text-white/85 hover:text-white transition-colors text-center lg:text-right font-mono text-xs lg:text-sm"
               >
                 oder direkt anrufen: +49 172 6223371
               </a>

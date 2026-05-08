@@ -29,7 +29,7 @@ export function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
           <div className="lg:col-span-2">
             <Logo variant="dark" width={220} height={70} />
-            <p className="mt-6 text-white/60 leading-relaxed max-w-sm">
+            <p className="mt-6 text-white/85 leading-relaxed max-w-sm">
               Individuelles Personal Training für Senioren in München und
               Umgebung.
             </p>
@@ -51,7 +51,7 @@ export function Footer() {
                 <li key={l.href}>
                   <a
                     href={l.href}
-                    className="text-white/70 hover:text-teal transition-colors"
+                    className="text-white/85 hover:text-teal transition-colors"
                   >
                     {l.label}
                   </a>
@@ -79,14 +79,14 @@ export function Footer() {
                           (window as any).__openCookieSettings();
                         }
                       }}
-                      className="text-white/70 hover:text-teal transition-colors text-left"
+                      className="text-white/85 hover:text-teal transition-colors text-left"
                     >
                       {l.label}
                     </button>
                   ) : (
                     <a
                       href={l.href}
-                      className="text-white/70 hover:text-teal transition-colors"
+                      className="text-white/85 hover:text-teal transition-colors"
                     >
                       {l.label}
                     </a>
@@ -100,7 +100,7 @@ export function Footer() {
             <div className="text-xs font-semibold uppercase tracking-[0.2em] text-mint mb-5">
               Kontakt
             </div>
-            <ul className="space-y-4 text-white/70">
+            <ul className="space-y-4 text-white/85">
               <li className="flex items-start gap-3">
                 <Phone
                   size={16}
@@ -156,12 +156,12 @@ export function Footer() {
                   <Sparkles size={18} />
                 </div>
                 <div>
-                  <div className="text-[0.65rem] font-mono tracking-[0.25em] uppercase text-mint mb-1">
+                  <div className="text-[0.78rem] font-mono tracking-[0.15em] uppercase text-mint mb-1">
                     Design &amp; Entwicklung
                   </div>
                   <div className="font-display font-bold text-lg text-white leading-tight">
                     VicinusMedia{" "}
-                    <span className="italic text-white/50 font-normal">
+                    <span className="italic text-white/80 font-normal">
                       — Webdesign aus München
                     </span>
                   </div>
@@ -178,7 +178,7 @@ export function Footer() {
         </div>
 
         {/* Tiny copyright row */}
-        <div className="mt-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 text-sm text-white/40">
+        <div className="mt-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 text-sm text-white/85">
           <div>© 2026 Fit mit Marco · Marco Degel</div>
           <div className="font-mono text-xs">
             Mit viel Herz gemacht in München.

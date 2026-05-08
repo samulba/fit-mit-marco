@@ -33,7 +33,7 @@ export function RatgeberIndexPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-mint/30 bg-mint/5 text-mint text-[0.65rem] tracking-[0.25em] uppercase font-semibold mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-mint/30 bg-mint/5 text-mint text-[0.78rem] tracking-[0.15em] uppercase font-semibold mb-6">
               <BookOpen size={13} /> Ratgeber für Senioren
             </div>
             <h1
@@ -44,7 +44,7 @@ export function RatgeberIndexPage() {
               <br />
               <span className="italic text-teal">stärker macht.</span>
             </h1>
-            <p className="mt-8 text-lg sm:text-xl text-white/70 leading-relaxed max-w-2xl font-light">
+            <p className="mt-8 text-lg sm:text-xl text-white/85 leading-relaxed max-w-2xl font-normal">
               Artikel zu Training, Gesundheit und Alltag – geschrieben für
               Menschen ab 60 und ihre Angehörigen. Keine Versprechen, keine
               Marketingfloskeln. Nur das, was ich aus der Arbeit mit echten
@@ -57,7 +57,7 @@ export function RatgeberIndexPage() {
       {/* Featured article */}
       <section className="py-16 sm:py-20 bg-cream">
         <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-10">
-          <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-6">
+          <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-teal mb-6">
             Aktueller Artikel
           </div>
           <FeaturedCard article={featured} />
@@ -69,7 +69,7 @@ export function RatgeberIndexPage() {
         <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-10">
           <div className="flex items-end justify-between mb-10 lg:mb-14">
             <div>
-              <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-3">
+              <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-teal mb-3">
                 Alle Artikel
               </div>
               <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-forest leading-[1]">
@@ -89,7 +89,7 @@ export function RatgeberIndexPage() {
       {/* CTA */}
       <section className="py-20 lg:py-28 bg-cream">
         <div className="max-w-4xl mx-auto px-5 sm:px-6 lg:px-10 text-center">
-          <div className="text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-teal mb-4">
+          <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-teal mb-4">
             Persönliche Beratung
           </div>
           <h2
@@ -98,7 +98,7 @@ export function RatgeberIndexPage() {
           >
             Mehr als Lesen? Lass uns sprechen.
           </h2>
-          <p className="text-base sm:text-lg text-slate leading-relaxed max-w-2xl mx-auto mb-10">
+          <p className="text-base sm:text-lg text-forest/75 leading-relaxed max-w-2xl mx-auto mb-10">
             Artikel sind ein guter Anfang. Aber jede Situation ist individuell.
             Im kostenlosen Erstgespräch schauen wir uns an, was für dich
             persönlich wirklich passt.
@@ -148,7 +148,7 @@ function FeaturedCard({ article }: { article: Article }) {
             <div className="w-40 h-40 rounded-full border-2 border-white/40" />
             <div className="w-64 h-64 rounded-full border border-white/25 absolute" />
           </div>
-          <div className="absolute top-5 left-5 bg-white/90 backdrop-blur-sm text-forest text-[0.65rem] font-semibold tracking-wider uppercase px-3 py-1.5 rounded-full">
+          <div className="absolute top-5 left-5 bg-white/90 backdrop-blur-sm text-forest text-[0.78rem] font-semibold tracking-wider uppercase px-3 py-1.5 rounded-full">
             {article.category}
           </div>
           <div className="absolute bottom-5 left-5 right-5 font-display italic text-forest/70 text-xl sm:text-2xl leading-tight">
@@ -158,7 +158,7 @@ function FeaturedCard({ article }: { article: Article }) {
 
         {/* Text side */}
         <div>
-          <div className="flex items-center gap-4 text-xs text-slate mb-4">
+          <div className="flex items-center gap-4 text-xs text-forest/75 mb-4">
             <span className="font-mono">{date}</span>
             <span className="w-1 h-1 rounded-full bg-slate/40" />
             <span className="inline-flex items-center gap-1.5">
@@ -168,7 +168,7 @@ function FeaturedCard({ article }: { article: Article }) {
           <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-forest leading-[1.1] mb-4 group-hover:text-teal transition-colors duration-400">
             {article.title}
           </h3>
-          <p className="text-base sm:text-lg text-slate leading-relaxed mb-6">
+          <p className="text-base sm:text-lg text-forest/75 leading-relaxed mb-6">
             {article.excerpt}
           </p>
           <div className="inline-flex items-center gap-2 text-teal font-semibold text-sm">
@@ -211,18 +211,18 @@ function ArticleCard({
             <div className="w-32 h-32 rounded-full border-2 border-white/40" />
             <div className="w-48 h-48 rounded-full border border-white/20 absolute" />
           </div>
-          <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-forest text-[0.6rem] font-semibold tracking-wider uppercase px-2.5 py-1 rounded-full">
+          <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-forest text-[0.75rem] font-semibold tracking-wider uppercase px-2.5 py-1 rounded-full">
             {article.category}
           </div>
         </div>
         <div className="p-6 sm:p-7">
-          <div className="flex items-center gap-1.5 text-xs text-slate mb-3">
+          <div className="flex items-center gap-1.5 text-xs text-forest/75 mb-3">
             <Clock size={12} /> {readingTime} Min Lesezeit
           </div>
           <h3 className="font-display text-xl sm:text-2xl font-bold text-forest leading-tight mb-3 group-hover:text-teal transition-colors duration-400">
             {article.title}
           </h3>
-          <p className="text-sm sm:text-base text-slate leading-relaxed mb-5 line-clamp-3">
+          <p className="text-sm sm:text-base text-forest/75 leading-relaxed mb-5 line-clamp-3">
             {article.excerpt}
           </p>
           <div className="inline-flex items-center gap-1.5 text-teal font-semibold text-sm">
