@@ -19,7 +19,11 @@ import {
   Gift,
   Map,
   Check,
+  ChevronDown,
+  Calendar,
+  Mail,
 } from "lucide-react";
+import { AnimatePresence } from "framer-motion";
 import { Footer } from "./Footer";
 import { SubPageNav } from "./SubPageNav";
 
@@ -1154,116 +1158,144 @@ function FormSection() {
           </div>
 
           {/* Right form */}
-          <motion.form
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            onSubmit={handleSubmit}
-            className="lg:col-span-7 bg-white rounded-3xl p-7 sm:p-10 lg:p-12 border border-sand shadow-sm"
+            className="lg:col-span-7 relative"
           >
-            {/* Honeypot */}
-            <input
-              type="text"
-              name="_gotcha"
-              tabIndex={-1}
-              autoComplete="off"
-              className="hidden"
-              aria-hidden="true"
-            />
-            <input
-              type="hidden"
-              name="_subject"
-              value="Neue Erstgespräch-Anfrage über fitmitmarco.de"
-            />
-            <input type="hidden" name="source" value="/erstgespraech" />
-
-            <h3 className="font-display text-2xl sm:text-3xl font-bold text-forest mb-7">
-              Erstgespräch anfragen
-            </h3>
-
-            <div className="grid sm:grid-cols-2 gap-4 sm:gap-5 mb-4 sm:mb-5">
-              <Field label="Vorname" name="firstName" required />
-              <Field label="Nachname" name="lastName" required />
-            </div>
-            <div className="grid sm:grid-cols-2 gap-4 sm:gap-5 mb-4 sm:mb-5">
-              <Field label="Telefon" name="phone" type="tel" required />
-              <Field label="E-Mail" name="email" type="email" required />
-            </div>
-
-            <div className="mb-5">
-              <label className="block text-[0.78rem] font-semibold uppercase tracking-[0.15em] text-teal mb-2">
-                Wann erreiche ich dich am besten?
-              </label>
-              <select
-                name="preferredTime"
-                className="w-full px-4 sm:px-5 py-3.5 sm:py-4 rounded-2xl border border-sand bg-cream focus:border-teal focus:outline-none focus:ring-4 focus:ring-teal/15 focus:shadow-soft transition-all duration-400 text-charcoal text-base"
-                defaultValue=""
-              >
-                <option value="" disabled>
-                  Bitte wählen…
-                </option>
-                <option>Vormittags (8 – 12 Uhr)</option>
-                <option>Mittags (12 – 14 Uhr)</option>
-                <option>Nachmittags (14 – 18 Uhr)</option>
-                <option>Abends (18 – 20 Uhr)</option>
-                <option>Egal – ruf einfach an</option>
-              </select>
-            </div>
-
-            <div className="mb-6">
-              <label
-                htmlFor="erstgespraech-message"
-                className="block text-[0.78rem] font-semibold uppercase tracking-[0.15em] text-teal mb-2"
-              >
-                Worum geht&apos;s?{" "}
-                <span className="text-forest/75 font-normal normal-case tracking-normal">
-                  (optional)
-                </span>
-              </label>
-              <textarea
-                id="erstgespraech-message"
-                name="message"
-                rows={4}
-                placeholder="z. B. Ich habe seit Monaten Rückenschmerzen und möchte wieder fit werden…"
-                className="w-full px-4 sm:px-5 py-3.5 sm:py-4 rounded-2xl border border-sand bg-cream focus:border-teal focus:outline-none focus:ring-4 focus:ring-teal/15 focus:shadow-soft transition-all duration-400 resize-none text-charcoal text-base"
-              />
-            </div>
-
-            <p className="text-xs text-forest/75 mb-6 leading-relaxed">
-              Mit dem Absenden stimmst du zu, dass deine Angaben zur Bearbeitung
-              deiner Anfrage verwendet werden. Mehr in der{" "}
-              <Link href="/datenschutz" className="text-teal underline">
-                Datenschutzerklärung
-              </Link>
-              .
-            </p>
-
-            <button
-              type="submit"
-              disabled={status === "sending" || status === "sent"}
-              className="w-full group inline-flex items-center justify-center gap-3 bg-forest hover:bg-teal text-white hover:text-forest px-6 py-5 rounded-full font-semibold text-base transition-all hover:shadow-2xl hover:shadow-teal/30 disabled:opacity-70 disabled:cursor-not-allowed"
-            >
-              {status === "sending" && "Wird gesendet…"}
-              {status === "sent" && "✓ Danke! Ich melde mich heute noch."}
-              {status === "idle" && (
-                <>
-                  Erstgespräch anfragen
-                  <ArrowRight
-                    size={18}
-                    className="transition-transform group-hover:translate-x-1"
+            <AnimatePresence mode="wait">
+              {status === "sent" ? (
+                <SuccessCard key="success" onReset={() => setStatus("idle")} />
+              ) : (
+                <motion.form
+                  key="form"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  onSubmit={handleSubmit}
+                  className="bg-white rounded-2xl p-6 sm:p-8 lg:p-10 border border-sand"
+                >
+                  {/* Honeypot */}
+                  <input
+                    type="text"
+                    name="_gotcha"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    className="hidden"
+                    aria-hidden="true"
                   />
-                </>
-              )}
-              {status === "error" && "Erneut versuchen"}
-            </button>
+                  <input
+                    type="hidden"
+                    name="_subject"
+                    value="Neue Erstgespräch-Anfrage über fitmitmarco.com"
+                  />
+                  <input type="hidden" name="source" value="/erstgespraech" />
 
-            {status === "error" && errorMsg && (
-              <p className="mt-3 text-sm text-coral" role="alert">
-                {errorMsg}
-              </p>
-            )}
-          </motion.form>
+                  <h3 className="font-display text-xl sm:text-2xl font-bold text-forest mb-6">
+                    Erstgespräch anfragen
+                  </h3>
+
+                  <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 mb-4">
+                    <Field label="Vorname" name="firstName" required />
+                    <Field label="Nachname" name="lastName" required />
+                  </div>
+                  <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 mb-4">
+                    <Field label="Telefon" name="phone" type="tel" required />
+                    <Field label="E-Mail" name="email" type="email" required />
+                  </div>
+
+                  <div className="mb-4">
+                    <label
+                      htmlFor="eg-preferredTime"
+                      className="block text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-teal mb-1.5"
+                    >
+                      Wann erreiche ich dich am besten?
+                    </label>
+                    <div className="relative">
+                      <select
+                        id="eg-preferredTime"
+                        name="preferredTime"
+                        className="w-full appearance-none px-4 pr-11 py-3 rounded-xl border border-sand bg-cream focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/20 transition-colors text-forest text-base cursor-pointer"
+                        defaultValue=""
+                      >
+                        <option value="" disabled>
+                          Bitte wählen…
+                        </option>
+                        <option>Vormittags (8 – 12 Uhr)</option>
+                        <option>Mittags (12 – 14 Uhr)</option>
+                        <option>Nachmittags (14 – 18 Uhr)</option>
+                        <option>Abends (18 – 20 Uhr)</option>
+                        <option>Egal – ruf einfach an</option>
+                      </select>
+                      <ChevronDown
+                        size={18}
+                        className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-teal"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="mb-5">
+                    <label
+                      htmlFor="erstgespraech-message"
+                      className="block text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-teal mb-1.5"
+                    >
+                      Worum geht&apos;s?{" "}
+                      <span className="text-forest/55 font-normal normal-case tracking-normal">
+                        (optional)
+                      </span>
+                    </label>
+                    <textarea
+                      id="erstgespraech-message"
+                      name="message"
+                      rows={3}
+                      placeholder="z. B. Ich habe seit Monaten Rückenschmerzen und möchte wieder fit werden…"
+                      className="w-full px-4 py-3 rounded-xl border border-sand bg-cream focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/20 transition-colors resize-none text-forest text-base placeholder:text-forest/40"
+                    />
+                  </div>
+
+                  <p className="text-xs text-forest/60 mb-5 leading-relaxed">
+                    Mit dem Absenden stimmst du zu, dass deine Angaben zur
+                    Bearbeitung deiner Anfrage verwendet werden. Mehr in der{" "}
+                    <Link href="/datenschutz" className="text-teal underline">
+                      Datenschutzerklärung
+                    </Link>
+                    .
+                  </p>
+
+                  <button
+                    type="submit"
+                    disabled={status === "sending"}
+                    className="w-full group inline-flex items-center justify-center gap-3 bg-forest hover:bg-teal text-white hover:text-forest px-6 py-4 rounded-full font-semibold text-base transition-all hover:shadow-xl hover:shadow-teal/20 disabled:opacity-70 disabled:cursor-not-allowed"
+                  >
+                    {status === "sending" ? (
+                      <>
+                        <span className="w-4 h-4 rounded-full border-2 border-white/30 border-t-white animate-spin" />
+                        Wird gesendet…
+                      </>
+                    ) : status === "error" ? (
+                      "Erneut versuchen"
+                    ) : (
+                      <>
+                        Erstgespräch anfragen
+                        <ArrowRight
+                          size={18}
+                          className="transition-transform group-hover:translate-x-1"
+                        />
+                      </>
+                    )}
+                  </button>
+
+                  {status === "error" && errorMsg && (
+                    <p className="mt-3 text-sm text-coral" role="alert">
+                      {errorMsg}
+                    </p>
+                  )}
+                </motion.form>
+              )}
+            </AnimatePresence>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -1285,7 +1317,7 @@ function Field({
     <div>
       <label
         htmlFor={`eg-${name}`}
-        className="block text-[0.78rem] font-semibold uppercase tracking-[0.15em] text-teal mb-2"
+        className="block text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-teal mb-1.5"
       >
         {label}
         {required && " *"}
@@ -1295,9 +1327,159 @@ function Field({
         name={name}
         type={type}
         required={required}
-        className="w-full px-4 sm:px-5 py-3.5 sm:py-4 rounded-2xl border border-sand bg-cream focus:border-teal focus:outline-none focus:ring-4 focus:ring-teal/15 focus:shadow-soft transition-all duration-400 text-charcoal text-base"
+        className="w-full px-4 py-3 rounded-xl border border-sand bg-cream focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/20 transition-colors text-forest text-base"
       />
     </div>
+  );
+}
+
+/* ── Success celebration card — replaces form on successful submit ── */
+function SuccessCard({ onReset }: { onReset: () => void }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.96, y: 20 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.96 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className="relative overflow-hidden rounded-2xl bg-forest text-cream p-8 sm:p-10 lg:p-12 border border-forest"
+    >
+      {/* Glow accent */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.1, duration: 1 }}
+        className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-teal/30 blur-3xl pointer-events-none"
+      />
+
+      {/* Animated checkmark */}
+      <motion.div
+        initial={{ scale: 0, rotate: -30 }}
+        animate={{ scale: 1, rotate: 0 }}
+        transition={{ delay: 0.15, type: "spring", stiffness: 220, damping: 14 }}
+        className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-teal text-forest flex items-center justify-center mb-7 shadow-2xl shadow-teal/30"
+      >
+        {/* Ripple ring behind */}
+        <motion.span
+          initial={{ scale: 1, opacity: 0.6 }}
+          animate={{ scale: 1.7, opacity: 0 }}
+          transition={{ delay: 0.35, duration: 1.4, ease: "easeOut" }}
+          className="absolute inset-0 rounded-full bg-teal"
+        />
+        <motion.svg
+          width="40"
+          height="40"
+          viewBox="0 0 24 24"
+          fill="none"
+          className="relative z-10"
+        >
+          <motion.path
+            d="M5 12l5 5L20 7"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ delay: 0.35, duration: 0.55, ease: "easeOut" }}
+          />
+        </motion.svg>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4, duration: 0.5 }}
+      >
+        <div className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-mint mb-3">
+          Anfrage angekommen
+        </div>
+        <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.05] mb-4">
+          Danke! Ich melde mich{" "}
+          <span className="italic text-mint">heute noch.</span>
+        </h3>
+        <p className="text-base sm:text-lg text-white/85 leading-relaxed mb-7 max-w-lg">
+          Deine Anfrage ist sicher bei mir gelandet. Ich rufe dich
+          innerhalb der nächsten 24 Stunden zurück — meistens viel früher.
+        </p>
+      </motion.div>
+
+      {/* Timeline: what happens next */}
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.55, duration: 0.5 }}
+        className="space-y-3 mb-7"
+      >
+        {[
+          {
+            icon: Check,
+            title: "Anfrage erhalten",
+            sub: "Soeben",
+            done: true,
+          },
+          {
+            icon: Phone,
+            title: "Ich melde mich",
+            sub: "Innerhalb 24 Std.",
+            done: false,
+          },
+          {
+            icon: Calendar,
+            title: "Erstgespräch",
+            sub: "30 Min · kostenlos",
+            done: false,
+          },
+        ].map((s, i) => (
+          <motion.div
+            key={s.title}
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.65 + i * 0.08 }}
+            className="flex items-center gap-4 p-3 rounded-xl bg-white/[0.04] border border-white/[0.06]"
+          >
+            <div
+              className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${
+                s.done ? "bg-teal text-forest" : "bg-white/10 text-mint"
+              }`}
+            >
+              <s.icon size={16} strokeWidth={s.done ? 3 : 2} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="font-display font-bold text-base">
+                {s.title}
+              </div>
+              <div className="text-xs text-white/85 mt-0.5 font-mono">
+                {s.sub}
+              </div>
+            </div>
+            {s.done && (
+              <span className="text-[0.65rem] font-mono uppercase tracking-widest text-mint">
+                erledigt
+              </span>
+            )}
+          </motion.div>
+        ))}
+      </motion.div>
+
+      {/* Quick contact line */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 0.5 }}
+        className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-6 border-t border-white/10"
+      >
+        <div className="flex items-center gap-2 text-white/85 text-sm">
+          <Mail size={14} />
+          <span>Bestätigung auch per E-Mail unterwegs.</span>
+        </div>
+        <a
+          href="tel:+491726223371"
+          className="inline-flex items-center gap-2 text-mint hover:text-teal text-sm font-semibold transition-colors"
+        >
+          <Phone size={14} /> Lieber jetzt anrufen?
+        </a>
+      </motion.div>
+    </motion.div>
   );
 }
 
