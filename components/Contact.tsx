@@ -6,7 +6,7 @@ import { FormEvent, useState } from "react";
 
 const FORMSPREE_ENDPOINT =
   process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT ||
-  "https://formspree.io/f/xwvydjqv";
+  "https://formspree.io/f/mykoqanb";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
