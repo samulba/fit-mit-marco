@@ -32,8 +32,6 @@ export default function ImpressumPage() {
         <p>
           <strong>Marco Degel – Fit mit Marco</strong>
           <br />
-          Personal Training für Senioren
-          <br />
           Beethovenstraße 3
           <br />
           85622 Feldkirchen
@@ -41,6 +39,12 @@ export default function ImpressumPage() {
           Deutschland
         </p>
       </div>
+
+      <h2>Art der Tätigkeit</h2>
+      <p>
+        Sport- und Freizeitunterricht — Personal Training für Senioren,
+        ausgeübt als freiberufliche Tätigkeit im Sinne des § 18 EStG.
+      </p>
 
       <h2>Kontakt</h2>
       <div className="card">
@@ -60,14 +64,15 @@ export default function ImpressumPage() {
 
       <h2>Steuerliche Angaben</h2>
       <p>
-        Die Tätigkeit wird <strong>freiberuflich</strong> ausgeübt. Die
-        steuerliche Erfassung wurde über ELSTER beim zuständigen Finanzamt
-        eingereicht. Eine Gewerbeanmeldung liegt daher nicht vor.
+        Die Tätigkeit wird <strong>freiberuflich</strong> ausgeübt; eine
+        Gewerbeanmeldung liegt daher nicht vor. Die steuerliche Erfassung
+        erfolgte beim zuständigen Finanzamt.
       </p>
       <p>
-        Gemäß <strong>§ 19 UStG (Kleinunternehmerregelung)</strong> wird keine
-        Umsatzsteuer ausgewiesen. Eine Umsatzsteuer-Identifikationsnummer
-        besteht derzeit nicht.
+        Gemäß <strong>§ 19 UStG (Kleinunternehmerregelung)</strong> wird
+        keine Umsatzsteuer berechnet und ausgewiesen. Eine
+        Umsatzsteuer-Identifikationsnummer nach § 27a UStG besteht daher
+        nicht.
       </p>
 
       <h2>Redaktionell verantwortlich</h2>
