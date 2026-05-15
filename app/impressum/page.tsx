@@ -49,8 +49,8 @@ export default function ImpressumPage() {
           <a href="tel:+491726223371">+49 172 6223371</a>
           <br />
           <strong>E-Mail:</strong>{" "}
-          <a href="mailto:fitmitmarcomuc@gmail.com">
-            fitmitmarcomuc@gmail.com
+          <a href="mailto:hallo@fitmitmarco.com">
+            hallo@fitmitmarco.com
           </a>
           <br />
           <strong>Web:</strong>{" "}

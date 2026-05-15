@@ -93,7 +93,7 @@ export function Contact() {
                 </a>
 
                 <a
-                  href="mailto:fitmitmarcomuc@gmail.com"
+                  href="mailto:hallo@fitmitmarco.com"
                   className="flex items-start gap-4 group"
                 >
                   <div className="w-11 h-11 rounded-xl bg-teal/15 group-hover:bg-teal text-mint group-hover:text-forest flex items-center justify-center transition-colors flex-shrink-0">
@@ -104,7 +104,7 @@ export function Contact() {
                       E-Mail
                     </div>
                     <div className="font-mono text-sm sm:text-base group-hover:text-mint transition-colors break-all">
-                      fitmitmarcomuc@gmail.com
+                      hallo@fitmitmarco.com
                     </div>
                   </div>
                 </a>

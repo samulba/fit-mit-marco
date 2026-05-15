@@ -119,10 +119,10 @@ export function Footer() {
                   className="text-teal mt-1 flex-shrink-0"
                 />
                 <a
-                  href="mailto:fitmitmarcomuc@gmail.com"
+                  href="mailto:hallo@fitmitmarco.com"
                   className="hover:text-teal transition-colors font-mono text-sm"
                 >
-                  fitmitmarcomuc@gmail.com
+                  hallo@fitmitmarco.com
                 </a>
               </li>
               <li className="flex items-start gap-3">

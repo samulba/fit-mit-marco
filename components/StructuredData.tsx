@@ -29,7 +29,7 @@ export const localBusinessSchema = {
     "Personal Training für Senioren in München und Umgebung. Individuelles Training bei dir zuhause – Kraft, Balance, Mobilität, Reha-Nachsorge und Ernährungsberatung.",
   url: SITE,
   telephone: "+49 172 6223371",
-  email: "fitmitmarcomuc@gmail.com",
+  email: "hallo@fitmitmarco.com",
   image: `${SITE}/marco.jpg`,
   logo: `${SITE}/icon-512.png`,
   priceRange: "€€",

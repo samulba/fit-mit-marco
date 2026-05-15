@@ -51,7 +51,7 @@ export default function DatenschutzPage() {
           <a href="tel:+491726223371">+49 172 6223371</a>
           <br />
           E-Mail:{" "}
-          <a href="mailto:fitmitmarcomuc@gmail.com">fitmitmarcomuc@gmail.com</a>
+          <a href="mailto:hallo@fitmitmarco.com">hallo@fitmitmarco.com</a>
         </p>
       </div>
 
@@ -226,7 +226,7 @@ export default function DatenschutzPage() {
       </ul>
       <p>
         Zur Ausübung deiner Rechte reicht eine formlose Mitteilung an{" "}
-        <a href="mailto:fitmitmarcomuc@gmail.com">fitmitmarcomuc@gmail.com</a>.
+        <a href="mailto:hallo@fitmitmarco.com">hallo@fitmitmarco.com</a>.
       </p>
 
       <h2>9. Beschwerderecht bei der Aufsichtsbehörde</h2>
